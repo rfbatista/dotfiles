@@ -1,13 +1,8 @@
-#Enable Powerlevel10k instant prompt. Should stay close to the top of ~/dotfiles/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 export ZSH="/home/renan/.oh-my-zsh"
 alias nv="/home/renan/nvim/nvim.appimage"
 alias jetbrains="/opt/jetbrains-toolbox-1.22.10740/jetbrains-toolbox"
+
+alias dotfiles="nv /home/renan/dotfiles/.zshrc"
 
 ###############################################
 # zsh theme
@@ -31,29 +26,26 @@ SPACESHIP_CHAR_SYMBOL="❯"
 SPACESHIP_CHAR_SUFFIX=" "
 SPACESHIP_PROMPT_SEPARATE_LINE=true
 SPACESHIP_TIME_SHOW=true
-#ZSH_THEME="powerlevel10k/powerlevel10k"
-# To customize prompt, run `p10k configure` or edit ~/dotfiles/.p10k.zsh.
-#[[ ! -f ~/dotfiles/.p10k.zsh ]] || source ~/dotfiles/.p10k.zsh
 
 ###############################################
 plugins=(git)
- 
+plugins=(asdf)
 source $ZSH/oh-my-zsh.sh
 
 ###############################################
 # asdf setup
 ###############################################
 
-. $HOME/.asdf/asdf.sh
+#. $HOME/.asdf/asdf.sh
 # append completions to fpath
-fpath=(${ASDF_DIR}/completions $fpath)
+#fpath=(${ASDF_DIR}/completions $fpath)
 # initialise completions with ZSH's compinit
-autoload -Uz compinit && compinit
+#autoload -Uz compinit && compinit
 
 ###############################################
 
-export NVM_DIR="/home/renan/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#export NVM_DIR="/home/renan/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Docker configs
 export PATH=/usr/bin:$PATH
@@ -64,6 +56,15 @@ export DOCKER_HOST=unix:///run/user/1000/docker.sock
 #############################
 alias chatclas="cd /home/renan/Desktop/Chatclass"
 
+#############################
+# Android
+#############################
+alias android-studio="sh /home/renan/android-studio/bin/studio.sh"
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 #############################
 # Python
