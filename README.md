@@ -12,3 +12,7 @@ http://asdf-vm.com/guide/getting-started.html
 # spaceship
 
 https://github.com/spaceship-prompt/spaceship-prompt/blob/master/docs/options.md
+
+# lazydocker
+
+https://github.com/jesseduffield/lazydocker

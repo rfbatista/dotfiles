@@ -3,7 +3,8 @@ alias nv="/home/renan/nvim/nvim.appimage"
 alias jetbrains="/opt/jetbrains-toolbox-1.22.10740/jetbrains-toolbox"
 
 alias dotfiles="nv /home/renan/dotfiles/.zshrc"
-
+export GOPATH="$HOME/go"
+PATH="$GOPATH/bin:$PATH"
 ###############################################
 # zsh theme
 ###############################################
@@ -54,7 +55,7 @@ export DOCKER_HOST=unix:///run/user/1000/docker.sock
 #############################
 # Work alias
 #############################
-alias chatclas="cd /home/renan/Desktop/Chatclass"
+alias chatclass="cd /home/renan/Desktop/Chatclass"
 
 #############################
 # Android
@@ -70,3 +71,9 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 # Python
 #############################
 source /home/renan/anaconda3/bin/activate
+
+#############################
+# Ngrok 
+#############################
+alias ngrok-3100="sh /home/renan/Desktop/start-ngrok-3100.sh"
+
