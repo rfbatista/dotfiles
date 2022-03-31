@@ -1,4 +1,6 @@
-This repo have my dot files
+# Dotfiles
+
+This repo have my dot files.
 
 # How to install (WIP)
 
