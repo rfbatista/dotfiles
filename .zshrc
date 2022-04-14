@@ -16,9 +16,12 @@ dir
 exec_time
 git
 node
+golang
 elixir
 rust
+venv
 conda
+docker
 line_sep
 char
 )
@@ -27,6 +30,31 @@ SPACESHIP_CHAR_SYMBOL="❯"
 SPACESHIP_CHAR_SUFFIX=" "
 SPACESHIP_PROMPT_SEPARATE_LINE=true
 SPACESHIP_TIME_SHOW=true
+SPACESHIP_CONDA_SHOW=true # Need to disable native conda prompt: conda config --set changeps1 False
+
+# NODE
+SPACESHIP_NODE_PREFIX="node:("
+SPACESHIP_NODE_SUFFIX=") "
+SPACESHIP_NODE_SYMBOL=""
+
+# GOLANG
+SPACESHIP_GOLANG_PREFIX="go:("
+SPACESHIP_GOLANG_SUFFIX=") "
+SPACESHIP_GOLANG_SYMBOL=""
+
+# DOCKER
+SPACESHIP_DOCKER_PREFIX="docker:("
+SPACESHIP_DOCKER_SUFFIX=") "
+SPACESHIP_DOCKER_SYMBOL=""
+
+# VENV
+SPACESHIP_VENV_PREFIX="venv:("
+SPACESHIP_VENV_SUFFIX=") "
+
+# PYENV
+SPACESHIP_PYENV_PREFIX="python:("
+SPACESHIP_PYENV_SUFFIX=") "
+SPACESHIP_PYENV_SYMBOL=""
 
 ###############################################
 plugins=(git)
