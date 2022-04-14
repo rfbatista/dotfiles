@@ -1,3 +1,6 @@
+# Dotfiles
+
+# How to install (WIP)
 
 Specify a custom path in zshrc file to this repo .zshrc:
 
