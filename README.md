@@ -19,3 +19,7 @@ https://github.com/spaceship-prompt/spaceship-prompt/blob/master/docs/options.md
 # lazydocker
 
 https://github.com/jesseduffield/lazydocker
+
+# github desktop
+
+`https://gist.github.com/berkorbay/6feda478a00b0432d13f1fc0a50467f1`

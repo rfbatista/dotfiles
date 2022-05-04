@@ -20,7 +20,6 @@ golang
 elixir
 rust
 venv
-conda
 docker
 line_sep
 char
@@ -104,4 +103,5 @@ source /home/renan/anaconda3/bin/activate
 # Ngrok 
 #############################
 alias ngrok-3100="sh /home/renan/Desktop/start-ngrok-3100.sh"
+alias ngrok-4000="sh /home/renan/Desktop/start-ngrok-4000.sh"
 
