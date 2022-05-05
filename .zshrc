@@ -2,9 +2,12 @@ export ZSH="/home/renan/.oh-my-zsh"
 alias nv="/home/renan/nvim/nvim.appimage"
 alias jetbrains="/opt/jetbrains-toolbox-1.22.10740/jetbrains-toolbox"
 
-alias dotfiles="nv /home/renan/dotfiles/.zshrc"
+alias dotfiles="cd /home/renan/dotfiles"
+alias zsh-file="nv /home/renan/dotfiles/.zshrc"
+
 export GOPATH="$HOME/go"
 PATH="$GOPATH/bin:$PATH"
+
 ###############################################
 # zsh theme
 ###############################################
@@ -83,6 +86,7 @@ export DOCKER_HOST=unix:///run/user/1000/docker.sock
 # Work alias
 #############################
 alias chatclass="cd /home/renan/Desktop/Chatclass"
+alias study="cd /home/renan/Desktop/Studies"
 
 #############################
 # Android
@@ -104,4 +108,5 @@ source /home/renan/anaconda3/bin/activate
 #############################
 alias ngrok-3100="sh /home/renan/Desktop/start-ngrok-3100.sh"
 alias ngrok-4000="sh /home/renan/Desktop/start-ngrok-4000.sh"
+
 
