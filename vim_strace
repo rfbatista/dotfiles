@@ -1,4 +1,4 @@
-execve("/usr/bin/vim", ["vim"], 0x7fff4edae6d0 /* 76 vars */) = 0
+esdadasdxecve("/usr/bin/vim", ["vim"], 0x7fff4edae6d0 /* 76 vars */) = 0
 brk(NULL)                               = 0x55e429979000
 arch_prctl(0x3001 /* ARCH_??? */, 0x7fff3a6103c0) = -1 EINVAL (Invalid argument)
 access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
