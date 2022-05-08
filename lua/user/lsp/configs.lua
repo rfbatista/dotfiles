@@ -5,6 +5,23 @@ end
 
 local lspconfig = require("lspconfig")
 
+lspconfig.tsserver.setup{}
+lspconfig.eslint.setup{}
+lspconfig.dockerls.setup{}
+lspconfig.yamlls.setup{
+  settings = {
+    yaml = {
+      schemas = {
+        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*"
+      },
+    },
+  }
+}
+--lspconfig.golangci_lint_ls.setup{}
+lspconfig.gopls.setup{}
+lspconfig.terraformls.setup{}
+lspconfig.tailwindcss.setup{}
+
 -- Register a handler that will be called for all installed servers.
 -- Alternatively, you may also register handlers on specific server instances instead (see example below).
 lsp_installer.on_server_ready(function(server)
@@ -28,6 +45,10 @@ lsp_installer.on_server_ready(function(server)
 	 	opts = vim.tbl_deep_extend("force", pyright_opts, opts)
 	 end
 
+	 if server.name == "eslint" then
+	 	local eslint_opts = require("user.lsp.settings.eslint")
+	 	opts = vim.tbl_deep_extend("force", eslint_opts, opts)
+	 end
 	-- This setup() function is exactly the same as lspconfig's setup function.
 	-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 	server:setup(opts)
