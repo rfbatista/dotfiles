@@ -26,7 +26,7 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- Explorer
-keymap("n", "<Space>e", ":Lex 30<cr>", opts)
+keymap("n", "<Space><Tab>", ":NvimTreeToggle<cr>", opts)
 
 -- Resize with arrows
 -- keymap("n", "<C-Up>", ":resize -2<CR>", opts)
@@ -72,3 +72,6 @@ keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 -- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
+-- keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
+keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
+keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)

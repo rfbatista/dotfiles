@@ -3,15 +3,15 @@ if not status_ok then
   return
 end
 
-local actions = require "telescope.actions"
+require('telescope').load_extension('media_files')
+
+local actions = require("telescope.actions")
 
 telescope.setup {
   defaults = {
-
     prompt_prefix = " ",
     selection_caret = " ",
     path_display = { "smart" },
-
     mappings = {
       i = {
         ["<C-n>"] = actions.cycle_history_next,
@@ -43,7 +43,6 @@ telescope.setup {
         ["<C-l>"] = actions.complete_tag,
         ["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
       },
-
       n = {
         ["<esc>"] = actions.close,
         ["<CR>"] = actions.select_default,
@@ -78,6 +77,9 @@ telescope.setup {
     },
   },
   pickers = {
+    find_files = {
+      theme = "dropdown",
+    }
     -- Default configuration for builtin pickers goes here:
     -- picker_name = {
     --   picker_config_key = value,
