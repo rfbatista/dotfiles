@@ -2,6 +2,7 @@ export ZSH="/home/renan/.oh-my-zsh"
 alias nv="/home/renan/nvim/nvim.appimage"
 alias nvim="/home/renan/nvim/nvim.appimage"
 alias jetbrains="/opt/jetbrains-toolbox-1.22.10740/jetbrains-toolbox"
+alias config = "~/.config/nvim"
 
 alias dotfiles="cd /home/renan/dotfiles"
 alias zsh-file="nv /home/renan/dotfiles/.zshrc"
