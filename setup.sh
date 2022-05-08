@@ -1,7 +1,10 @@
 # NVIM
-sudo add-apt-repository ppa:neovim-ppa/unstable
-sudo apt update
-sudo apt install neovim
+# sudo add-apt-repository ppa:neovim-ppa/unstable
+# sudo apt update
+# sudo apt install neovim
+
+# Font install
+# https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hack/Bold#quick-installation
 
 # Change vim directory
 export VIMINIT="source ~/dotfiles/.vimrc"
