@@ -75,3 +75,9 @@ keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 -- keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
 keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
 keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
+
+
+-- Buffers
+keymap("n", "<A-q>", ":bd<CR>", opts)
+keymap("n", "<A-w>", ":BufferLineCycleNext<CR>", opts)
+keymap("n", "<A-e>", ":BufferLineCyclePrev<CR>", opts)
