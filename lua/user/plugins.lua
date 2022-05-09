@@ -92,6 +92,9 @@ return packer.startup(function(use)
   use "neovim/nvim-lspconfig" -- enable LSP
   use "tamago324/nlsp-settings.nvim"
 
+  -- Navigation
+  use 'justinmk/vim-sneak'
+
   -- Telescope
   use {
   'nvim-telescope/telescope.nvim',
