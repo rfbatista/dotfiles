@@ -9,6 +9,9 @@ alias dotfiles="cd /home/renan/dotfiles"
 # Studies Folder
 alias study-notes="cd /home/renan/Desktop/Studies"
 
+# Portfolio Folder
+alias portfolio="cd /home/renan/Desktop/Portfolio"
+
 alias zsh-file="nv /home/renan/dotfiles/.zshrc"
 
 export GOPATH="$HOME/go"
