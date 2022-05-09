@@ -114,6 +114,15 @@ return packer.startup(function(use)
   -- Nvim Tree
   use 'kyazdani42/nvim-tree.lua'
 
+  -- buffer
+  use 'akinsho/bufferline.nvim'
+  use "moll/vim-bbye"
+
+  -- Whick key
+  use "folke/which-key.nvim"
+
+  -- Terminal
+  use "akinsho/toggleterm.nvim" 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
