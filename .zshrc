@@ -5,6 +5,10 @@ alias jetbrains="/opt/jetbrains-toolbox-1.22.10740/jetbrains-toolbox"
 alias config="cd ~/.config/nvim"
 
 alias dotfiles="cd /home/renan/dotfiles"
+
+# Studies Folder
+alias study-notes="cd /home/renan/Desktop/Studies"
+
 alias zsh-file="nv /home/renan/dotfiles/.zshrc"
 
 export GOPATH="$HOME/go"
