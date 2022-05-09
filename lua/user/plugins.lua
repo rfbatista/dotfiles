@@ -124,8 +124,24 @@ return packer.startup(function(use)
   -- Whick key
   use "folke/which-key.nvim"
 
+  -- Projects
+  use 'ahmedkhalf/project.nvim'
+
   -- Terminal
   use "akinsho/toggleterm.nvim" 
+
+  -- Dashboard
+  use {
+    'goolord/alpha-nvim',
+    requires = { 'kyazdani42/nvim-web-devicons' },
+  }
+
+  -- Faster nvim
+  use 'lewis6991/impatient.nvim'
+
+  -- Identation
+  use 'lukas-reineke/indent-blankline.nvim'
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
