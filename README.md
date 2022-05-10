@@ -6,6 +6,8 @@ Specify a custom path in zshrc file to this repo .zshrc:
 
 `ln -s ~/dotiles/.zshrc ~/.zshrc`
 
+# Terminal
+https://github.com/alacritty/alacritty
 
 # asdf
 
