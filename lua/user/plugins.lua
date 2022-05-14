@@ -49,6 +49,11 @@ return packer.startup(function(use)
   use 'kyazdani42/nvim-web-devicons'
   use 'stevearc/dressing.nvim'
 
+  use {
+    "SmiteshP/nvim-gps",
+    requires = "nvim-treesitter/nvim-treesitter"
+  }
+
   -- Comments
   use "numToStr/Comment.nvim" -- Easily comment stuff
 
@@ -63,7 +68,9 @@ return packer.startup(function(use)
   }
 
   -- Theme
-  use "lunarvim/darkplus.nvim"
+  -- use "lunarvim/darkplus.nvim"
+  -- use "projekt0n/github-nvim-theme"
+  use "sainnhe/everforest"
 
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
@@ -94,6 +101,7 @@ return packer.startup(function(use)
   use "tamago324/nlsp-settings.nvim"
   use "jose-elias-alvarez/null-ls.nvim"
   use "jose-elias-alvarez/nvim-lsp-ts-utils"
+  use "ray-x/lsp_signature.nvim"
 
   -- Navigation
   use 'justinmk/vim-sneak'
@@ -147,6 +155,10 @@ return packer.startup(function(use)
 
   -- Debugging
   use "mfussenegger/nvim-dap"
+
+  use "nacro90/numb.nvim"
+
+  use "declancm/cinnamon.nvim"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
