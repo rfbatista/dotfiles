@@ -47,6 +47,7 @@ return packer.startup(function(use)
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
   use 'kyazdani42/nvim-web-devicons'
+  use 'stevearc/dressing.nvim'
 
   -- Comments
   use "numToStr/Comment.nvim" -- Easily comment stuff
@@ -143,6 +144,9 @@ return packer.startup(function(use)
 
   -- Identation
   use 'lukas-reineke/indent-blankline.nvim'
+
+  -- Debugging
+  use "mfussenegger/nvim-dap"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

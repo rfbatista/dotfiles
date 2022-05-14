@@ -180,6 +180,7 @@ local mappings = {
     l = { "<cmd>lua _LAZYGIT_TOGGLE()<cr>", "Lazy Git" },
     d = { "<cmd>lua _LAZYDOCKER_TOGGLE()<cr>", "Lazy Docker" },
     f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
+    b = { "<cmd>ToggleTerm direction=tab<cr>", "Tab" },
     h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
     v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
   },
