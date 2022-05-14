@@ -68,6 +68,13 @@ lspconfig.gopls.setup{}
 lspconfig.terraformls.setup{}
 lspconfig.tailwindcss.setup{}
 
+require "lsp_signature".setup({
+  bind = true, -- This is mandatory, otherwise border config won't get registered.
+  handler_opts = {
+    border = "rounded"
+  }
+})
+
 -- Register a handler that will be called for all installed servers.
 -- Alternatively, you may also register handlers on specific server instances instead (see example below).
 lsp_installer.on_server_ready(function(server)

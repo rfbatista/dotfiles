@@ -3,6 +3,8 @@ if not status_ok then
 	return
 end
 
+local gps = require("nvim-gps")
+
 local hide_in_width = function()
 	return vim.fn.winwidth(0) > 80
 end
@@ -81,7 +83,7 @@ lualine.setup({
 	sections = {
 		lualine_a = { branch, diagnostics },
 		lualine_b = { { 'mode', color = mode_color } },
-		lualine_c = {'filename'},
+		lualine_c = {'filename', { gps.get_location, cond = gps.is_available },},
 		-- lualine_x = { "encoding", "fileformat", "filetype" },
 		lualine_x = { diff, spaces, "encoding", filetype },
 		lualine_y = { location },
