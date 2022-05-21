@@ -6,9 +6,9 @@ local term_opts = { silent = true }
 local keymap = vim.api.nvim_set_keymap
 
 --Remap space as leader key
--- keymap("", "<Space>", "<Nop>", opts)
--- vim.g.mapleader = " "
--- vim.g.maplocalleader = " "
+keymap("", "<Space>", "<Nop>", opts)
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Modes
 --   normal_mode = "n",
@@ -72,9 +72,9 @@ keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 -- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
--- keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
-keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
-keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
+keymap("n", "<A-2>", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes'))<cr>", opts)
+keymap("n", "<A-3>", "<cmd>lua require'telescope.builtin'.live_grep()<cr>", opts)
+keymap("n", "<A-4>", "<cmd>lua require'telescope.builtin'.buffers()<cr>", opts)
 
 
 -- Buffers

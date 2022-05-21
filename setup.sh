@@ -13,6 +13,10 @@ export VIMINIT="source ~/dotfiles/.vimrc"
 ln -sf ~/dotfiles/init.lua ~/.config/nvim/init.lua 
 ln -sf ~/dotfiles/lua ~/.config/nvim/lua 
 
+
+## Faster eslint
+npm install -g eslint_d
+
 # Vim plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
