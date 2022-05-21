@@ -6,6 +6,30 @@ alias config="cd ~/.config/nvim"
 
 alias dotfiles="cd /home/renan/dotfiles"
 
+# Google Chrome
+alias chrome='google-chrome --password-store=gnome'
+
+# TMUX
+tmux-session(){
+  command tmux attach-session -t $1
+}
+tmux-commands(){
+  echo ' 
+    tmux ls List sessions
+    tmux attach-session -t 0 Attach to session 0
+    tmux kill-server kill all sessions
+    Ctrl+b c Create a new window (with shell)
+    Ctrl+b w Choose window from a list
+    Ctrl+b 0 Switch to window 0 (by number )
+    Ctrl+b , Rename the current window
+    Ctrl+b % Split current pane horizontally into two panes
+    Ctrl+b " Split current pane vertically into two panes
+    Ctrl+b o Go to the next pane
+    Ctrl+b ; Toggle between the current and previcus pane
+    Ctrl+b x Close the current pane
+  '
+}
+
 # Studies Folder
 alias study-notes="cd /home/renan/Desktop/Studies"
 

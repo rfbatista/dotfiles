@@ -31,3 +31,10 @@ curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
 # Lunar Vim
 # bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+
+#############
+# Tmux
+#############
+
+# Tmux plugin manager
+https://github.com/tmux-plugins/tpm
