@@ -4,6 +4,7 @@ if not status_ok then
 end
 
 require('telescope').load_extension('media_files')
+require('telescope').load_extension('dap')
 
 local actions = require("telescope.actions")
 

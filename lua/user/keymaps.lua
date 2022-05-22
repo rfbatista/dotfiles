@@ -20,10 +20,10 @@ vim.g.maplocalleader = " "
 
 -- Normal --
 -- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+keymap("n", "<C-Left>", "<C-w>h", opts)
+keymap("n", "<C-Down>", "<C-w>j", opts)
+keymap("n", "<C-Up>", "<C-w>k", opts)
+keymap("n", "<C-Right>", "<C-w>l", opts)
 
 -- Explorer
 keymap("n", "<Space><Tab>", ":NvimTreeToggle<cr>", opts)
@@ -76,8 +76,12 @@ keymap("n", "<A-2>", "<cmd>lua require'telescope.builtin'.find_files(require('te
 keymap("n", "<A-3>", "<cmd>lua require'telescope.builtin'.live_grep()<cr>", opts)
 keymap("n", "<A-4>", "<cmd>lua require'telescope.builtin'.buffers()<cr>", opts)
 
-
 -- Buffers
 keymap("n", "<A-q>", ":bd<CR>", opts)
 keymap("n", "<A-w>", ":BufferLineCycleNext<CR>", opts)
 keymap("n", "<A-e>", ":BufferLineCyclePrev<CR>", opts)
+
+-- Subsistitute
+
+-- Clear Highlights
+keymap("n", "<C-l>", ':noh<CR><CR>', opts)

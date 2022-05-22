@@ -59,7 +59,7 @@ return packer.startup(function(use)
 
   -- Markdown
   -- to use :MarkdownPreview
-  use {'iamcco/markdown-preview.nvim', run = 'cd app && npm install', cmd = 'MarkdownPreview'}
+  use { 'iamcco/markdown-preview.nvim', run = 'cd app && npm install', cmd = 'MarkdownPreview' }
 
   -- Status Line
   use {
@@ -103,13 +103,16 @@ return packer.startup(function(use)
   use "jose-elias-alvarez/nvim-lsp-ts-utils"
   use "ray-x/lsp_signature.nvim"
 
+  -- CPP
+  use "p00f/clangd_extensions.nvim"
+
   -- Navigation
   use 'justinmk/vim-sneak'
 
   -- Telescope
   use {
-  'nvim-telescope/telescope.nvim',
-  requires = { {'nvim-lua/plenary.nvim'} }
+    'nvim-telescope/telescope.nvim',
+    requires = { { 'nvim-lua/plenary.nvim' } }
   }
   use 'nvim-telescope/telescope-media-files.nvim'
 
@@ -121,7 +124,7 @@ return packer.startup(function(use)
   use 'JoosepAlviste/nvim-ts-context-commentstring'
   use 'p00f/nvim-ts-rainbow'
   --use 'nvim-telescope/telescope-media-files.nvim'
-  
+
   -- Gitsigns
   use 'lewis6991/gitsigns.nvim'
 
@@ -139,7 +142,7 @@ return packer.startup(function(use)
   use 'ahmedkhalf/project.nvim'
 
   -- Terminal
-  use "akinsho/toggleterm.nvim" 
+  use "akinsho/toggleterm.nvim"
 
   -- Dashboard
   use {
@@ -155,6 +158,7 @@ return packer.startup(function(use)
 
   -- Debugging
   use "mfussenegger/nvim-dap"
+  use 'nvim-telescope/telescope-dap.nvim'
 
   use "nacro90/numb.nvim"
 
