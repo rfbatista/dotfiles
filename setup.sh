@@ -12,7 +12,7 @@ export VIMINIT="source ~/dotfiles/.vimrc"
 # ln -sf ~/dotfiles/init.vim ~/.config/nvim/init.vim 
 ln -sf ~/dotfiles/init.lua ~/.config/nvim/init.lua 
 ln -sf ~/dotfiles/lua ~/.config/nvim/lua 
-
+ln -sf ~/dotfiles/i3/config ~/.config/i3/config
 
 ## Faster eslint
 npm install -g eslint_d

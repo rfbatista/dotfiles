@@ -6,8 +6,41 @@ alias config="cd ~/.config/nvim"
 
 alias dotfiles="cd /home/renan/dotfiles"
 
-# Google Chrome
+#############################
+# Work alias
+#############################
+alias chatclass="cd /home/renan/Desktop/Chatclass"
+alias study="cd /home/renan/Desktop/Studies"
+
+#############################
+# Android
+#############################
+alias android-studio="sh /home/renan/android-studio/bin/studio.sh"
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+#############################
+# Python
+#############################
+source /home/renan/anaconda3/bin/activate
+
+#############################
+# Ngrok 
+#############################
+alias ngrok-3100="~/dotfiles/ngrok http --region=us --hostname=renanchatclass.ngrok.io 3100"
+alias ngrok-4000="~/dotfiles/ngrok http --region=us --hostname=renanchatclass.ngrok.io 4000"
+
+
+#############################
+# Google 
+#############################
 alias chrome='google-chrome --password-store=gnome'
+
+# Polybar
+alias start-polybar='polybar -c=$HOME/.config/polybar/config.ini -r i3'
 
 # TMUX
 tmux-session(){
@@ -29,6 +62,32 @@ tmux-commands(){
     Ctrl+b x Close the current pane
   '
 }
+
+i3-commands(){
+ echo '
+General
+
+  startx i3 start i3 from command line
+  $mod+<Enter> open a terminal
+  $mod+d open dmenu (text based program launcher)
+  $mod+r resize mode ( or to leave resize mode)
+  $mod+shift+e exit i3
+  $mod+shift+r restart i3 in place
+  $mod+shift+c reload config file
+  $mod+shift+q kill window (does normal close if application supports it)
+
+Windows
+  
+  $mod+w tabbed layout
+  $mod+e vertical and horizontal layout (switches to and between them)
+  $mod+s stacked layout
+  $mod+f fullscreen
+
+Moving Windows
+  
+  $mod+shift+<direction key> Move window in direction (depends on direction keys settings)
+'
+ }
 
 # Studies Folder
 alias study-notes="cd /home/renan/Desktop/Studies"
@@ -114,32 +173,4 @@ source $ZSH/oh-my-zsh.sh
 # Docker configs
 export PATH=/usr/bin:$PATH
 export DOCKER_HOST=unix:///run/user/1000/docker.sock
-
-#############################
-# Work alias
-#############################
-alias chatclass="cd /home/renan/Desktop/Chatclass"
-alias study="cd /home/renan/Desktop/Studies"
-
-#############################
-# Android
-#############################
-alias android-studio="sh /home/renan/android-studio/bin/studio.sh"
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-
-#############################
-# Python
-#############################
-source /home/renan/anaconda3/bin/activate
-
-#############################
-# Ngrok 
-#############################
-alias ngrok-3100="sh /home/renan/Desktop/start-ngrok-3100.sh"
-alias ngrok-4000="sh /home/renan/Desktop/start-ngrok-4000.sh"
-
 
