@@ -3,6 +3,19 @@ if not status_ok then
 	return
 end
 
+local servers = { "jsonls", "sumneko_lua", "eslint", "tsserver" }
+
+lsp_installer.setup {
+	ensure_installed = servers
+}
+
+local status_ok, cpp_installer = pcall(require, "clangd_extensions")
+if not status_ok then
+	return
+else
+  cpp_installer.setup{}
+end
+
 local lspconfig = require("lspconfig")
 
 -- https://jose-elias-alvarez.medium.com/configuring-neovims-lsp-client-for-typescript-development-5789d58ea9c
@@ -39,6 +52,10 @@ local on_attach = function(client, bufnr)
     end
 end
 
+lspconfig.sumneko_lua.setup { on_attach = on_attach }
+
+lspconfig.eslint.setup { on_attach = on_attach }
+
 lspconfig.tsserver.setup({
     on_attach = function(client, bufnr)
       client.resolved_capabilities.document_formatting = false
@@ -51,10 +68,13 @@ lspconfig.tsserver.setup({
       buf_map(bufnr, "n", "go", ":TSLspImportAll<CR>")
       on_attach(client, bufnr)
   end,
+  filetype = {"typescript", "typescriptreact", "typescript.tsx"}
 })
 
-lspconfig.dockerls.setup{}
+lspconfig.dockerls.setup{ on_attach = on_attach }
+
 lspconfig.yamlls.setup{
+  on_attach = on_attach,
   settings = {
     yaml = {
       schemas = {
@@ -64,9 +84,9 @@ lspconfig.yamlls.setup{
   }
 }
 --lspconfig.golangci_lint_ls.setup{}
-lspconfig.gopls.setup{}
-lspconfig.terraformls.setup{}
-lspconfig.tailwindcss.setup{}
+lspconfig.gopls.setup{ on_attach = on_attach }
+lspconfig.terraformls.setup{ on_attach = on_attach }
+lspconfig.tailwindcss.setup{ on_attach = on_attach }
 
 require "lsp_signature".setup({
   bind = true, -- This is mandatory, otherwise border config won't get registered.
@@ -77,32 +97,32 @@ require "lsp_signature".setup({
 
 -- Register a handler that will be called for all installed servers.
 -- Alternatively, you may also register handlers on specific server instances instead (see example below).
-lsp_installer.on_server_ready(function(server)
-	local opts = {
-		on_attach = require("user.lsp.handlers").on_attach,
-		capabilities = require("user.lsp.handlers").capabilities,
-	}
-
-	 if server.name == "jsonls" then
-	 	local jsonls_opts = require("user.lsp.settings.jsonls")
-	 	opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
-	 end
-
-	 if server.name == "sumneko_lua" then
-	 	local sumneko_opts = require("user.lsp.settings.sumneko_lua")
-	 	opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
-	 end
-
-	 if server.name == "pyright" then
-	 	local pyright_opts = require("user.lsp.settings.pyright")
-	 	opts = vim.tbl_deep_extend("force", pyright_opts, opts)
-	 end
-
-	 if server.name == "eslint" then
-	 	local eslint_opts = require("user.lsp.settings.eslint")
-	 	opts = vim.tbl_deep_extend("force", eslint_opts, opts)
-	 end
-	-- This setup() function is exactly the same as lspconfig's setup function.
-	-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-	server:setup(opts)
-end)
+-- lsp_installer.on_server_ready(function(server)
+-- 	local opts = {
+-- 		on_attach = require("user.lsp.handlers").on_attach,
+-- 		capabilities = require("user.lsp.handlers").capabilities,
+-- 	}
+--
+-- 	 if server.name == "jsonls" then
+-- 	 	local jsonls_opts = require("user.lsp.settings.jsonls")
+-- 	 	opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
+-- 	 end
+--
+-- 	 if server.name == "sumneko_lua" then
+-- 	 	local sumneko_opts = require("user.lsp.settings.sumneko_lua")
+-- 	 	opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
+-- 	 end
+--
+-- 	 if server.name == "pyright" then
+-- 	 	local pyright_opts = require("user.lsp.settings.pyright")
+-- 	 	opts = vim.tbl_deep_extend("force", pyright_opts, opts)
+-- 	 end
+--
+-- 	 if server.name == "eslint" then
+-- 	 	local eslint_opts = require("user.lsp.settings.eslint")
+-- 	 	opts = vim.tbl_deep_extend("force", eslint_opts, opts)
+-- 	 end
+-- 	-- This setup() function is exactly the same as lspconfig's setup function.
+-- 	-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+-- 	server:setup(opts)
+-- end)
