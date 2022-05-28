@@ -3,13 +3,16 @@ if not status_ok then
   return
 end
 
-local jsdebuggerLocal = "/home/renan/.config/nvim/vscode-node-debug2"
+dap.set_log_level('INFO')
+
+local jsdebuggerLocal = "~/dotfiles/vscode-node-debug2"
 
 dap.adapters.node2 = {
   type = 'executable',
   command = 'node',
   args = { jsdebuggerLocal },
 }
+
 dap.configurations.javascript = {
   {
     type = 'node2',
