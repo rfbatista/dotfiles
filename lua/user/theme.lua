@@ -1,4 +1,4 @@
-vim.cmd [[ 
+vim.cmd [[
   " Important!!
   if has('termguicolors')
     set termguicolors
@@ -18,6 +18,5 @@ vim.cmd [[
   colorscheme everforest
 ]]
 
--- require('evenforest').setup({
+-- require('everforest').setup({
 -- })
-

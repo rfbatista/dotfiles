@@ -49,6 +49,8 @@ return packer.startup(function(use)
   use 'kyazdani42/nvim-web-devicons'
   use 'stevearc/dressing.nvim'
 
+  -- use 'dylanaraps/wal.vim'
+
   use {
     "SmiteshP/nvim-gps",
     requires = "nvim-treesitter/nvim-treesitter"
