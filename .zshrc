@@ -7,6 +7,23 @@ alias config="cd ~/.config/nvim"
 alias dotfiles="cd /home/renan/dotfiles"
 
 #############################
+# Linux
+#############################
+ko(){ 
+  if $(sudo lsof -t -i:$1); then
+    command echo "Process number: " $(sudo lsof -t -i:$1)
+    if read -q "Do you wish to kill this process? "; then
+      command echo "Killing the process"
+      command kill -9 $(sudo lsof -t -i:$1)
+    else
+      command echo "'$choice' not 'Y' or 'y'. Exiting..."
+    fi
+  else 
+    command echo "There is no service attached to this port"
+  fi
+}
+
+#############################
 # Work alias
 #############################
 alias chatclass="cd /home/renan/Desktop/Chatclass"
@@ -33,6 +50,10 @@ source /home/renan/anaconda3/bin/activate
 alias ngrok-3100="~/dotfiles/ngrok http --region=us --hostname=renanchatclass.ngrok.io 3100"
 alias ngrok-4000="~/dotfiles/ngrok http --region=us --hostname=renanchatclass.ngrok.io 4000"
 
+#############################
+# Fonts 
+#############################
+alias find-fonts="gucharmap"
 
 #############################
 # Google 
