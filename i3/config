@@ -193,7 +193,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 ################################
 # Background
 ################################
-# exec_always --no-startup-id $HOME/dotfiles/startup.sh
+exec_always --no-startup-id $HOME/dotfiles/startup-scripts/startup.sh
 
 ################################
 # i3 Gaps 
@@ -207,17 +207,22 @@ smart_borders on
 smart_borders no_gaps
 border_radius 2
 
-# assign [class="Alacritty"] 1
 # Google chrome password fix
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 
-exec i3-msg 'workspace number 1; exec tmux'
-exec i3-msg 'workspace number 2; exec google-chrome'
-exec i3-msg 'workspace number 3; exec discord'
-exec i3-msg 'workspace number 4; exec google-chrome'
-exec i3-msg 'workspace number 5; exec spotify'
+################################
+# Worksapce programs
+################################
+assign [class="work-google"] $ws2
+for_window [class="work-google"] exec google-chrome
+assign [class="discord"] $ws3
+for_window [class="discord"] exec discord 
+assign [class="personal-chrome"] $ws4
+for_window [class="personal-chrome"] exec google-chrome personal-chrome
+assign [class="music"] $ws5
+for_window [class="music"] exec spotify music
 
 ################################
-# i3 Gaps 
+# Picom
 ################################
 exec_always --no-startup-id picom &

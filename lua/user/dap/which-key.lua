@@ -1,31 +1,7 @@
-local status_ok, dap = pcall(require, "dap")
+local status_ok, whichkey = pcall(require, "which-key")
 if not status_ok then
   return
 end
-
-dap.set_log_level('INFO')
-
-local jsdebuggerLocal = "~/dotfiles/vscode-node-debug2"
-
-dap.adapters.node2 = {
-  type = 'executable',
-  command = 'node',
-  args = { jsdebuggerLocal },
-}
-
-dap.configurations.javascript = {
-  {
-    type = 'node2',
-    request = 'launch',
-    program = '${workspaceFolder}/${file}',
-    cwd = vim.fn.getcwd(),
-    sourceMaps = true,
-    protocol = 'inspector',
-    console = 'integratedTerminal',
-  },
-}
-
-local whichkey = require "which-key"
 
 -- local function keymap(lhs, rhs, desc)
 --   vim.keymap.set("n", lhs, rhs, { silent = true, desc = desc })
@@ -36,6 +12,8 @@ function M.setup()
   local keymap = {
     d = {
       name = "Debug",
+      s = { function() require 'user.dap.configs'.attach() end, "Start" },
+      -- s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
       R = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run to Cursor" },
       E = { "<cmd>lua require'dapui'.eval(vim.fn.input '[Expression] > ')<cr>", "Evaluate Input" },
       C = { "<cmd>lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')<cr>", "Conditional Breakpoint" },
@@ -52,7 +30,6 @@ function M.setup()
       p = { "<cmd>lua require'dap'.pause.toggle()<cr>", "Pause" },
       q = { "<cmd>lua require'dap'.close()<cr>", "Quit" },
       r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle Repl" },
-      s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
       t = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
       x = { "<cmd>lua require'dap'.terminate()<cr>", "Terminate" },
       u = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
@@ -82,4 +59,4 @@ function M.setup()
   })
 end
 
-M.setup()
+return M
