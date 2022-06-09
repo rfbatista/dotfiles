@@ -85,6 +85,10 @@ return packer.startup(function(use)
 
   use 'windwp/nvim-autopairs'
 
+  -- Prettier
+  -- use "prettier/vim-prettier"
+  use "fsouza/prettierd"
+
   -- Fort HTML/React
   use 'windwp/nvim-ts-autotag'
 
@@ -107,6 +111,9 @@ return packer.startup(function(use)
 
   -- CPP
   use "p00f/clangd_extensions.nvim"
+
+  -- React
+  use "MaxMEllon/vim-jsx-pretty"
 
   -- Navigation
   use 'justinmk/vim-sneak'
@@ -160,11 +167,18 @@ return packer.startup(function(use)
 
   -- Debugging
   use "mfussenegger/nvim-dap"
+  use { 'mfussenegger/nvim-dap-python' }
+  use { 'rcarriga/nvim-dap-ui' }
+  use { 'Pocco81/DAPInstall.nvim', commit = "24923c3819a450a772bb8f675926d530e829665f" }
+  use { 'theHamsta/nvim-dap-virtual-text' }
   use 'nvim-telescope/telescope-dap.nvim'
 
   use "nacro90/numb.nvim"
 
   use "declancm/cinnamon.nvim"
+
+  -- Tags
+  use "preservim/tagbar"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

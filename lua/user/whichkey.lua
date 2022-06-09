@@ -131,7 +131,13 @@ local mappings = {
   l = {
     name = "LSP",
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-    d = {
+    b = { "<cmd>TSLspOrganize<CR>", "Organize imports" },
+    c = { "<cmd>TSLspRenameFile<CR>", "Rename file" },
+    d = { "<cmd>TSLspImportAll<CR>", "Import all" },
+    e = { "<cmd>Prettier<CR>", "Prettier" },
+    f = { "<cmd>PrettierCliPath<CR>", "Prettier beeing used" },
+    g = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
+    h = {
       "<cmd>Telescope lsp_document_diagnostics<cr>",
       "Document Diagnostics",
     },
@@ -139,7 +145,6 @@ local mappings = {
       "<cmd>Telescope lsp_workspace_diagnostics<cr>",
       "Workspace Diagnostics",
     },
-    f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
     i = { "<cmd>LspInfo<cr>", "Info" },
     I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
     j = {
