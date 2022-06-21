@@ -34,5 +34,4 @@ require "user.languages.lsp"
 -- Others
 require "user.others.project"
 require "user.others.impatient"
-require "user.others.indentline"
 require "user.others.numb"
