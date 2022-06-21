@@ -1,4 +1,4 @@
-local keymap = require("user.lsp.keymap")
+local keymap = require("user.languages.lsp.keymap")
 
 local M = {}
 
