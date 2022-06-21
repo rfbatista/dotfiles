@@ -7,7 +7,7 @@
 # https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hack/Bold#quick-installation
 
 # Change vim directory
-export VIMINIT="source ~/dotfiles/.vimrc"
+#export VIMINIT="source ~/dotfiles/.vimrc"
 # ln -sf ~/dotfiles/.vimrc ~/.vimrc 
 # ln -sf ~/dotfiles/init.vim ~/.config/nvim/init.vim 
 ln -sf ~/dotfiles/init.lua ~/.config/nvim/init.lua 
@@ -29,8 +29,8 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 # source ~/dotfiles/.vimrc" > ~/.config/nvim/init.vim
 
 # Pathogen
-mkdir -p ~/.vim/autoload ~/.vim/bundle && \
-curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+# mkdir -p ~/.vim/autoload ~/.vim/bundle && \
+# curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
 
 # Lunar Vim
@@ -41,4 +41,4 @@ curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 #############
 
 # Tmux plugin manager
-https://github.com/tmux-plugins/tpm
+# https://github.com/tmux-plugins/tpm
