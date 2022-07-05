@@ -79,7 +79,10 @@ local opts = {
 }
 
 local mappings = {
-  ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
+  a = require "user.languages.tests".keymap,
+  r = require "user.interface.trouble".keymap,
+  j = require "user.languages.json.init".keymap,
+  m = require "user.languages.uml.plantuml".keymap,
   ["b"] = {
     "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
     "Buffers",
@@ -134,9 +137,9 @@ local mappings = {
     b = { "<cmd>TSLspOrganize<CR>", "Organize imports" },
     c = { "<cmd>TSLspRenameFile<CR>", "Rename file" },
     d = { "<cmd>TSLspImportAll<CR>", "Import all" },
-    e = { "<cmd>Prettier<CR>", "Prettier" },
-    f = { "<cmd>PrettierCliPath<CR>", "Prettier beeing used" },
-    g = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
+    -- e = { "<cmd>Prettier<CR>", "Prettier" },
+    -- f = { "<cmd>PrettierCliPath<CR>", "Prettier beeing used" },
+    f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
     h = {
       "<cmd>Telescope lsp_document_diagnostics<cr>",
       "Document Diagnostics",
@@ -184,7 +187,7 @@ local mappings = {
     p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
     l = { "<cmd>lua _LAZYGIT_TOGGLE()<cr>", "Lazy Git" },
     d = { "<cmd>lua _LAZYDOCKER_TOGGLE()<cr>", "Lazy Docker" },
-    f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
+    -- f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
     b = { "<cmd>ToggleTerm direction=tab<cr>", "Tab" },
     h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
     v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },

@@ -3,6 +3,8 @@ require "user.keymaps"
 require "user.plugins"
 require "user.options"
 
+require "user.dap.nvim-dap".setup()
+
 -- Interface
 require "user.interface.theme"
 require "user.interface.lualine"
@@ -16,6 +18,7 @@ require "user.interface.gitsigns"
 require "user.interface.indentline"
 require "user.interface.telescope-config"
 require "user.interface.toggleterm"
+require "user.interface.trouble"
 
 -- Commands
 require "user.commands.autocommands"
@@ -26,12 +29,10 @@ require "user.commands.vim-sneak"
 require "user.commands.whichkey"
 
 -- Languages
-require "user.languages.cmp"
-require "user.languages.prettier"
-require "user.languages.treesitter"
-require "user.languages.lsp"
+require "user.languages.init"
 
 -- Others
 require "user.others.project"
 require "user.others.impatient"
 require "user.others.numb"
+require "user.others.filetype"

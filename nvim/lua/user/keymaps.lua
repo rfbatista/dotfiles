@@ -35,16 +35,12 @@ keymap("n", "<Space><Tab>", ":NvimTreeToggle<cr>", opts)
 -- keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
+keymap("n", "<S-Left>", ":bnext<CR>", opts)
+keymap("n", "<S-Right>", ":bprevious<CR>", opts)
 
 -- Move text up and down
 -- keymap("n", "<C-Up>", "<Esc>:m .-2<CR>==gi", opts)
 -- keymap("n", "<C-Down>", "<Esc>:m .+1<CR>==gi", opts)
-
--- Insert --
--- Press jk fast to enter
-keymap("i", "jk", "<ESC>", opts)
 
 -- Visual --
 -- Stay in indent mode
