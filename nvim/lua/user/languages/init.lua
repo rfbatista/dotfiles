@@ -1,0 +1,5 @@
+require "user.languages.typescript.jester"
+require "user.languages.cmp"
+require "user.languages.prettier"
+require "user.languages.treesitter"
+require "user.languages.lsp"

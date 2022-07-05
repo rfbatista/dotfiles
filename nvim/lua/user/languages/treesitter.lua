@@ -5,7 +5,7 @@ end
 
 configs.setup {
   ensure_installed = { "javascript", "typescript", "go", "yaml" }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  sync_install = yes, -- install languages synchronously (only applied to `ensure_installed`)
+  sync_install = 'yes', -- install languages synchronously (only applied to `ensure_installed`)
   ignore_install = { "" }, -- List of parsers to ignore installing
   autopairs = {
     enable = true,

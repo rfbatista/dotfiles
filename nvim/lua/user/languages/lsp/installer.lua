@@ -4,5 +4,8 @@ if not status_ok then
 end
 
 lsp_installer.setup {
-  ensure_installed = { "jsonls", "sumneko_lua", "eslint" }
+  ensure_installed = { "jsonls", "sumneko_lua", "eslint", "tsserver" },
+  ui = {
+    border = 'single',
+  }
 }
