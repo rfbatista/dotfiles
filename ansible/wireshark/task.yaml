@@ -1,0 +1,7 @@
+- name: Install Wireshark 
+  become: true
+  apt:
+    name: [ "wireshark" ]
+  tags:
+    - install
+    - productivity
