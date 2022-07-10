@@ -1,3 +1,4 @@
+#!/usr/bin/zsh
 export ZSH="/home/renan/.oh-my-zsh"
 alias nv="/home/renan/nvim/nvim.appimage"
 alias nvim="/home/renan/nvim/nvim.appimage"
@@ -7,20 +8,48 @@ alias config="cd ~/.config/nvim"
 alias dotfiles="cd /home/renan/dotfiles"
 
 #############################
+# Javscript
+#############################
+alias ns="npm start"
+alias nd="npm run start:dev"
+alias ys="yarn start"
+alias yd="yarn run start:dev"
+alias yb="yarn run build"
+alias yde="yarn run debug"
+alias ydd="yarn run docker:api"
+
+alias denolint="/home/renan/deno_lint/target/debug/examples/dlint"
+
+ts_setup(){
+  command yarn --init 
+  command yarn add typescript -D 
+  command npx tsc --int 
+  command yarn add eslint --dev
+  command yarn create @eslint/config
+}
+
+#############################
 # Linux
 #############################
 ko(){ 
-  if $(sudo lsof -t -i:$1); then
-    command echo "Process number: " $(sudo lsof -t -i:$1)
-    if read -q "Do you wish to kill this process? "; then
-      command echo "Killing the process"
-      command kill -9 $(sudo lsof -t -i:$1)
-    else
-      command echo "'$choice' not 'Y' or 'y'. Exiting..."
-    fi
-  else 
-    command echo "There is no service attached to this port"
-  fi
+  command sudo kill $(sudo lsof -t -i:$1)
+  # port=$(lsof -i:$1 | grep LISTEN | awk '{print $2}')
+  # if [ port ]; then
+  #   command echo "Process number: " $(sudo lsof -t -i:$1)
+  #   raw_ports=$(sudo lsof -t -i:$1)
+  #   command echo "'$raw_ports'"
+  #   post_list = (echo $raw_ports | cut -d'' -f2)
+  #   for str in $post_list; do
+  #     if read -q "Do you wish to kill this process?: ${post_list[$str]} "; then
+  #       command echo "Killing the process"
+  #       command kill -9 $(str)
+  #     else
+  #       command echo "'$choice' not 'Y' or 'y'. Exiting..."
+  #     fi
+  #   done
+  # else 
+  #   command echo "There is no service attached to this port"
+  # fi
 }
 
 #############################
@@ -179,6 +208,8 @@ source $ZSH/oh-my-zsh.sh
 ###############################################
 # asdf setup
 ###############################################
+
+alias asdf-shims="cd /home/renan/.asdf/shims"
 
 #. $HOME/.asdf/asdf.sh
 # append completions to fpath
