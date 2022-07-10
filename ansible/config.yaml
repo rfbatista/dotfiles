@@ -1,0 +1,26 @@
+- hosts: localhost
+  become: true
+  pre_tasks:
+  - name: Update Apt
+    become: true
+    apt:
+      force_apt_get: true
+      update_cache: true
+      state: present
+    tags:
+      - install
+      - core
+  vars:
+    asdf: v0.8.1
+    erlang: latest
+    elixir: latest
+    phoenix: latest
+    nerves: latest
+    tmux_path: "{{ lookup('env', 'HOME') }}/.tmux"
+    tmux_config: "{{ lookup('env', 'HOME') }}/tmux.conf"
+    dotfiles_location: "{{ lookup('env', 'HOME') }}/dotfiles"
+  tasks:
+    - include: dotfiles.yaml
+    # - include: arkade/task.yaml
+    # - include: node/task.yaml
+    # - include: nvim/task.yaml

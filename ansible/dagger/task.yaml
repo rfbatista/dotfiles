@@ -1,0 +1,5 @@
+- name: Install dagger
+  tags: 
+  - arkade
+  - local
+  shell: arkade get dagger

@@ -1,0 +1,35 @@
+- block:
+  - name: Install dependencies of asdf 
+    become: true
+    apt:
+      update_cache: yes
+      cache_valid_time: 86400 # 1day
+      name:
+        - curl
+        - git
+      state: latest
+  - name: Install asdf
+    git:
+      repo: https://github.com/asdf-vm/asdf.git
+      dest: "{{ ansible_user_dir }}/.asdf"
+      depth: 1
+      version: "{{ asdf | quote }}"
+    register: result
+  - name: asdf update
+    shell: "bash -lc 'cd {{ ansible_user_dir }}/.asdf && git pull'"
+    ignore_errors: yes
+    when: result is failed
+  - name: set env vars
+    lineinfile:
+      dest: "{{ shrc }}"
+      state: present
+      line: "{{ item.line }}"
+    with_items:
+    - line: ". $HOME/.asdf/completions/asdf.{{ sh }}"
+      regexp: '^ \. \$HOME/\.asdf/completions/asdf\.{{ sh }}'
+    - line: '. $HOME/.asdf/asdf.sh'
+      regexp: '^ \. \$HOME/\.asdf/asdf\.sh'
+  when: ansible_system == 'Linux' and (ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian')
+  vars:
+    - shrc: "{{ ansible_user_dir | quote }}/.{{ ansible_user_shell | basename | quote }}rc"
+    - sh: "{{ ansible_user_shell | basename | quote }}"

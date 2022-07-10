@@ -1,0 +1,15 @@
+- name: Install tmux with apt
+  apt: name=tmux state=present
+  become_method: sudo
+
+- name: Install tpm
+  git:
+    repo: https://github.com/tmux-plugins/tpm
+    dest: "{{tmux_path}}/plugins/tpm"
+
+- name: Symlink .tmux.conf
+  file:
+    src: "{{ tmux_config }}"
+    dest: "{{ lookup('env', 'HOME') }}/.tmux.conf"
+    state: link
+  when: ansible_os_family != "Darwin"

@@ -1,0 +1,7 @@
+- name: Install xclip 
+  become: true
+  apt:
+    name: [ "xclip" ]
+  tags:
+    - install
+    - productivity
