@@ -23,7 +23,7 @@ local function lsp_highlight_document(client)
 end
 
 local on_attach = function(client, bufnr)
-	if client.name == "jsonls" or client.name == "tsserver" or client.name == "html" then
+	if client.name == "jsonls" or client.name == "ansiblels" or client.name == "tsserver" or client.name == "html" then
 		client.resolved_capabilities.document_formatting = false
 		client.resolved_capabilities.document_range_formatting = false
 	end
