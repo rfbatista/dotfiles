@@ -30,17 +30,17 @@ M.on_attach = function(client, bufnr)
   buf_map(bufnr, "n", "gs", ":TSLspOrganize<CR>")
   buf_map(bufnr, "n", "gi", ":TSLspRenameFile<CR>")
   buf_map(bufnr, "n", "go", ":TSLspImportAll<CR>")
-  local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-  if client.supports_method("textDocument/formatting") then
-    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-    vim.api.nvim_create_autocmd("BufWritePre", {
-        group = augroup,
-        buffer = bufnr,
-        callback = function()
-            lsp_formatting(bufnr)
-        end,
-    })
-  end
+  -- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+  -- if client.supports_method("textDocument/formatting") then
+  --   vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+  --   vim.api.nvim_create_autocmd("BufWritePre", {
+  --       group = augroup,
+  --       buffer = bufnr,
+  --       callback = function()
+  --           lsp_formatting(bufnr)
+  --       end,
+  --   })
+  -- end
   keymap.on_attach(client, bufnr)
 end
 

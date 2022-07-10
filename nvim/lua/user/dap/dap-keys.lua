@@ -14,6 +14,7 @@ function M.setup()
     d = {
       name = "Debug",
       s = { function() require 'user.dap.configs'.attach() end, "Start" },
+      n = { function() require 'user.dap.configs'.ts_node() end, "TS NODE" },
       -- s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
       R = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run to Cursor" },
       E = { "<cmd>lua require'dapui'.eval(vim.fn.input '[Expression] > ')<cr>", "Evaluate Input" },
