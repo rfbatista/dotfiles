@@ -1,8 +1,0 @@
-- name: Install eslint
-  npm:
-    name: eslint
-    global: yes
-  tags:
-  - install
-  - node
-  - local
