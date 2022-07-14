@@ -1,7 +1,0 @@
-- name: Install Typescript
-  npm:
-    name: typescript
-    global: yes
-  tags:
-    - install
-    - node
