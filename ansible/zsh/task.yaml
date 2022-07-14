@@ -1,8 +1,0 @@
-- name: Install zsh
-  apt: name=zsh
-- name: Change shell
-  shell: chsh -s `which zsh`
-- name: Install ohmyzsh
-  shell: curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-- name: Install the zsh plugin autosuggestions
-  ansible.builtin.git

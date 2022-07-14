@@ -1,9 +1,0 @@
-- name: Install kind 
-  tags: 
-  - arkade
-  shell: arkade get kind 
-- name: Install kubectl 
-  tags: 
-  - local
-  - arkade
-  shell: arkade get kubectl 

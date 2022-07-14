@@ -1,4 +1,0 @@
-- name: Install Arkade
-  tags: 
-  - arkade
-  shell: curl -sLS https://get.arkade.dev | sudo sh

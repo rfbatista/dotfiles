@@ -1,7 +1,0 @@
-- name: Install Wireshark 
-  become: true
-  apt:
-    name: [ "ripgrep" ]
-  tags:
-    - install
-    - productivity
