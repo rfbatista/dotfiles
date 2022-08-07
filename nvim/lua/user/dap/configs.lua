@@ -1,6 +1,7 @@
 local function attach()
 	local dap = require("dap")
 	print("attaching")
+  dap.set_log_level('TRACE')
 	dap.run({
 		type = "node2",
 		request = "attach",
