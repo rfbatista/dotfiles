@@ -22,24 +22,24 @@
 --   theme_style = "dark",
 -- })
 
--- require("tokyonight.colors").setup({})
+require("tokyonight.colors").setup({})
 --
--- vim.g.tokyonight_style = "storm"
--- vim.g.tokyonight_italic_functions = true
--- vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+vim.g.tokyonight_style = "night"
+vim.g.tokyonight_italic_functions = true
+vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
 --
--- vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
+vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
 --
--- vim.cmd[[colorscheme tokyonight]]
+vim.cmd[[colorscheme tokyonight]]
 
 
 -- require('everforest').setup({
 -- })
 
-local catppuccin = require("catppuccin")
+-- local catppuccin = require("catppuccin")
 
 -- configure it
-catppuccin.setup({})
+-- catppuccin.setup({})
 
-vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
-vim.cmd[[colorscheme catppuccin]]
+-- vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+-- vim.cmd[[colorscheme catppuccin]]

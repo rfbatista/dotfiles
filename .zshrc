@@ -6,6 +6,7 @@ alias jetbrains="/opt/jetbrains-toolbox-1.22.10740/jetbrains-toolbox"
 alias config="cd ~/.config/nvim"
 
 alias dotfiles="cd /home/renan/dotfiles"
+alias stylua="/home/renan/dotfiles/stylua"
 
 #############################
 # Javscript
@@ -71,7 +72,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 #############################
 # Python
 #############################
-source /home/renan/anaconda3/bin/activate
+# source /home/renan/anaconda3/bin/activate  # commented out by conda initialize
 
 #############################
 # Ngrok 
@@ -225,4 +226,20 @@ alias asdf-shims="cd /home/renan/.asdf/shims"
 # Docker configs
 export PATH=/usr/bin:$PATH
 export DOCKER_HOST=unix:///run/user/1000/docker.sock
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/renan/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/renan/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/renan/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/renan/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
