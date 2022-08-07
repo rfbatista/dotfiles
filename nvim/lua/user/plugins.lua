@@ -71,8 +71,8 @@ return packer.startup(function(use)
 	-- Theme
 	-- use "lunarvim/darkplus.nvim"
 	-- use "projekt0n/github-nvim-theme"
-	-- use "folke/tokyonight.nvim"
-	use("catppuccin/nvim")
+	use "folke/tokyonight.nvim"
+	-- use("catppuccin/nvim")
 	-- use "sainnhe/everforest"
 
 	-- snippets
@@ -104,6 +104,8 @@ return packer.startup(function(use)
 
 	-- LSP
 	use("williamboman/nvim-lsp-installer") -- simple to use language server installer
+  use { "williamboman/mason.nvim" }
+  use({ "williamboman/mason-lspconfig.nvim" })
 	use("neovim/nvim-lspconfig") -- enable LSP
 	use("tamago324/nlsp-settings.nvim")
 	use("jose-elias-alvarez/null-ls.nvim")
@@ -167,9 +169,9 @@ return packer.startup(function(use)
 	use("lukas-reineke/indent-blankline.nvim")
 
 	-- Debugging
-	use("mfussenegger/nvim-dap")
+	use({"mfussenegger/nvim-dap", tag = '0.1.0'})
 	use({ "mfussenegger/nvim-dap-python" })
-	use({ "rcarriga/nvim-dap-ui" })
+	use({ "rcarriga/nvim-dap-ui", tag = 'v1.1.1' })
 	use({ "Pocco81/DAPInstall.nvim", commit = "24923c3819a450a772bb8f675926d530e829665f" })
 	use({ "theHamsta/nvim-dap-virtual-text" })
 	use("nvim-telescope/telescope-dap.nvim")
@@ -205,6 +207,10 @@ return packer.startup(function(use)
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
+
+  use({"ckipp01/stylua-nvim", run = "cargo install stylua"})
+  
+  use('ThePrimeagen/harpoon')
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
 	end

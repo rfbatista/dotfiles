@@ -3,6 +3,7 @@ if not status_ok then
   return
 end
 
+require("telescope").load_extension('harpoon')
 require('telescope').load_extension('media_files')
 require('telescope').load_extension('dap')
 

@@ -2,7 +2,6 @@ local M = {}
 
 function M.setup()
   local dap = require "dap"
-
   dap.adapters.node2 = {
     type = "executable",
     command = "node",

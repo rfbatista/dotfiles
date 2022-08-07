@@ -72,8 +72,13 @@ keymap("n", "<A-2>", "<cmd>lua require'telescope.builtin'.find_files(require('te
 keymap("n", "<A-3>", "<cmd>lua require'telescope.builtin'.live_grep()<cr>", opts)
 keymap("n", "<A-4>", "<cmd>lua require'telescope.builtin'.buffers()<cr>", opts)
 
+-- Harpoon
+keymap("n", "<A-a>", "<cmd>lua require('harpoon.mark').add_file()<cr>", opts)
+keymap("n", "<A-c>", "<cmd>lua require('harpoon.mark').clear()<cr>", opts)
+keymap("n", "<A-s>", ":Telescope harpoon marks<cr>", opts)
+
 -- Buffers
-keymap("n", "<A-q>", ":bd<CR>", opts)
+keymap("n", "<A-q>", "<cmd>close<cr>", opts)
 keymap("n", "<A-w>", ":BufferLineCycleNext<CR>", opts)
 keymap("n", "<A-e>", ":BufferLineCyclePrev<CR>", opts)
 

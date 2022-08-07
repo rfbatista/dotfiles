@@ -80,16 +80,15 @@ local opts = {
 
 local mappings = {
 	a = require("user.languages.tests").keymap,
-	r = require("user.interface.trouble").keymap,
-	j = require("user.languages.json.init").keymap,
-	m = require("user.languages.uml.plantuml").keymap,
 	["b"] = {
 		"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
 		"Buffers",
 	},
+  r = require("user.interface.trouble").keymap,
+	j = require("user.languages.json.init").keymap,
+	m = require("user.languages.uml.plantuml").keymap,
 	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 	["w"] = { "<cmd>w!<CR>", "Save" },
-	["q"] = { "<cmd>q!<CR>", "Quit" },
 	["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
 	["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
 	["f"] = {
@@ -98,6 +97,8 @@ local mappings = {
 	},
 	["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
 	["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
+	["u"] = {"<cmd>set noexpandtab<cr><cmd>retab!<cr>", "Spaces to Tabs"},
+	["i"] = {"<cmd>set expandtab<cr><cmd>retab!<cr>", "Tabs to spaces"},
 
 	p = {
 		name = "Packer",

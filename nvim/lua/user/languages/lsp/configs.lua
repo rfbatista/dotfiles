@@ -7,7 +7,7 @@ local server_configs = {
 	-- Use null_ls for formatting
 	sumneko_lua = require("user.languages.lua.sumneko"),
 	tsserver = require("user.languages.typescript.tsserver"),
-	eslint = require("user.languages.typescript.eslint"),
+	-- eslint = require("user.languages.typescript.eslint"),
 	gopls = require("user.languages.go.gopls"),
 	terraformls = require("user.languages.terraform.terraformls"),
 	dockerls = require("user.languages.docker.dockerls"),
@@ -15,6 +15,7 @@ local server_configs = {
 	jsonls = require("user.languages.json.jsonls"),
 	ansiblels = require("user.languages.ansible.ansiblels"),
 	pyright = require("user.languages.python.init"),
+  kotlin_language_server = require("user.languages.kotlin.init"),
 	-- jsonls = require("lsp.jsonls").config,
 	-- Conflicts with prettier formatting in TS files.
 	-- bashls = default_server_config,
@@ -24,7 +25,7 @@ local server_configs = {
 
 local function setup_lsp_servers()
 	for server_name, server_config in pairs(server_configs) do
-		lspconfig[server_name].setup(server_config)
+    lspconfig[server_name].setup(server_config)
 	end
 	-- lspconfig.diagnosticls.setup {
 	-- filetypes = {"javascript", "javascriptreact", "typescript", "typescriptreact", "css"},
