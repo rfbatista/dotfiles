@@ -209,6 +209,7 @@ return packer.startup(function(use)
 	-- Put this at the end after all plugins
 
   use({"ckipp01/stylua-nvim", run = "cargo install stylua"})
+  use{ "wellle/context.vim", branch = "master" }
   
   use('ThePrimeagen/harpoon')
 	if PACKER_BOOTSTRAP then
