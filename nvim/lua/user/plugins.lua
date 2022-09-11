@@ -88,6 +88,7 @@ return packer.startup(function(use)
 
 	-- Prettier
 	use("prettier/vim-prettier")
+  use("sbdchd/neoformat")
 	-- use "fsouza/prettierd"
 
 	-- Fort HTML/React
@@ -139,6 +140,8 @@ return packer.startup(function(use)
 
 	-- Gitsigns
 	use("lewis6991/gitsigns.nvim")
+
+  use("tpope/vim-fugitive")
 
 	-- Nvim Tree
 	use("kyazdani42/nvim-tree.lua")
@@ -207,10 +210,15 @@ return packer.startup(function(use)
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
+  use("plytophogy/vim-virtualenv")
+  use("PieterjanMontens/vim-pipenv")
 
   use({"ckipp01/stylua-nvim", run = "cargo install stylua"})
   
   use('ThePrimeagen/harpoon')
+
+  use{ 'mg979/vim-visual-multi', branch = 'master' }
+
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
 	end

@@ -20,10 +20,10 @@ vim.g.maplocalleader = " "
 
 -- Normal --
 -- Better window navigation
-keymap("n", "<C-Left>", "<C-w>h", opts)
-keymap("n", "<C-Down>", "<C-w>j", opts)
-keymap("n", "<C-Up>", "<C-w>k", opts)
-keymap("n", "<C-Right>", "<C-w>l", opts)
+keymap("n", "<C-S-Left>", "<C-w>h", opts)
+keymap("n", "<C-S-Down>", "<C-w>j", opts)
+keymap("n", "<C-S-Up>", "<C-w>k", opts)
+keymap("n", "<C-S-Right>", "<C-w>l", opts)
 
 -- Explorer
 keymap("n", "<Space><Tab>", ":NvimTreeToggle<cr>", opts)
@@ -72,10 +72,6 @@ keymap("n", "<A-2>", "<cmd>lua require'telescope.builtin'.find_files(require('te
 keymap("n", "<A-3>", "<cmd>lua require'telescope.builtin'.live_grep()<cr>", opts)
 keymap("n", "<A-4>", "<cmd>lua require'telescope.builtin'.buffers()<cr>", opts)
 
--- Harpoon
-keymap("n", "<A-a>", "<cmd>lua require('harpoon.mark').add_file()<cr>", opts)
-keymap("n", "<A-c>", "<cmd>lua require('harpoon.mark').clear()<cr>", opts)
-keymap("n", "<A-s>", ":Telescope harpoon marks<cr>", opts)
 
 -- Buffers
 keymap("n", "<A-q>", "<cmd>close<cr>", opts)
