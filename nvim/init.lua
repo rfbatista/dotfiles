@@ -27,6 +27,7 @@ require "user.commands.cinnamon"
 require "user.commands.comment"
 require "user.commands.vim-sneak"
 require "user.commands.whichkey"
+require "user.commands.harpoon"
 
 -- Languages
 require "user.languages.init"
