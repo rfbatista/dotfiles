@@ -167,7 +167,7 @@ local mappings = {
 
 	p = {
 		name = "Python",
-		a = { "<cmd>!clear;python %<cr>", "Run current file" },
+		a = { "<cmd>2TermExec cmd='python %'<cr>", "Run current file" },
 	},
 
 	s = {
