@@ -102,7 +102,7 @@ local mappings = {
 
 	n = {
 		name = "Node",
-		a = { "<cmd>!clear;node %<cr>", "Run current file" },
+		a = { "<cmd>2TermExec cmd='node %'<cr>", "Run current file" },
 	},
 
 	g = {
