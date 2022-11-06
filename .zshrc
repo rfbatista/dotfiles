@@ -1,11 +1,13 @@
 #!/usr/bin/zsh
 export ZSH="/home/renan/.oh-my-zsh"
-alias nv="/home/renan/nvim/nvim.appimage"
-alias nvim="/home/renan/nvim/nvim.appimage"
+alias nv="/usr/local/bin/nvim"
+alias nvim="/usr/local/bin/nvim"
 alias jetbrains="/opt/jetbrains-toolbox-1.22.10740/jetbrains-toolbox"
 alias config="cd ~/.config/nvim"
 
-alias dotfiles="cd /home/renan/dotfiles"
+alias dotfiles="cd /home/dotfiles"
+alias ej="cd /home/renan/ej"
+alias kgen="cd /home/renan/kgen"
 alias stylua="/home/renan/dotfiles/stylua"
 
 #############################
@@ -196,10 +198,10 @@ SPACESHIP_DOCKER_SYMBOL=""
 SPACESHIP_VENV_PREFIX="venv:("
 SPACESHIP_VENV_SUFFIX=") "
 
-# PYENV
-SPACESHIP_PYENV_PREFIX="python:("
-SPACESHIP_PYENV_SUFFIX=") "
-SPACESHIP_PYENV_SYMBOL=""
+# PYTHON
+SPACESHIP_PYTHON_PREFIX="python:("
+SPACESHIP_PYTHON_SUFFIX=") "
+SPACESHIP_PYTHON_SYMBOL=""
 
 ###############################################
 plugins=(git)
@@ -211,6 +213,11 @@ source $ZSH/oh-my-zsh.sh
 ###############################################
 
 alias asdf-shims="cd /home/renan/.asdf/shims"
+
+if [[ -f "$HOME/.asdf/asdf.sh" ]] then
+  source "$HOME/.asdf/asdf.sh"
+  source "$HOME/.asdf/completions/asdf.bash"
+fi
 
 #. $HOME/.asdf/asdf.sh
 # append completions to fpath
