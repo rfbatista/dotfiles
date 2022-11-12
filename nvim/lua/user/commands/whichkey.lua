@@ -95,6 +95,7 @@ local mappings = {
 		"<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
 		"Find files",
 	},
+	["k"] = { "<cmd>%bd|e#|bd#<CR>", "close all buffers" },
 	["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
 	["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
 	["u"] = { "<cmd>set noexpandtab<cr><cmd>retab!<cr>", "Spaces to Tabs" },
