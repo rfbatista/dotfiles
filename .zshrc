@@ -1,4 +1,5 @@
 #!/usr/bin/zsh
+# Enable vi mode
 export ZSH="/home/renan/.oh-my-zsh"
 alias nv="/usr/local/bin/nvim"
 alias nvim="/usr/local/bin/nvim"
@@ -9,6 +10,16 @@ alias dotfiles="cd /home/dotfiles"
 alias ej="cd /home/renan/ej"
 alias kgen="cd /home/renan/kgen"
 alias stylua="/home/renan/dotfiles/stylua"
+
+
+plugins=(git asdf vi-mode)
+MODE_INDICATOR="%F{white}+%f"
+INSERT_MODE_INDICATOR="%F{yellow}+%f"
+bindkey -v
+#############################
+# Architecture Decision Records 
+#############################
+alias adr="/home/renan/dotfiles/adr-tools/src/adr"
 
 #############################
 # Javscript
@@ -75,12 +86,17 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 # Python
 #############################
 # source /home/renan/anaconda3/bin/activate  # commented out by conda initialize
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 
 #############################
 # Ngrok 
 #############################
 alias ngrok-3100="~/dotfiles/ngrok http --region=us --hostname=renanchatclass.ngrok.io 3100"
 alias ngrok-4000="~/dotfiles/ngrok http --region=us --hostname=renanchatclass.ngrok.io 4000"
+alias ngrok-5000="~/dotfiles/ngrok http --region=us --hostname=renanchatclass.ngrok.io 5000"
 
 #############################
 # Fonts 
@@ -204,8 +220,6 @@ SPACESHIP_PYTHON_SUFFIX=") "
 SPACESHIP_PYTHON_SYMBOL=""
 
 ###############################################
-plugins=(git)
-plugins=(asdf)
 source $ZSH/oh-my-zsh.sh
 
 ###############################################

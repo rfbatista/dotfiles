@@ -177,13 +177,14 @@ bindsym $mod+r mode "resize"
 ################################
 # screen
 ################################
-#exec xrandr --output HDMI-A-0 --mode 2560x1440
+# exec xrandr --output HDMI-A-0 --mode 2560x1440
+exec xrandr --output HDMI-A-0 --mode 3840x2160
 
 ################################
 # Polybar
 ################################
-# exec_always --no-startup-id $HOME/dotfiles/polybar/launch.sh
-# bindsym $mod+Shift+p exec "sh $HOME/dotfiles/polybar/launch.sh &"
+exec_always --no-startup-id $HOME/dotfiles/polybar/launch.sh
+bindsym $mod+Shift+p exec "sh $HOME/dotfiles/polybar/launch.sh &"
 
 ################################
 # Keyboard 
@@ -197,10 +198,10 @@ exec setxkbmap -layout us -variant altgr-intl
 ################################
 # i3 Gaps 
 ################################
-# for_window [class=".*"] border pixel 2
-# gaps inner 10
-# gaps outer 1
-# gaps horizontal 2
+for_window [class=".*"] border pixel 2
+gaps inner 10
+gaps outer 1
+gaps horizontal 2
 ################# i3-radius #######################
 #smart_borders on
 #smart_borders no_gaps
@@ -217,7 +218,6 @@ exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 # Picom
 ################################
 exec_always --no-startup-id picom &
-
 exec $HOME/.fehbg
 
 ################################
@@ -225,6 +225,19 @@ exec $HOME/.fehbg
 ################################
 bindsym $mod+d exec --no-startup-id rofi -show drun
 
-bar {
-    status_command i3status
-}
+
+#bar {
+#    font pango:Inconsolata 10
+#  	tray_output none
+#    status_command ~/.local/bin/bumblebee-status \
+#    -m disk:root memory battery date time \
+#		-t  iceberg-contrast
+#    colors {
+#        background #000000
+#        statusline #999999
+#        focused_workspace  #ffffff #285577
+#        active_workspace   #ffffff #333333
+#        inactive_workspace #888888 #222222
+#        urgent_workspace   #ffffff #900000
+#    }
+#}
