@@ -215,7 +215,7 @@ return packer.startup(function(use)
   use("PieterjanMontens/vim-pipenv")
 
   use({ "ckipp01/stylua-nvim", run = "cargo install stylua" })
-  use { "wellle/context.vim", branch = "master" }
+  -- use { "wellle/context.vim", branch = "master" }
 
   use('ThePrimeagen/harpoon')
 
