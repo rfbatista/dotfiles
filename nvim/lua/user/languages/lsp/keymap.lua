@@ -8,7 +8,7 @@ end
 
 local function lsp_highlight_document(client)
 	-- Set autocommands conditional on server_capabilities
-	if client.resolved_capabilities.document_highlight then
+	if client.server_capabilities.document_highlight then
 		vim.api.nvim_exec(
 			[[
       augroup lsp_document_highlight
@@ -24,8 +24,8 @@ end
 
 local on_attach = function(client, bufnr)
 	if client.name == "jsonls" or client.name == "ansiblels" or client.name == "tsserver" or client.name == "html" then
-		client.resolved_capabilities.document_formatting = false
-		client.resolved_capabilities.document_range_formatting = false
+		client.server_capabilities.document_formatting = false
+		client.server_capabilities.document_range_formatting = false
 	end
 	vim.cmd("command! LspDef lua vim.lsp.buf.definition()")
 	vim.cmd("command! LspFormatting lua vim.lsp.buf.formatting()")
@@ -52,9 +52,14 @@ local on_attach = function(client, bufnr)
 	-- buf_map(bufnr, "n", "<leader>z", "<cmd>lua vim.diagnostic.setloclist()<CR>")
 	buf_map(bufnr, "i", "<C-x><C-x>", "<cmd> LspSignatureHelp<CR>")
 	lsp_highlight_document(client)
-	if client.resolved_capabilities.document_formatting then
+	if client.server_capabilities.document_formatting then
 		vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
 	end
+  local status_ok, illuminate = pcall(require, "illuminate")
+	if not status_ok then
+		return
+	end
+	illuminate.on_attach(client)
 end
 
 M = {

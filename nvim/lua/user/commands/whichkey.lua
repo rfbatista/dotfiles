@@ -104,6 +104,7 @@ local mappings = {
 	n = {
 		name = "Node",
 		a = { "<cmd>2TermExec cmd='node %'<cr>", "Run current file" },
+		b = { "<cmd>2TermExec cmd='npx ts-node-dev %'<cr>", "Run current file with typescript" },
 	},
 
 	g = {
@@ -149,15 +150,15 @@ local mappings = {
 		i = { "<cmd>LspInfo<cr>", "Info" },
 		I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
 		j = {
-			"<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
+			"<cmd>lua vim.diagnostic.goto_next()<CR>",
 			"Next Diagnostic",
 		},
 		k = {
-			"<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",
+			"<cmd>lua vim.diagnostic.goto_prev()<cr>",
 			"Prev Diagnostic",
 		},
 		l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-		q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
+		q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
 		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
 		s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
 		S = {
