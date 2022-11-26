@@ -1,16 +1,9 @@
-local status_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
-if not status_ok then
-	return
-end
-
-local lspconfig = require("lspconfig")
-
 local servers = {
 	"pyright",
 	"jsonls",
 	"sumneko_lua",
 	"gopls",
-	"eslint",
+	-- "eslint",
 	"tsserver",
 	"ansiblels",
 	"kotlin_language_server",
@@ -19,12 +12,31 @@ local servers = {
 	"svelte",
 }
 
-lsp_installer.setup({
-	ensure_installed = servers,
+local settings = {
 	ui = {
-		border = "single",
+		border = "none",
+		icons = {
+			package_installed = "◍",
+			package_pending = "◍",
+			package_uninstalled = "◍",
+		},
 	},
+	log_level = vim.log.levels.INFO,
+	max_concurrent_installers = 4,
+}
+
+require("mason").setup(settings)
+require("mason-lspconfig").setup({
+	ensure_installed = servers,
+	automatic_installation = true,
 })
+
+local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
+if not lspconfig_status_ok then
+	return
+end
+
+local opts = {}
 
 for _, server in pairs(servers) do
 	local opts = {
@@ -43,9 +55,9 @@ for _, server in pairs(servers) do
 	if server == "tsserver" then
 		opts = require("user.languages.typescript.tsserver")
 	end
-	if server == "eslint" then
-		opts = require("user.languages.typescript.eslint")
-	end
+	-- if server == "eslint" then
+	-- 	opts = require("user.languages.typescript.eslint")
+	-- end
 	if server == "gopls" then
 		opts = require("user.languages.go.gopls")
 	end
