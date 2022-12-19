@@ -1,7 +1,7 @@
 #!/usr/bin/zsh
 # Enable vi mode
 export ZSH="/home/renan/.oh-my-zsh"
-alias nv="/usr/local/bin/nvim"
+alias nv="/snap/bin/nvim"
 alias nvim="/usr/local/bin/nvim"
 alias jetbrains="/opt/jetbrains-toolbox-1.22.10740/jetbrains-toolbox"
 alias config="cd ~/.config/nvim"
@@ -9,6 +9,7 @@ alias config="cd ~/.config/nvim"
 alias dotfiles="cd /home/dotfiles"
 alias ej="cd /home/renan/ej"
 alias kgen="cd /home/renan/kgen"
+alias personal="cd $HOME/personal"
 alias stylua="/home/renan/dotfiles/stylua"
 
 
