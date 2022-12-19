@@ -55,6 +55,9 @@ for _, server in pairs(servers) do
 	if server == "tsserver" then
 		opts = require("user.languages.typescript.tsserver")
 	end
+	if server == "typescript-language-server" then
+		opts = require("user.languages.typescript.tsserver")
+	end
 	-- if server == "eslint" then
 	-- 	opts = require("user.languages.typescript.eslint")
 	-- end
@@ -63,6 +66,9 @@ for _, server in pairs(servers) do
 	end
 	if server == "svelte" then
 		opts = require("user.languages.svelte.init")
+	end
+	if server == "prisma-language-server" then
+		opts = require("user.languages.prisma.init")
 	end
 	lspconfig[server].setup(opts)
 end
