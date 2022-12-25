@@ -183,8 +183,8 @@ exec xrandr --output HDMI-A-0 --mode 3840x2160
 ################################
 # Polybar
 ################################
-exec_always --no-startup-id /etc/nixos/polybar/launch.sh
-bindsym $mod+Shift+p exec "sh /etc/nixos/polybar/launch.sh &"
+exec_always --no-startup-id $HOME/dotfiles/polybar/launch.sh
+bindsym $mod+Shift+p exec "sh $HOME/dotfiles/polybar/launch.sh &"
 
 ################################
 # Keyboard 

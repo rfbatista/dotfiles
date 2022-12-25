@@ -64,5 +64,8 @@ for _, server in pairs(servers) do
 	if server == "svelte" then
 		opts = require("user.languages.svelte.init")
 	end
+	if server == "prisma-language-server" then
+		opts = require("user.languages.prisma.init")
+	end
 	lspconfig[server].setup(opts)
 end
