@@ -1,16 +1,17 @@
 #!/usr/bin/zsh
 # Enable vi mode
-export ZSH="/home/renan/.oh-my-zsh"
-alias nv="/snap/bin/nvim"
-alias nvim="/usr/local/bin/nvim"
+# export ZSH="$HOME/.oh-my-zsh"
+# source "$HOME/.zsh/spaceship/spaceship.zsh"
+eval "$(starship init zsh)"
+alias nv="/nix/store/xsxkx4mc4p1kfbvd5v891d2jjplb2klh-system-path/bin/nvim"
 alias jetbrains="/opt/jetbrains-toolbox-1.22.10740/jetbrains-toolbox"
 alias config="cd ~/.config/nvim"
 
-alias dotfiles="cd /home/dotfiles"
-alias ej="cd /home/renan/ej"
-alias kgen="cd /home/renan/kgen"
+alias dotfiles="cd $HOME/dotfiles"
+alias ej="cd $HOME/ej"
+alias kgen="cd $HOME/kgen"
 alias personal="cd $HOME/personal"
-alias stylua="/home/renan/dotfiles/stylua"
+alias stylua="$HOME/dotfiles/stylua"
 
 
 plugins=(git asdf vi-mode)
@@ -87,9 +88,9 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 # Python
 #############################
 # source /home/renan/anaconda3/bin/activate  # commented out by conda initialize
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+# export PYENV_ROOT="$HOME/.pyenv"
+# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
 
 
 #############################
@@ -174,7 +175,8 @@ PATH="$GOPATH/bin:$PATH"
 # zsh theme
 ###############################################
 
-ZSH_THEME="spaceship"
+# ZSH_THEME="spaceship"
+
 SPACESHIP_PROMPT_ORDER=(
 time
 dir
