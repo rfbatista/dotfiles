@@ -1,9 +1,11 @@
 -- Base
 require "user.keymaps"
 require "user.plugins"
+--[[ require "user.languages" ]]
+require "user.nvim-tree"
 require "user.options"
 
-require "user.dap.nvim-dap".setup()
+--require "user.dap.nvim-dap".setup()
 
 -- Interface
 require "user.interface.theme"
@@ -33,7 +35,7 @@ require "user.commands.harpoon"
 require "user.languages.init"
 
 -- Others
-require "user.others.project"
-require "user.others.impatient"
-require "user.others.numb"
-require "user.others.filetype"
+--require "user.others.project"
+--require "user.others.impatient"
+--require "user.others.numb"
+--require "user.others.filetype"

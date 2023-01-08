@@ -23,6 +23,21 @@ in
     programs.starship.enable = true;
   };
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    nix.settings = {
+    keep-outputs = true;
+    keep-derivations = true;
+  };
+
+  nixpkgs.overlays = [
+    (self: super: { nix-direnv = super.nix-direnv.override { enableFlakes = true; }; } )     (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+    }))
+  ];
+
+  environment.pathsToLink = [
+    "/share/nix-direnv"
+  ];
+  # if you also want support for flakes
   imports = [ "${home-manager}/nixos" 
  # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -72,9 +87,31 @@ in
       gparted
       gnome3.nautilus
       picom
-      neovim
       oh-my-zsh
       gcc
+      libvterm
+      sumneko-lua-language-server
+      flutter
+      gnumake
+      gnupatch
+      lua
+      neovim
+      fd
+      xclip
+      cmake
+      pkg-config
+      clang
+      glibc 
+      android-studio
+      readline
+      luarocks
+      python3
+      teams
+      jetbrains.datagrip
+      adoptopenjdk-openj9-bin-16
+      direnv
+      unzip
+      teamviewer
       gh
       shotwell
       starship
@@ -138,6 +175,7 @@ in
   };
 
 
+  services.teamviewer.enable = true;
   nixpkgs.config = {
     allowUnfree = true;
     packageOverrides = pkgs: rec {

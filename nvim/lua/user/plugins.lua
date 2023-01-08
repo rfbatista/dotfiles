@@ -76,7 +76,7 @@ return packer.startup(function(use)
 	-- use "projekt0n/github-nvim-theme"
 	use({ "folke/tokyonight.nvim", commit = "66bfc2e8f754869c7b651f3f47a2ee56ae557764" })
 
-	-- use("catppuccin/nvim")
+	--[[ use({ "catppuccin/nvim", as = 'catppuccin' }) ]]
 	-- use "sainnhe/everforest"
 
 	-- snippets
@@ -105,12 +105,12 @@ return packer.startup(function(use)
 	use({ "hrsh7th/cmp-nvim-lua", commit = "d276254e7198ab7d00f117e88e223b4bd8c02d21" })
 
 	-- LSP
-	--[[ use("williamboman/nvim-lsp-installer") -- simple to use language server installer ]]
-	use({ "williamboman/mason.nvim", commit = "c2002d7a6b5a72ba02388548cfaf420b864fbc12" })
-	use({ "williamboman/mason-lspconfig.nvim", commit = "0eb7cfefbd3a87308c1875c05c3f3abac22d367c" })
+	use("williamboman/nvim-lsp-installer") -- simple to use language server installer
+	--[[ use({ "williamboman/mason.nvim", commit = "153fce2d2c4a78b394e50804941e5138dfd16a29" }) ]]
+	--[[ use({ "williamboman/mason-lspconfig.nvim", commit = "0eb7cfefbd3a87308c1875c05c3f3abac22d367c" }) ]]
 	use({ "neovim/nvim-lspconfig", commit = "f11fdff7e8b5b415e5ef1837bdcdd37ea6764dda" }) -- enable LSP
-	use("jose-elias-alvarez/null-ls.nvim")
-	use("jose-elias-alvarez/nvim-lsp-ts-utils")
+	use({"jose-elias-alvarez/null-ls.nvim", commit = "647a1eeeefc43ce15d941972642210637c370471"})
+	use({ "jose-elias-alvarez/nvim-lsp-ts-utils", commit = "0a6a16ef292c9b61eac6dad00d52666c7f84b0e7" })
 	--[[ use({ "ray-x/lsp_signature.nvim", tag = "v0.2.0" }) ]]
 
 	-- CPP
@@ -232,6 +232,9 @@ return packer.startup(function(use)
 
 	use("ThePrimeagen/harpoon")
 
+  use("fatih/vim-go")
+
+  --[[ use("norcalli/nvim-colorizer") ]]
 	--[[ use({ "mg979/vim-visual-multi", branch = "master" }) ]]
 
 	if PACKER_BOOTSTRAP then

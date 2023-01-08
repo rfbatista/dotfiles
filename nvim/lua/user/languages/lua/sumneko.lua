@@ -9,20 +9,8 @@ M.on_attach = function(client, bufnr)
 end
 
 M.settings = {
-  Lua = {
-    diagnostics = {
-      globals = { "vim" },
-    },
-    workspace = {
-      library = {
-        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-        [vim.fn.stdpath("config") .. "/lua"] = true,
-      },
-    },
-          telemetry = {
-        enable = false,
-      },
-  },
 }
+
+M.cmd = { "lua-language-server" }
 
 return M

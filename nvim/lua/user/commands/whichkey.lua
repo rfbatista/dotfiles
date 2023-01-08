@@ -79,14 +79,7 @@ local opts = {
 }
 
 local mappings = {
-	a = require("user.languages.tests").keymap,
-	["b"] = {
-		"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-		"Buffers",
-	},
 	r = require("user.interface.trouble").keymap,
-	j = require("user.languages.json.init").keymap,
-	m = require("user.languages.uml.plantuml").keymap,
 	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 	["w"] = { "<cmd>w!<CR>", "Save" },
 	["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },

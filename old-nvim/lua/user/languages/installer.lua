@@ -3,7 +3,6 @@ local servers = {
 	"jsonls",
 	"sumneko_lua",
 	"gopls",
-	-- "eslint",
 	"tsserver",
 	"ansiblels",
 	"kotlin_language_server",
@@ -47,6 +46,9 @@ for _, server in pairs(servers) do
 		opts = require("user.languages.python.init")
 	end
 	if server == "sumneko_lua" then
+		opts = require("user.languages.lua.sumneko")
+	end
+if server == "lua-language-server" then
 		opts = require("user.languages.lua.sumneko")
 	end
 	if server == "kotlin_language_server" then
