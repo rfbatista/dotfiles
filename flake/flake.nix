@@ -18,7 +18,7 @@
         rfbatista = lib.nixosSystem {
           inherit pkgs;
           modules = [
-            ../configuration.nix
+            ./configuration.nix
           ];
         };
       };

@@ -1,10 +1,16 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+      ./hardware-configuration.nix
+    ];
 
   programs.home-manager.enable = true;
   home.username = "rfbatista";
   home.homeDirectory = "/home/rfbatista";
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   nixpkgs.config = {
     allowUnfree = true;

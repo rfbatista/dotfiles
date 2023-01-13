@@ -1,20 +1,27 @@
 {
   inputs = {
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    neovim-nightly-overlay.inputs.neovim-flake.url = "github:neovim/neovim/v0.7.0?dir=contrib";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
+    home-manager.url = "github:nix-community/home-manager/master";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, neovim-nightly-overlay, ... }: {
-    # replace 'joes-desktop' with your hostname here.
-    nixosConfigurations.rfbatista = nixpkgs.lib.nixosSystem {
+  outputs = { self, nixpkgs, home-manager }:
+    let
       system = "x86_64-linux";
-      modules = [ ./configuration.nix 
-        {
-          nixpkgs.overlays = [
-            (neovim-nightly-overlay.overlay)
+      pkgs = import nixpkgs {
+        inherit system;
+        config = { allowUnfree = true; };
+      };
+      lib = nixpkgs.lib;
+    in {
+      nixosConfigurations = {
+        rfbatista = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./home.nix
           ];
-        }
-      ];
+        };
+      };
     };
-  };
+  
 }
