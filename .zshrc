@@ -267,3 +267,6 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+
+# Created by `pipx` on 2023-01-10 21:16:14
+export PATH="$PATH:/home/rfbatista/.local/bin"

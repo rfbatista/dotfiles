@@ -8,7 +8,7 @@ if not status_ok then
   return
 end
 
-vim.lsp.set_log_level("debug")
+--[[ vim.lsp.set_log_level("debug") ]]
 
 require("user.languages.installer")
 require("user.languages.handlers").setup()
