@@ -237,6 +237,7 @@
     luarocks
     python3
     teams
+    deno
     jetbrains.datagrip
     adoptopenjdk-openj9-bin-16
     direnv

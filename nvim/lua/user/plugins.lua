@@ -74,9 +74,9 @@ return packer.startup(function(use)
 	-- Theme
 	-- use "lunarvim/darkplus.nvim"
 	-- use "projekt0n/github-nvim-theme"
-	use({ "folke/tokyonight.nvim", commit = "66bfc2e8f754869c7b651f3f47a2ee56ae557764" })
+	--[[ use({ "folke/tokyonight.nvim", commit = "66bfc2e8f754869c7b651f3f47a2ee56ae557764" }) ]]
 
-	--[[ use({ "catppuccin/nvim", as = 'catppuccin' }) ]]
+	use({ "catppuccin/nvim", as = 'catppuccin' })
 	-- use "sainnhe/everforest"
 
 	-- snippets

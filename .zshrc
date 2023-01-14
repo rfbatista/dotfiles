@@ -3,7 +3,8 @@
 # export ZSH="$HOME/.oh-my-zsh"
 # source "$HOME/.zsh/spaceship/spaceship.zsh"
 eval "$(starship init zsh)"
-alias nv="/nix/store/xsxkx4mc4p1kfbvd5v891d2jjplb2klh-system-path/bin/nvim"
+# alias nv="/nix/store/xsxkx4mc4p1kfbvd5v891d2jjplb2klh-system-path/bin/nvim"
+alias nv="/nix/store/ql3vssqvwgvrwz6jrm2ph2k5k48ka9j4-neovim-0.8.2/bin/nvim "
 alias jetbrains="/opt/jetbrains-toolbox-1.22.10740/jetbrains-toolbox"
 alias config="cd ~/.config/nvim"
 

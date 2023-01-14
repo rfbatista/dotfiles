@@ -31,12 +31,11 @@
       gnumake
       gnupatch
       lua
-      neovim
       xclip
       cmake
       pkg-config
-      clang
       glibc 
+      clang
       android-studio
       readline
       luarocks
@@ -71,5 +70,13 @@
       gnome.gnome-control-center
       wget
       zsh
+
+
+      neovim-nightly
+      gettext
+      ninja
+      libvterm-neovim
+      fd
+
   ];
 }

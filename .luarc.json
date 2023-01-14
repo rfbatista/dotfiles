@@ -5,6 +5,11 @@
     ],
     "Lua.diagnostics.globals": [
         "vim",
-        "handler"
+        "handler",
+        "lfs"
+    ],
+    "Lua.workspace.library": [
+        "${3rd}/lfs/library",
+        "${3rd}/luassert/library"
     ]
 }

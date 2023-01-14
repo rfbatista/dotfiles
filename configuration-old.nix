@@ -37,7 +37,7 @@ in
   ];
 programs.neovim = {
   enable = true;
-  package = pkgs.neovim-unwrapped;
+  package = pkgs.neovim-nightly;
 };
   environment.pathsToLink = [
     "/share/nix-direnv"
