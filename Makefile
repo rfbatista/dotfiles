@@ -1,2 +1,2 @@
 build:
-	sudo nixos-rebuild switch --impure --flake '.#rfbatista'
+	sudo nixos-rebuild switch --flake '.#rfbatista'

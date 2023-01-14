@@ -13,6 +13,9 @@ alias kgen="cd $HOME/kgen"
 alias personal="cd $HOME/personal"
 alias stylua="$HOME/dotfiles/stylua"
 
+wifi(){
+  sudo nmcli dev wifi connet $1 password "$2"
+}
 
 plugins=(git asdf vi-mode)
 MODE_INDICATOR="%F{white}+%f"
