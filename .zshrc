@@ -2,6 +2,12 @@
 # Enable vi mode
 # export ZSH="$HOME/.oh-my-zsh"
 # source "$HOME/.zsh/spaceship/spaceship.zsh"
+if [ -f $HOME/dotfiles/wifi-zshrc ]; then
+    source $HOME/dotfiles/wifi-zshrc
+else
+    print "404: ~/.zsh/zshalias not found."
+fi
+
 eval "$(starship init zsh)"
 # alias nv="/nix/store/xsxkx4mc4p1kfbvd5v891d2jjplb2klh-system-path/bin/nvim"
 alias nv="/nix/store/ql3vssqvwgvrwz6jrm2ph2k5k48ka9j4-neovim-0.8.2/bin/nvim "
@@ -15,7 +21,8 @@ alias personal="cd $HOME/personal"
 alias stylua="$HOME/dotfiles/stylua"
 
 wifi(){
-  sudo nmcli dev wifi connet $1 password "$2"
+  sudo /etc/init.d/network-manager start
+  sudo nmcli dev wifi connect $1 password "$2"
 }
 
 plugins=(git asdf vi-mode)

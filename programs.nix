@@ -77,6 +77,7 @@
       ninja
       libvterm-neovim
       fd
+      lazydocker
 
   ];
 }

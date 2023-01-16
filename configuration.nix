@@ -26,14 +26,7 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
 
   systemd.services.systemd-udev-settle.enable = false;
-  systemd.services.NetworkManager-wait-online.enable = false;
 
-  networking = {
-    hostName = "rf-notebook"; # Define your hostname.
-    firewall.enable = false;
-    wireless.userControlled.enable = true;
-    wireless.enable = true;
-  };
 
   time.timeZone = "America/Sao_Paulo";
   users.users.rfbatista = {
@@ -50,10 +43,6 @@ in
     keyMap = "us";
   };
 
-  environment.variables = {
-    SYS_THEME = "dark";
-    VI_CONFIG = "~/.config/nvim/init.vim";
-  };
 
   # Enable the X11 windowing system.
  services.xserver = {
@@ -81,9 +70,6 @@ in
         };
   };
 
-  # Bluetooth
-  hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -97,40 +83,20 @@ in
     package = pkgs.pulseaudioFull;
   };
 
-  nixpkgs.overlays = [
-    (
-    self: super: {
-      neovim-unwrapped = super.neovim-unwrapped.overrideAttrs (oldAttrs: {
-        version = "master";
-        src = super.fetchFromGitHub {
-          owner = "neovim";
-          repo = "neovim";
-          rev = "4bc74c24318a544f30a9d2431dbd969f9d5cd0f5";
-          sha256 = "0ydydvgi4lyvwsq58ljva5jy8hv2x0gv3mr04pk6wb0c35ilxp0k";
-        };
-        buildInputs = oldAttrs.buildInputs ++ [ super.tree-sitter ];
-      });
-    }
-    )
-  ];
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
 
-  users.extraGroups.networkmanager.members = [ "root" ];
 
   # services.xserver.videoDrivers = [ "nvidia" ];
   nixpkgs.config.allowUnfree = true;
 
 
-  virtualisation.docker.enable = true;
-
   fonts.fonts = with pkgs; [
 	  (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
   ];
 
-  networking.extraHosts = '' '';
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;

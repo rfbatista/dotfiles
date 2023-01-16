@@ -46,6 +46,10 @@
           modules = [
             ./configuration.nix
             ./programs.nix
+            ./networking.nix
+            ./docker.nix
+            ./environment.nix
+            ./zsh.nix
           ];
         };
       };
