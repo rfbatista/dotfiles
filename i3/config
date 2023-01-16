@@ -189,7 +189,7 @@ bindsym $mod+Shift+p exec "sh $HOME/dotfiles/polybar/launch.sh &"
 ################################
 # Keyboard 
 ################################
-exec setxkbmap -layout us -variant altgr-intl
+# exec setxkbmap -layout us -variant altgr-intl
 
 ################################
 # Background

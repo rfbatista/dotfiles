@@ -8,6 +8,8 @@ else
     print "404: ~/.zsh/zshalias not found."
 fi
 
+alias TERM=alacritty
+
 eval "$(starship init zsh)"
 # alias nv="/nix/store/xsxkx4mc4p1kfbvd5v891d2jjplb2klh-system-path/bin/nvim"
 alias nv="/nix/store/ql3vssqvwgvrwz6jrm2ph2k5k48ka9j4-neovim-0.8.2/bin/nvim "

@@ -49,6 +49,7 @@
             ./networking.nix
             ./docker.nix
             ./environment.nix
+            ./tmux.nix
             ./zsh.nix
           ];
         };
