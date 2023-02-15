@@ -179,17 +179,13 @@ bindsym $mod+r mode "resize"
 ################################
 # exec xrandr --output HDMI-A-0 --mode 2560x1440
 exec xrandr --output HDMI-A-0 --mode 3840x2160
+exec xrandr --output HDMI-1 --auto --right-of eDP-1
 
 ################################
 # Polybar
 ################################
 exec_always --no-startup-id $HOME/dotfiles/polybar/launch.sh
 bindsym $mod+Shift+p exec "sh $HOME/dotfiles/polybar/launch.sh &"
-
-################################
-# Keyboard 
-################################
-# exec setxkbmap -layout us -variant altgr-intl
 
 ################################
 # Background
@@ -225,19 +221,5 @@ exec $HOME/.fehbg
 ################################
 bindsym $mod+d exec --no-startup-id rofi -show drun
 
-
-#bar {
-#    font pango:Inconsolata 10
-#  	tray_output none
-#    status_command ~/.local/bin/bumblebee-status \
-#    -m disk:root memory battery date time \
-#		-t  iceberg-contrast
-#    colors {
-#        background #000000
-#        statusline #999999
-#        focused_workspace  #ffffff #285577
-#        active_workspace   #ffffff #333333
-#        inactive_workspace #888888 #222222
-#        urgent_workspace   #ffffff #900000
-#    }
-#}
+# Moving workspaces between screens 
+bindsym $mod+p move workspace to output right 

@@ -24,9 +24,9 @@ in
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.supportedFilesystems = [ "ntfs" ];
 
   systemd.services.systemd-udev-settle.enable = false;
-
 
   time.timeZone = "America/Sao_Paulo";
   users.users.rfbatista = {
@@ -37,20 +37,20 @@ in
   };
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "us";
-  };
+  # i18n.defaultLocale = "en_US.UTF-8";
+  # console = {
+  #   font = "Lat2-Terminus16";
+  #   keyMap = "us";
+  # };
 
 
   # Enable the X11 windowing system.
  services.xserver = {
-        enable = true;
-	wacom.enable = true;
-	layout = "br";
-	xkbVariant = "nodeadkeys";
-	xkbModel = "latitude";
+    enable = true;
+    wacom.enable = true;
+    layout = "br";
+    xkbVariant = "abnt2";
+    xkbModel = "abnt2";
         desktopManager = {
                 xterm.enable = false;
         };

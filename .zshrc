@@ -1,14 +1,20 @@
 #!/usr/bin/zsh
-# Enable vi mode
-# export ZSH="$HOME/.oh-my-zsh"
-# source "$HOME/.zsh/spaceship/spaceship.zsh"
-if [ -f $HOME/dotfiles/wifi-zshrc ]; then
-    source $HOME/dotfiles/wifi-zshrc
-else
-    print "404: ~/.zsh/zshalias not found."
-fi
+
+eval "$(direnv hook zsh)"
+
+# # Enable vi mode
+# # export ZSH="$HOME/.oh-my-zsh"
+# # source "$HOME/.zsh/spaceship/spaceship.zsh"
+# if [ -f $HOME/dotfiles/wifi-zshrc ]; then
+#     source $HOME/dotfiles/wifi-zshrc
+# else
+#     print "404: ~/.zsh/zshalias not found."
+# fi
 
 alias TERM=alacritty
+
+export PATH=~/.npm-packages/bin:$PATH
+export NODE_PATH=~/.npm-packages/lib/node_modules
 
 eval "$(starship init zsh)"
 # alias nv="/nix/store/xsxkx4mc4p1kfbvd5v891d2jjplb2klh-system-path/bin/nvim"
@@ -20,7 +26,7 @@ alias dotfiles="cd $HOME/dotfiles"
 alias ej="cd $HOME/ej"
 alias kgen="cd $HOME/kgen"
 alias personal="cd $HOME/personal"
-alias stylua="$HOME/dotfiles/stylua"
+# alias stylua="$HOME/dotfiles/stylua"
 
 wifi(){
   sudo /etc/init.d/network-manager start
@@ -41,6 +47,7 @@ alias adr="/home/renan/dotfiles/adr-tools/src/adr"
 #############################
 alias ns="npm start"
 alias nd="npm run start:dev"
+alias ni="npm install"
 alias ys="yarn start"
 alias yd="yarn run start:dev"
 alias yb="yarn run build"

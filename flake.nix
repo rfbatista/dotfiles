@@ -51,6 +51,7 @@
             ./environment.nix
             ./tmux.nix
             ./zsh.nix
+            ./services.nix
           ];
         };
       };

@@ -65,7 +65,7 @@ function _HTOP_TOGGLE()
 	htop:toggle()
 end
 
-local diff = Terminal:new({ cmd = "git diff | dunk", direction = "horizontal" })
+local diff = Terminal:new({ cmd = "git diff | dunk &", direction = "horizontal" })
 
 function _DIFF_TOGGLE()
 	diff:toggle()

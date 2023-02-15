@@ -105,9 +105,9 @@ return packer.startup(function(use)
 	use({ "hrsh7th/cmp-nvim-lua", commit = "d276254e7198ab7d00f117e88e223b4bd8c02d21" })
 
 	-- LSP
-	use("williamboman/nvim-lsp-installer") -- simple to use language server installer
-	--[[ use({ "williamboman/mason.nvim", commit = "153fce2d2c4a78b394e50804941e5138dfd16a29" }) ]]
-	--[[ use({ "williamboman/mason-lspconfig.nvim", commit = "0eb7cfefbd3a87308c1875c05c3f3abac22d367c" }) ]]
+	--[[ use("williamboman/nvim-lsp-installer") -- simple to use language server installer ]]
+	use({ "williamboman/mason.nvim", commit = "2469bfc2538652cb0cf88c129f67d38e46a9cb59" })
+	use({ "williamboman/mason-lspconfig.nvim", commit = "422b9745143150e16cd3fe331c74f6737de75e72" })
 	use({ "neovim/nvim-lspconfig", commit = "f11fdff7e8b5b415e5ef1837bdcdd37ea6764dda" }) -- enable LSP
 	use({"jose-elias-alvarez/null-ls.nvim", commit = "647a1eeeefc43ce15d941972642210637c370471"})
 	use({ "jose-elias-alvarez/nvim-lsp-ts-utils", commit = "0a6a16ef292c9b61eac6dad00d52666c7f84b0e7" })
@@ -232,7 +232,7 @@ return packer.startup(function(use)
 
 	use("ThePrimeagen/harpoon")
 
-  use("fatih/vim-go")
+  --[[ use("fatih/vim-go") ]]
 
   --[[ use("norcalli/nvim-colorizer") ]]
 	--[[ use({ "mg979/vim-visual-multi", branch = "master" }) ]]

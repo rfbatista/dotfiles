@@ -1,7 +1,6 @@
 local servers = {
 	"pyright",
 	"jsonls",
-	"sumneko_lua",
 	"gopls",
 	"tsserver",
 	"ansiblels",
@@ -12,7 +11,12 @@ local servers = {
   "graphql",
 }
 
-require("nvim-lsp-installer").setup {}
+--[[ require("nvim-lsp-installer").setup {} ]]
+require("mason").setup(settings)
+require("mason-lspconfig").setup({
+	automatic_installation = true,
+  ensure_installed = servers,
+})
 
 local settings = {
 	ui = {
@@ -32,10 +36,6 @@ if not lspconfig_status_ok then
 	return
 end
 
---[[ require("mason").setup(settings) ]]
---[[ require("mason-lspconfig").setup({ ]]
---[[ 	automatic_installation = true, ]]
---[[ }) ]]
 
 local opts = {}
 
@@ -45,25 +45,25 @@ for _, server in pairs(servers) do
 		capabilities = require("user.languages.lsp.capabilities").capabilities,
 	}
 	if server == "pyright" then
-		opts = require("user.languages.python.init")
+		opts = require("user.languages.providers.python.init")
 	end
 	if server == "sumneko_lua" then
-		opts = require("user.languages.lua.sumneko")
+		opts = require("user.languages.providers.lua.init")
 	end
-if server == "lua-language-server" then
-		opts = require("user.languages.lua.sumneko")
+  if server == "lua-language-server" then
+		opts = require("user.languages.providers.lua.init")
 	end
 	if server == "kotlin_language_server" then
-		opts = require("user.languages.kotlin.init")
+		opts = require("user.languages.providers.kotlin.init")
 	end
 	if server == "tsserver" then
-		opts = require("user.languages.typescript.tsserver")
+		opts = require("user.languages.providers.typescript.tsserver")
 	end
 	if server == "svelte" then
-		opts = require("user.languages.svelte.init")
+		opts = require("user.languages.providers.svelte.init")
 	end
 	if server == "prisma-language-server" then
-		opts = require("user.languages.prisma.init")
+		opts = require("user.languages.providers.prisma.init")
 	end
 	lspconfig[server].setup(opts)
 end

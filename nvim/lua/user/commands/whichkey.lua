@@ -82,6 +82,7 @@ local mappings = {
 	r = require("user.interface.trouble").keymap,
 	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 	["w"] = { "<cmd>w!<CR>", "Save" },
+	["q"] = { "<cmd>q!<CR>", "Quite" },
 	["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
 	["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
 	["f"] = {
@@ -180,7 +181,7 @@ local mappings = {
 	t = {
 		name = "Terminal",
 		n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
-		n = { "<cmd>lua _DIFF_TOGGLE()<cr>", "Git Diff" },
+		g = { "<cmd>lua _DIFF_TOGGLE()<cr>", "Git Diff" },
 		u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
 		t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
 		p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
@@ -190,6 +191,14 @@ local mappings = {
 		b = { "<cmd>ToggleTerm direction=tab<cr>", "Tab" },
 		h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
 		v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
+	},
+
+	m = {
+		name = "Plant UML",
+		a = { [[<cmd>PlantumlOpen<cr>]], "Start Plant UML" },
+		s = { [[<cmd>PlantumlSave<cr>]], "Save PNG" },
+		p = { [[<cmd>lua _PLANTUML_SAVE_PDF()<cr>]], "Save PDF" },
+		d = { [[<cmd>PlantumlStop<cr>]], "Stop" },
 	},
 }
 

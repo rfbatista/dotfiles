@@ -1,10 +1,33 @@
 { config, pkgs, ... }:
 {
+  
+      services.teamviewer.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
 
+  environment.systemPackages = with pkgs; [
       spotify
+      xorg.xkbcomp
+      xorg.xev
+# programmings
+      jetbrains.idea-ultimate
+      dbeaver
+      beekeeper-studio
+      postgresql
+      vscode
+      ngrok
+# lua
+      stylua
+# python 
+      pipenv
+
+# utilities
+      lsof
+      evince 
+      slack
+
+# wallpapers
+      feh
 
       curl
       python3
@@ -83,4 +106,5 @@
       lazydocker
 
   ];
+
 }
