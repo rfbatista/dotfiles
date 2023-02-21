@@ -80,6 +80,8 @@ local opts = {
 
 local mappings = {
 	r = require("user.interface.trouble").keymap,
+	a = require("user.languages.tests").keymap,
+	j = require("user.languages.custom_snips").keymap,
 	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 	["w"] = { "<cmd>w!<CR>", "Save" },
 	["q"] = { "<cmd>q!<CR>", "Quite" },

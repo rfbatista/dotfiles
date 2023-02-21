@@ -9,6 +9,11 @@ if not snip_status_ok then
 end
 
 require("luasnip/loaders/from_vscode").lazy_load()
+luasnip.snippets = {
+  all = {
+    luasnip.parser.parse_snippet("yer", "$1, err := $2($0); if err != nil { \n return err }")
+  }
+}
 
 local check_backspace = function()
   local col = vim.fn.col "." - 1

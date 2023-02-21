@@ -237,6 +237,15 @@ return packer.startup(function(use)
   --[[ use("norcalli/nvim-colorizer") ]]
 	--[[ use({ "mg979/vim-visual-multi", branch = "master" }) ]]
 
+  use 'simrat39/rust-tools.nvim'
+  -- tests
+  use {
+    "klen/nvim-test",
+    config = function()
+      require('nvim-test').setup()
+    end
+  }
+
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
 	end

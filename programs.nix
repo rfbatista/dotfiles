@@ -6,6 +6,9 @@
   # $ nix search wget
 
   environment.systemPackages = with pkgs; [
+      transmission
+      transmission-gtk
+      vlc
       spotify
       xorg.xkbcomp
       xorg.xev
@@ -16,6 +19,13 @@
       postgresql
       vscode
       ngrok
+# rust
+  openssl
+  cargo-tarpaulin
+  lld
+  rust-analyzer
+  cargo
+  rustup
 # lua
       stylua
 # python 

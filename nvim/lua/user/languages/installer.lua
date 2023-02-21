@@ -1,31 +1,33 @@
 local servers = {
 	"pyright",
 	"jsonls",
+  "rust_analyzer",
 	"gopls",
 	"tsserver",
 	"ansiblels",
 	"kotlin_language_server",
 	"terraformls",
 	"dockerls",
+	"sumneko_lua",
 	"svelte",
-  "graphql",
+	"graphql",
 }
 
 --[[ require("nvim-lsp-installer").setup {} ]]
 require("mason").setup(settings)
 require("mason-lspconfig").setup({
 	automatic_installation = true,
-  ensure_installed = servers,
+	ensure_installed = servers,
 })
 
 local settings = {
 	ui = {
 		border = "none",
-    icons = {
-        package_installed = "✓",
-        package_pending = "➜",
-        package_uninstalled = "✗"
-    }
+		icons = {
+			package_installed = "✓",
+			package_pending = "➜",
+			package_uninstalled = "✗",
+		},
 	},
 	log_level = vim.log.levels.INFO,
 	max_concurrent_installers = 4,
@@ -36,6 +38,18 @@ if not lspconfig_status_ok then
 	return
 end
 
+--[[ local rt = require("rust-tools") ]]
+--[[]]
+--[[ rt.setup({ ]]
+--[[ 	server = { ]]
+--[[ 		on_attach = require("user.languages.providers.rust.init").on_attach, ]]
+--[[ 		settings = { ]]
+--[[ 			["rust-analyzer"] = { ]]
+--[[ 				inlayHints = { locationLinks = false }, ]]
+--[[ 			}, ]]
+--[[ 		}, ]]
+--[[ 	}, ]]
+--[[ }) ]]
 
 local opts = {}
 
@@ -50,7 +64,7 @@ for _, server in pairs(servers) do
 	if server == "sumneko_lua" then
 		opts = require("user.languages.providers.lua.init")
 	end
-  if server == "lua-language-server" then
+	if server == "lua-language-server" then
 		opts = require("user.languages.providers.lua.init")
 	end
 	if server == "kotlin_language_server" then
@@ -64,6 +78,9 @@ for _, server in pairs(servers) do
 	end
 	if server == "prisma-language-server" then
 		opts = require("user.languages.providers.prisma.init")
+	end
+	if server == "rust_analyzer" then
+		opts = require("user.languages.providers.rust.init")
 	end
 	lspconfig[server].setup(opts)
 end

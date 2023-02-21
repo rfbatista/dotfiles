@@ -42,8 +42,14 @@ in
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
   # };
-
-
+  programs.light.enable = true;
+  services.actkbd = {
+    enable = true;
+    bindings = [
+      { keys = [ 224 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -A 10"; }
+      { keys = [ 225 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/light -U 10"; }
+    ];
+  };
   # Enable the X11 windowing system.
  services.xserver = {
     enable = true;
@@ -70,6 +76,13 @@ in
         };
   };
 
+
+  services.transmission = {
+    enable = true;
+    settings = {
+      start-added-torrents = true;
+    };
+  };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;

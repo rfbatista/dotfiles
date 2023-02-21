@@ -11,6 +11,7 @@ end
 --[[ vim.lsp.set_log_level("debug") ]]
 
 require("user.languages.installer")
+require("user.languages.tests")
 require("user.languages.handlers").setup()
 require "user.languages.null-ls"
 require "user.languages.signature"
