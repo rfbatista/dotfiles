@@ -179,7 +179,7 @@ bindsym $mod+r mode "resize"
 ################################
 # exec xrandr --output HDMI-A-0 --mode 2560x1440
 exec xrandr --output HDMI-A-0 --mode 3840x2160
-exec xrandr --output HDMI-1 --auto --right-of eDP-1
+exec xrandr --output HDMI-1 --auto --left-of eDP-1
 
 ################################
 # Polybar
