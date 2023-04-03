@@ -6,6 +6,7 @@ end
 require("telescope").load_extension('harpoon')
 require('telescope').load_extension('media_files')
 require('telescope').load_extension('dap')
+require("telescope").load_extension("git_worktree")
 
 local actions = require("telescope.actions")
 

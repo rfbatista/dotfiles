@@ -1,5 +1,12 @@
 -- following options are the default
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
+local status_ok, project_nvim = pcall(require, "project_nvim")
+if not status_ok then
+  return
+end
+
+project_nvim.setup {}
+
 vim.g.nvim_tree_icons = {
   default = "",
   symlink = "",
@@ -34,6 +41,8 @@ end
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup {
+  sync_root_with_cwd = true,
+  respect_buf_cwd = true,
   disable_netrw = true,
   auto_reload_on_write = true,
   hijack_netrw = true,

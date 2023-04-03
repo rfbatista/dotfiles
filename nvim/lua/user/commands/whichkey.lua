@@ -202,6 +202,17 @@ local mappings = {
 		p = { [[<cmd>lua _PLANTUML_SAVE_PDF()<cr>]], "Save PDF" },
 		d = { [[<cmd>PlantumlStop<cr>]], "Stop" },
 	},
+
+	o = {
+		name = "Markdown",
+		a = { [[<cmd>MarkdownPreview<cr>]], "Preview" },
+	},
+
+	v = {
+		name = "Worktree",
+		a = { "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>", "List worktrees" },
+		b = { "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>", "Create worktree" },
+	},
 }
 
 which_key.setup(setup)

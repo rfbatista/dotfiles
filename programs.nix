@@ -8,11 +8,14 @@
   environment.systemPackages = with pkgs; [
       transmission
       transmission-gtk
+      ffmpeg
       vlc
       spotify
       xorg.xkbcomp
       xorg.xev
+      pcmanfm
 # programmings
+      bash
       jetbrains.idea-ultimate
       dbeaver
       beekeeper-studio

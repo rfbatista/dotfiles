@@ -52,6 +52,7 @@
             ./tmux.nix
             ./zsh.nix
             ./services.nix
+            ./v4l.nix
           ];
         };
       };

@@ -62,7 +62,12 @@ return packer.startup(function(use)
 
 	-- Markdown
 	-- to use :MarkdownPreview
-	use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", cmd = "MarkdownPreview" })
+	--[[ use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", cmd = "MarkdownPreview" }) ]]
+  -- install without yarn or npm
+  use({
+      "iamcco/markdown-preview.nvim",
+      run = function() vim.fn["mkdp#util#install"]() end,
+  })
 
 	-- Status Line
 	use({
@@ -198,10 +203,10 @@ return packer.startup(function(use)
 	use("declancm/cinnamon.nvim")
 
 	-- Tags
-	use("preservim/tagbar")
+	--[[ use("preservim/tagbar") ]]
 
 	-- Waka time
-	use("wakatime/vim-wakatime")
+	--[[ use("wakatime/vim-wakatime") ]]
 
 	-- Trouble
 	use({ "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" })
@@ -220,17 +225,16 @@ return packer.startup(function(use)
 	use("weirongxu/plantuml-previewer.vim")
 
 	-- Todo
-	use("folke/todo-comments.nvim")
+	--[[ use("folke/todo-comments.nvim") ]]
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
-	use("plytophogy/vim-virtualenv")
-	use("PieterjanMontens/vim-pipenv")
+	--[[ use("plytophogy/vim-virtualenv") ]]
+	--[[ use("PieterjanMontens/vim-pipenv") ]]
 
-	use({ "ckipp01/stylua-nvim", run = "cargo install stylua" })
+	--[[ use({ "ckipp01/stylua-nvim", run = "cargo install stylua" }) ]]
 	-- use { "wellle/context.vim", branch = "master" }
 
-	use("ThePrimeagen/harpoon")
 
   --[[ use("fatih/vim-go") ]]
 
@@ -238,6 +242,10 @@ return packer.startup(function(use)
 	--[[ use({ "mg979/vim-visual-multi", branch = "master" }) ]]
 
   use 'simrat39/rust-tools.nvim'
+  --Work tree
+	use("ThePrimeagen/harpoon")
+  use 'ThePrimeagen/git-worktree.nvim'
+
   -- tests
   use {
     "klen/nvim-test",

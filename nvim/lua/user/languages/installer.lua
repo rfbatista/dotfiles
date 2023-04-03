@@ -8,7 +8,6 @@ local servers = {
 	"kotlin_language_server",
 	"terraformls",
 	"dockerls",
-	"sumneko_lua",
 	"svelte",
 	"graphql",
 }
@@ -16,7 +15,7 @@ local servers = {
 --[[ require("nvim-lsp-installer").setup {} ]]
 require("mason").setup(settings)
 require("mason-lspconfig").setup({
-	automatic_installation = true,
+	automatic_installation = false,
 	ensure_installed = servers,
 })
 
@@ -53,6 +52,9 @@ end
 
 local opts = {}
 
+opts = require("user.languages.providers.lua.init")
+lspconfig.sumneko_lua.setup(opts)
+
 for _, server in pairs(servers) do
 	local opts = {
 		on_attach = require("user.languages.lsp.keymap").on_attach,
@@ -60,12 +62,6 @@ for _, server in pairs(servers) do
 	}
 	if server == "pyright" then
 		opts = require("user.languages.providers.python.init")
-	end
-	if server == "sumneko_lua" then
-		opts = require("user.languages.providers.lua.init")
-	end
-	if server == "lua-language-server" then
-		opts = require("user.languages.providers.lua.init")
 	end
 	if server == "kotlin_language_server" then
 		opts = require("user.languages.providers.kotlin.init")
