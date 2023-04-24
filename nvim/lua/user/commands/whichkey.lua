@@ -101,6 +101,8 @@ local mappings = {
 		name = "Node",
 		a = { "<cmd>2TermExec cmd='node %'<cr>", "Run current file" },
 		b = { "<cmd>2TermExec cmd='npx ts-node-dev %'<cr>", "Run current file with typescript" },
+		d = { "<cmd>2TermExec cmd='npm run start:dev'<cr>", "npm run start:dev" },
+		t = { "<cmd>2TermExec cmd='npm run docker:test'<cr>", "npm run start:test" },
 	},
 
 	g = {
