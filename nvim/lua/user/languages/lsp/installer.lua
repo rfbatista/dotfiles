@@ -55,9 +55,6 @@ for _, server in pairs(servers) do
 	if server == "tsserver" then
 		opts = require("user.languages.typescript.tsserver")
 	end
-	if server == "typescript-language-server" then
-		opts = require("user.languages.typescript.tsserver")
-	end
 	-- if server == "eslint" then
 	-- 	opts = require("user.languages.typescript.eslint")
 	-- end

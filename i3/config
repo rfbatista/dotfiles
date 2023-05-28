@@ -41,7 +41,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -189,7 +189,8 @@ bindsym $mod+Shift+p exec "sh $HOME/dotfiles/polybar/launch.sh &"
 ################################
 # Keyboard 
 ################################
-exec setxkbmap -layout us -variant altgr-intl
+# exec setxkbmap -layout us -variant altgr-intl
+exec setxkbmap -layout br
 
 ################################
 # Background
@@ -220,11 +221,16 @@ exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 exec_always --no-startup-id picom &
 exec $HOME/.fehbg
 
+
 ################################
 # Rofi
 ################################
 bindsym $mod+d exec --no-startup-id rofi -show drun
 
+#bar {
+#	status_command i3status
+#	position top
+#}
 
 #bar {
 #    font pango:Inconsolata 10
