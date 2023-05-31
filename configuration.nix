@@ -20,7 +20,23 @@ in
       experimental-features = nix-command flakes
     '';
   };
-
+ # Make some extra kernel modules available to NixOS
+  boot.extraModulePackages = with config.boot.kernelPackages;
+    [ v4l2loopback.out ];
+    # Activate kernel modules (choose from built-ins and extra ones)
+  boot.kernelModules = [
+    # Virtual Camera
+    "v4l2loopback"
+    # Virtual Microphone, built-in
+    "snd-aloop"
+  ];
+  # Set initial kernel module settings
+  boot.extraModprobeConfig = ''
+    # exclusive_caps: Skype, Zoom, Teams etc. will only show device when actually streaming
+    # card_label: Name of virtual camera, how it'll show up in Skype, Zoom, Teams
+    # https://github.com/umlaeute/v4l2loopback
+    options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
+  '';
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -36,6 +52,7 @@ in
     shell = pkgs.zsh;
   };
 
+  # networking.networkmanager.enable = true;
   # Select internationalisation properties.
   # i18n.defaultLocale = "en_US.UTF-8";
   # console = {
@@ -87,7 +104,10 @@ in
   # Enable CUPS to print documents.
   # services.printing.enable = true;
   services.xserver.libinput.enable = true;
-
+  services.logind.extraConfig = ''
+    RuntimeDirectorySize=8G
+    RuntimeDirectoryInodesMax=1048576  
+  '';
   # Remove sound.enable or turn it off if you had it set previously, it seems to cause conflicts with pipewire
   sound.enable = true;
   hardware.pulseaudio = {

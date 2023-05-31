@@ -10,15 +10,11 @@ local servers = {
 	"dockerls",
 	"svelte",
 	"graphql",
+  "tflint",
+  "jdtls",
 }
 
 --[[ require("nvim-lsp-installer").setup {} ]]
-require("mason").setup(settings)
-require("mason-lspconfig").setup({
-	automatic_installation = false,
-	ensure_installed = servers,
-})
-
 local settings = {
 	ui = {
 		border = "none",
@@ -31,6 +27,13 @@ local settings = {
 	log_level = vim.log.levels.INFO,
 	max_concurrent_installers = 4,
 }
+
+require("mason").setup(settings)
+require("mason-lspconfig").setup({
+	automatic_installation = false,
+	ensure_installed = servers,
+})
+
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then
@@ -55,6 +58,12 @@ local opts = {}
 opts = require("user.languages.providers.lua.init")
 lspconfig.sumneko_lua.setup(opts)
 
+opts = require("user.languages.providers.terraform.init")
+lspconfig.terraformls.setup(opts)
+lspconfig.tflint.setup(opts)
+opts = require("user.languages.providers.java.init")
+lspconfig.jdtls.setup(opts)
+
 for _, server in pairs(servers) do
 	local opts = {
 		on_attach = require("user.languages.lsp.keymap").on_attach,
@@ -77,6 +86,9 @@ for _, server in pairs(servers) do
 	end
 	if server == "rust_analyzer" then
 		opts = require("user.languages.providers.rust.init")
+	end
+	if server == "terraformls" then
+		opts = require("user.languages.providers.terraform.init")
 	end
 	lspconfig[server].setup(opts)
 end

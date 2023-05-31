@@ -45,7 +45,7 @@ M.on_attach = function(client, bufnr)
 end
 
 M.filetypes= {
-  "typescript", "typescriptreact", "typescript.tsx"
+  "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx"
 }
 
 M.settings = {

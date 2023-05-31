@@ -22,11 +22,16 @@ local function lsp_highlight_document(client)
 	end
 end
 
+local navic = require("nvim-navic")
+
 local on_attach = function(client, bufnr)
 	if client.name == "jsonls" or client.name == "ansiblels" or client.name == "tsserver" or client.name == "html" then
 		client.server_capabilities.document_formatting = false
 		client.server_capabilities.document_range_formatting = false
 	end
+  if client.server_capabilities.documentSymbolProvider then
+    navic.attach(client, bufnr)
+  end
 	vim.cmd("command! LspDef lua vim.lsp.buf.definition()")
 	vim.cmd("command! LspFormatting lua vim.lsp.buf.formatting()")
 	vim.cmd("command! LspCodeAction lua vim.lsp.buf.code_action()")

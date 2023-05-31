@@ -8,7 +8,7 @@ trouble.setup()
 local M = {
 	keymap = {
 		name = "Diagnostics",
-		a = { "<cmd>TroubleToggle<cr>", "Toggle" },
+		a = { "<cmd>TroubleToggle<cr>", "Referencias" },
 		s = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace Diagnostics" },
 		q = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document Diagnostics" },
 		w = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },

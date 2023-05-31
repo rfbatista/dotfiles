@@ -55,7 +55,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
-  #decorations: full
+  decorations: None 
   # Startup Mode (changes require restart)
   #
   # Values for `startup_mode`:
@@ -65,7 +65,7 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  #startup_mode: Windowed
+  startup_mode: Fullscreen 
   # Window title
   title: Alacritty
 
@@ -723,7 +723,7 @@ theme: Afterglow
 #selection:
 #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
 # When set to `true`, selected text will be copied to the primary clipboard.
-#save_to_clipboard: false
+save_to_clipboard: true 
 # Allow terminal applications to change Alacritty's window title.
 #dynamic_title: true
 #cursor:
@@ -748,10 +748,8 @@ theme: Afterglow
 #   - (macOS) /bin/bash --login
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
-#shell:
-#  program: /bin/bash
-#  args:
-#    - --login
+# shell:
+#    program: 
 # Startup directory
 #
 # Directory the shell is started in. If this is unset, or `None`, the working
@@ -855,6 +853,12 @@ theme: Afterglow
 #
 #    A full list with available key codes can be found here:
 #    https://docs.rs/glutin/*/glutin/event/enum.VirtualKeyCode.html#variants
+key_bindings:
+  - { key: V,        mods: Command,       action: Paste                        }
+  - { key: C,        mods: Command,       action: Copy                         }
+  - { key: Q,        mods: Command,       action: Quit                         }
+  - { key: N,        mods: Command,       action: SpawnNewInstance             }
+  - { key: T,   mods: Command,       action: ToggleFullscreen             }
 #
 #    Instead of using the name of the keys, the `key` field also supports using
 #    the scancode of the desired key. Scancodes have to be specified as a

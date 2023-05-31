@@ -57,6 +57,11 @@ return packer.startup(function(use)
 		requires = "nvim-treesitter/nvim-treesitter",
 	})
 
+  use({
+    "SmiteshP/nvim-navic",
+    requires = "neovim/nvim-lspconfig",
+    commit = "83dc174da915f9dbc9b51169e9b62a2e0d42b527"
+  })
 	-- Comments
 	use({ "numToStr/Comment.nvim", commit = "97a188a98b5a3a6f9b1b850799ac078faa17ab67" })
 

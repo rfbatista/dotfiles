@@ -136,7 +136,7 @@ local mappings = {
 		d = { "<cmd>TSLspImportAll<CR>", "Import all" },
 		-- e = { "<cmd>Prettier<CR>", "Prettier" },
 		-- f = { "<cmd>PrettierCliPath<CR>", "Prettier beeing used" },
-		f = { "<cmd>lua print('formatting...') vim.lsp.buf.formatting() print('formated!') <cr>", "Format" },
+		f = { "<cmd>lua print('formatting...') vim.lsp.buf.format{ async = true } print('formated!') <cr>", "Format" },
 		h = {
 			"<cmd>Telescope lsp_document_diagnostics<cr>",
 			"Document Diagnostics",

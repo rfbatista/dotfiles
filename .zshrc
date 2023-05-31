@@ -13,6 +13,8 @@ eval "$(direnv hook zsh)"
 
 alias TERM=alacritty
 
+alias hd="mount /dev/sda1 ~/external"
+
 export PATH=~/.npm-packages/bin:$PATH
 export NODE_PATH=~/.npm-packages/lib/node_modules
 

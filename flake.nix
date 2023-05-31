@@ -47,12 +47,13 @@
             ./configuration.nix
             ./programs.nix
             ./networking.nix
-            ./docker.nix
+            ./nix/docker.nix
             ./environment.nix
-            ./tmux.nix
-            ./zsh.nix
+            ./nix/tmux.nix
+            ./nix/zsh.nix
+            ./.nix
             ./services.nix
-            ./v4l.nix
+            ./nix/v4l.nix
           ];
         };
       };

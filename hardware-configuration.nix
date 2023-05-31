@@ -8,7 +8,7 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "vmd" "xhci_pci" "ahci" "nvme" ];
+  boot.initrd.availableKernelModules = [ "vmd" "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
@@ -23,6 +23,11 @@
       fsType = "vfat";
     };
 
+  # fileSystems."/home/rfbatista/external" =
+  #   { device = "/dev/disk/by-uuid/F8405DF3405DB958";
+  #     fsType = "ntfs";
+  #   };
+
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -30,20 +35,19 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br-0ded2be8e15c.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br-55ccdcac67b0.useDHCP = lib.mkDefault true;
   # networking.interfaces.br-69dc8e20d325.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br-78d5bfb917ad.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br-b7f6c7ce7244.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br-b94a5cfe4a9d.useDHCP = lib.mkDefault true;
   # networking.interfaces.br-bb976b179e03.useDHCP = lib.mkDefault true;
+  # networking.interfaces.br-cbe3a5d2489a.useDHCP = lib.mkDefault true;
   # networking.interfaces.br-fbd49fda8d95.useDHCP = lib.mkDefault true;
   # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.vethfb3edaa.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  # Enable OpenTabletDriver
-  hardware.opentabletdriver.enable = true;
-
-  
-  services.printing.enable = true;
-  services.printing.drivers = [ pkgs.brlaser ];
-
 }

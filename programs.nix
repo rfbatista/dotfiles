@@ -6,6 +6,7 @@
   # $ nix search wget
 
   environment.systemPackages = with pkgs; [
+      obs-studio
       transmission
       transmission-gtk
       ffmpeg
@@ -14,7 +15,18 @@
       xorg.xkbcomp
       xorg.xev
       pcmanfm
+      tdesktop
+      yarn
+      chromium
+#java
+      openjdk17
+
 # programmings
+      spring-boot-cli
+      terraform
+      awscli2
+      infracost
+      nix-index
       bash
       jetbrains.idea-ultimate
       dbeaver
@@ -33,7 +45,7 @@
       stylua
 # python 
       pipenv
-
+      python3
 # utilities
       lsof
       evince 
@@ -78,10 +90,8 @@
       android-studio
       readline
       luarocks
-      python3
       teams
       jetbrains.datagrip
-      adoptopenjdk-openj9-bin-16
       direnv
       unzip
       teamviewer
