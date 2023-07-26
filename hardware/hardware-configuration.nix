@@ -13,6 +13,16 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
+   hardware.opengl = {
+     enable = true;
+     extraPackages = with pkgs; [
+       libGL
+     ];
+     setLdLibraryPath = true;
+   };
+# wacom
+  hardware.opentabletdriver.enable = true;
+
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/7d3fd815-f78a-4e22-824d-308674ff98ed";
       fsType = "ext4";

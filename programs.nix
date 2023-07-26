@@ -5,7 +5,9 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
 
+  programs.adb.enable = true;
   environment.systemPackages = with pkgs; [
+      obsidian
       obs-studio
       transmission
       transmission-gtk
@@ -22,6 +24,8 @@
       openjdk17
 
 # programmings
+      jq
+      google-cloud-sdk
       spring-boot-cli
       terraform
       awscli2
@@ -88,6 +92,7 @@
       glibc 
       clang
       android-studio
+      android-tools
       readline
       luarocks
       teams
@@ -109,7 +114,7 @@
       feh
       calibre
       gopls
-      go_1_18
+      go_1_19
       lazygit
       dpkg
       nodejs
@@ -121,6 +126,7 @@
       zsh
 
 
+      google-chrome
       neovim-nightly
       gettext
       ninja

@@ -7,7 +7,7 @@
   };
   environment.sessionVariables = {
     EDITOR = "nvim";
-    BROWSER = "firefox";
+    BROWSER = "google-chrome";
     TERMINAL = "alacritty";
   };
 }

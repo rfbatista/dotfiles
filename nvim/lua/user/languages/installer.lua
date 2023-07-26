@@ -12,6 +12,7 @@ local servers = {
 	"graphql",
   "tflint",
   "jdtls",
+  "tailwindcss",
 }
 
 --[[ require("nvim-lsp-installer").setup {} ]]
@@ -63,6 +64,7 @@ lspconfig.terraformls.setup(opts)
 lspconfig.tflint.setup(opts)
 opts = require("user.languages.providers.java.init")
 lspconfig.jdtls.setup(opts)
+lspconfig.tailwindcss.setup(opts)
 
 for _, server in pairs(servers) do
 	local opts = {

@@ -136,7 +136,7 @@ local mappings = {
 		d = { "<cmd>TSLspImportAll<CR>", "Import all" },
 		-- e = { "<cmd>Prettier<CR>", "Prettier" },
 		-- f = { "<cmd>PrettierCliPath<CR>", "Prettier beeing used" },
-		f = { "<cmd>lua print('formatting...') vim.lsp.buf.format{ async = true } print('formated!') <cr>", "Format" },
+		f = { "<cmd>lua print('formatting...') vim.lsp.buf.format{} print('formated!') <cr>", "Format" },
 		h = {
 			"<cmd>Telescope lsp_document_diagnostics<cr>",
 			"Document Diagnostics",
@@ -182,20 +182,8 @@ local mappings = {
 		C = { "<cmd>Telescope commands<cr>", "Commands" },
 	},
 
-	t = {
-		name = "Terminal",
-		n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
-		g = { "<cmd>lua _DIFF_TOGGLE()<cr>", "Git Diff" },
-		u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
-		t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
-		p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
-		l = { "<cmd>lua _LAZYGIT_TOGGLE()<cr>", "Lazy Git" },
-		d = { "<cmd>lua _LAZYDOCKER_TOGGLE()<cr>", "Lazy Docker" },
-		-- f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
-		b = { "<cmd>ToggleTerm direction=tab<cr>", "Tab" },
-		h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
-		v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
-	},
+	t = require("user.interface.toggleterm").keymap,
+ 
 
 	m = {
 		name = "Plant UML",

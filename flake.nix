@@ -45,13 +45,13 @@
           inherit pkgs system;
           modules = [
             ./configuration.nix
+            ./default.nix
             ./programs.nix
             ./networking.nix
             ./nix/docker.nix
             ./environment.nix
             ./nix/tmux.nix
             ./nix/zsh.nix
-            ./.nix
             ./services.nix
             ./nix/v4l.nix
           ];

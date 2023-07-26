@@ -2,7 +2,7 @@
 
 {
   imports = [
-      ./hardware-configuration.nix
+      ./hardware/hardware-configuration.nix
     ];
 
   programs.home-manager.enable = true;
