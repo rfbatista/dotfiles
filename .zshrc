@@ -6,11 +6,13 @@ alias nvim="/usr/local/bin/nvim"
 alias jetbrains="/opt/jetbrains-toolbox-1.22.10740/jetbrains-toolbox"
 alias config="cd ~/.config/nvim"
 
-alias dotfiles="cd /home/dotfiles"
-alias ej="cd /home/renan/ej"
+alias dotfiles="cd /home/renan/dotfiles"
+alias ej="cd /projetos/education_journey/"
 alias kgen="cd /home/renan/kgen"
 alias personal="cd $HOME/personal"
 alias stylua="/home/renan/dotfiles/stylua"
+alias lg="lazygit"
+alias ld="lazydocker"
 
 
 plugins=(git asdf vi-mode)

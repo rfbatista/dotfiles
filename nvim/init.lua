@@ -1,39 +1,21 @@
--- Base
-require "user.keymaps"
-require "user.plugins"
-require "user.options"
+require "core"
 
-require "user.dap.nvim-dap".setup()
+local custom_init_path = vim.api.nvim_get_runtime_file("lua/custom/init.lua", false)[1]
 
--- Interface
-require "user.interface.theme"
-require "user.interface.lualine"
-require "user.interface.nvim-tree"
-require "user.interface.bufferline"
-require "user.interface.alpha"
-require "user.interface.dressing"
-require "user.interface.gps"
-require "user.interface.tagbar"
-require "user.interface.gitsigns"
-require "user.interface.indentline"
-require "user.interface.telescope-config"
-require "user.interface.toggleterm"
-require "user.interface.trouble"
+if custom_init_path then
+  dofile(custom_init_path)
+end
 
--- Commands
-require "user.commands.autocommands"
-require "user.commands.autopairs"
-require "user.commands.cinnamon"
-require "user.commands.comment"
-require "user.commands.vim-sneak"
-require "user.commands.whichkey"
-require "user.commands.harpoon"
+require("core.utils").load_mappings()
 
--- Languages
-require "user.languages.init"
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
--- Others
-require "user.others.project"
-require "user.others.impatient"
-require "user.others.numb"
-require "user.others.filetype"
+-- bootstrap lazy.nvim!
+if not vim.loop.fs_stat(lazypath) then
+  require("core.bootstrap").gen_chadrc_template()
+  require("core.bootstrap").lazy(lazypath)
+end
+
+dofile(vim.g.base46_cache .. "defaults")
+vim.opt.rtp:prepend(lazypath)
+require "plugins"
