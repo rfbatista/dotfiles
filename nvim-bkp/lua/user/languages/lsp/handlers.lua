@@ -74,7 +74,7 @@ M.setup = function()
 	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
 		border = "rounded",
 	})
-	vim.lsp.handlers["textDocument/definition"] = goto_definition("vsplit")
+	--[[ vim.lsp.handlers["textDocument/definition"] = goto_definition("vsplit") ]]
 end
 
 return M
