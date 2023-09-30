@@ -6,5 +6,8 @@
     "Lua.diagnostics.globals": [
         "vim",
         "handler"
+    ],
+    "workspace.library": [
+        "${3rd}/luv/library"
     ]
 }
