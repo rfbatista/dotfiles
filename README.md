@@ -3,11 +3,9 @@
 
 ![terminal image](images/image.png?raw=true)
 
-# How to install (WIP)
+# Font 
 
-Specify a custom path in zshrc file to this repo .zshrc:
-
-`ln -s ~/dotiles/.zshrc ~/.zshrc`
+https://github.com/IdreesInc/Monocraft
 
 # Terminal
 https://github.com/alacritty/alacritty
