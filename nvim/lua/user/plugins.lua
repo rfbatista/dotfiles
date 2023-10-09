@@ -238,7 +238,9 @@ return packer.startup(function(use)
 
 	use("ThePrimeagen/harpoon")
 
-	--[[ use({ "mg979/vim-visual-multi", branch = "master" }) ]]
+	use({ "mg979/vim-visual-multi", branch = "master" })
+
+  use({"mvllow/modes.nvim"})
 
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()

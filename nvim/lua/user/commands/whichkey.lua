@@ -96,6 +96,7 @@ local mappings = {
 	j = require("user.languages.json.init").keymap,
 	m = require("user.languages.uml.plantuml").keymap,
 	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+	["q"] = { "<cmd>q!<cr>", "Explorer" },
 	["w"] = { "<cmd>w!<CR>", "Save" },
 	["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
 	["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },

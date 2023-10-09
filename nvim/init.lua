@@ -18,6 +18,7 @@ require "user.interface.indentline"
 require "user.interface.telescope-config"
 require "user.interface.toggleterm"
 require "user.interface.trouble"
+require "user.interface.mvllow"
 
 -- Commands
 require "user.commands.autocommands"
