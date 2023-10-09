@@ -47,7 +47,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-# bindsym $mod+d exec dmenu_run 
+bindsym $mod+d exec dmenu_run 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -178,7 +178,7 @@ bindsym $mod+r mode "resize"
 # screen
 ################################
 # exec xrandr --output HDMI-A-0 --mode 2560x1440
-exec xrandr --output HDMI-A-0 --mode 3840x2160
+# exec xrandr --output HDMI-A-0 --mode 3840x2160
 
 ################################
 # Polybar
@@ -199,17 +199,17 @@ exec setxkbmap -layout us -variant altgr-intl
 ################################
 # i3 Gaps 
 ################################
-for_window [class=".*"] border pixel 2
+for_window [class=".*"] border pixel 0
 gaps inner 10
 gaps outer 1
 gaps horizontal 2
 ################# i3-radius #######################
-#smart_borders on
-#smart_borders no_gaps
+smart_borders on
+smart_borders no_gaps
 #border_radius 2
 
 # Google chrome password fix
-exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
+# exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 
 ################################
 # Worksapce programs
@@ -218,13 +218,13 @@ exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 ################################
 # Picom
 ################################
-exec_always --no-startup-id picom &
-exec $HOME/.fehbg
+#exec_always --no-startup-id picom &
+#exec $HOME/.fehbg
 
 ################################
 # Rofi
 ################################
-bindsym $mod+d exec --no-startup-id rofi -show drun
+# bindsym $mod+d exec --no-startup-id rofi -show drun
 
 
 #bar {
