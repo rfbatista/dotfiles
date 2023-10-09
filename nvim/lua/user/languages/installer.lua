@@ -40,3 +40,4 @@ lspconfig.gopls.setup(require("user.languages.go.gopls"))
 lspconfig.clangd.setup({
 	on_attach = keymap.on_attach,
 })
+lspconfig.html.setup(require("user.languages.configs.html"))
