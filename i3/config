@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+font pango:monospace 16
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -189,7 +189,7 @@ bindsym $mod+Shift+p exec "sh $HOME/dotfiles/polybar/launch.sh &"
 ################################
 # Keyboard 
 ################################
-exec setxkbmap -layout us -variant altgr-intl
+exec_always setxkbmap -layout us -variant altgr-intl
 #exec setxkbmap -model abnt2 -layout br
 
 ################################
@@ -220,11 +220,14 @@ smart_borders no_gaps
 ################################
 #exec_always --no-startup-id picom &
 #exec $HOME/.fehbg
+exec_always picom -f &
 
 ################################
 # Rofi
 ################################
 # bindsym $mod+d exec --no-startup-id rofi -show drun
+
+exec_always set -eu | export DISPLAY=:0 | /usr/bin/feh --bg-fill --randomize /home/renan/Pictures/wallpapers/*
 
 
 #bar {
