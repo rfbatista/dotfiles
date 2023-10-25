@@ -17,11 +17,11 @@ end
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
 vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
+    augroup packer_user_config
+      autocmd!
+      autocmd BufWritePost plugins.lua source <afile> | PackerSync
+    augroup end
+  ]])
 
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
@@ -50,9 +50,10 @@ return packer.startup(function(use)
 
 	use("stevearc/dressing.nvim")
 
+	use("brenoprata10/nvim-highlight-colors")
 
-  -- Menus and submodes
-  use 'anuvyklack/hydra.nvim'
+	-- Menus and submodes
+	use("anuvyklack/hydra.nvim")
 
 	-- use 'dylanaraps/wal.vim'
 
@@ -61,8 +62,8 @@ return packer.startup(function(use)
 		requires = "nvim-treesitter/nvim-treesitter",
 	})
 
-  -- Notificacoes
-  use 'rcarriga/nvim-notify'
+	-- Notificacoes
+	use("rcarriga/nvim-notify")
 
 	-- Comments
 	use({ "numToStr/Comment.nvim", commit = "97a188a98b5a3a6f9b1b850799ac078faa17ab67" })
@@ -240,7 +241,11 @@ return packer.startup(function(use)
 
 	use({ "mg979/vim-visual-multi", branch = "master" })
 
-  use({"mvllow/modes.nvim"})
+	use({ "mvllow/modes.nvim" })
+
+	use({ "Mofiqul/dracula.nvim" })
+	use("Civitasv/cmake-tools.nvim")
+	use("vim-test/vim-test")
 
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
