@@ -14,7 +14,7 @@ alias stylua="/home/renan/dotfiles/stylua"
 alias lg="lazygit"
 alias ld="lazydocker"
 
-
+export PATH=$PATH:$(/home/renan/.asdf/shims/go env GOPATH)/bin
 plugins=(git asdf vi-mode)
 MODE_INDICATOR="%F{white}+%f"
 INSERT_MODE_INDICATOR="%F{yellow}+%f"
