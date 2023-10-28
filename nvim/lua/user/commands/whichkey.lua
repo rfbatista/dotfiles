@@ -78,12 +78,12 @@ local opts = {
 	nowait = true, -- use `nowait` when creating keymaps
 }
 
-vim.notify = require("notify")
+local vim_notify = require("notify")
 
 function _FORMAT_CODE()
-	vim.notify("Formatando codigo...", "info")
+	vim_notify("Formatando codigo...", "info")
 	vim.lsp.buf.format()
-	vim.notify("Codigo formatado", "info")
+	vim_notify("Codigo formatado", "info")
 end
 
 local mappings = {
@@ -93,19 +93,14 @@ local mappings = {
 		"Buffers",
 	},
 	r = require("user.interface.trouble").keymap,
-	j = require("user.languages.json.init").keymap,
-	m = require("user.languages.uml.plantuml").keymap,
+	j = require("user.languages.configs.jsonls").keymap,
+	m = require("user.languages.configs.plantuml").keymap,
 	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-	["q"] = { "<cmd>q!<cr>", "Explorer" },
+	["q"] = { "<cmd>q!<cr>", "Quit" },
 	["w"] = { "<cmd>w!<CR>", "Save" },
 	["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
 	["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
-	["f"] = {
-		"<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-		"Find files",
-	},
 	["k"] = { "<cmd>%bd|e#<CR>", "close all buffers" },
-	["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
 	["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
 	["u"] = { "<cmd>set noexpandtab<cr><cmd>retab!<cr>", "Spaces to Tabs" },
 	["i"] = { "<cmd>set expandtab<cr><cmd>retab!<cr>", "Tabs to spaces" },
@@ -117,10 +112,10 @@ local mappings = {
 	},
 
 	g = {
-		name = "Git",
-		g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
 		j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
 		k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
+		name = "Git",
+		g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
 		l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
 		p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
 		r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
