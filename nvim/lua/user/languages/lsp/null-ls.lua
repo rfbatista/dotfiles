@@ -13,11 +13,12 @@ null_ls.setup({
 		formatting.prettierd,
 		formatting.stylua,
 		diagnostics.eslint,
-		code_actions.eslint_d,
+		code_actions.eslint,
 		formatting.clang_format,
 		formatting.sqlfluff.with({
 			--[[ extra_args = { "--dialect", "postgres" }, -- change to your dialect ]]
 		}),
+		formatting.black,
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then
