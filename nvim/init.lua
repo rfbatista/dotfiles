@@ -5,6 +5,9 @@ require("user.options")
 
 require("user.dap.nvim-dap").setup()
 
+-- Languages
+require("user.languages.init")
+
 -- Interface
 require("user.interface.lualine")
 require("user.interface.nvim-tree")
@@ -29,16 +32,13 @@ require("user.commands.comment")
 require("user.commands.vim-sneak")
 require("user.commands.whichkey")
 require("user.commands.harpoon")
-
--- Languages
-require("user.languages.init")
+require("user.commands.folding")
 
 -- Others
 require("user.others.project")
 require("user.others.impatient")
 require("user.others.numb")
 require("user.others.filetype")
-
 
 -- Theme
 require("user.theme")
