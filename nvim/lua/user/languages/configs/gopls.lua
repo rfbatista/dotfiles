@@ -13,4 +13,8 @@ M.on_attach = function(client, bufnr)
 	})
 end
 
+M.filetypes = {
+	"go",
+}
+
 return M

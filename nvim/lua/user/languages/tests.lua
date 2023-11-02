@@ -97,7 +97,7 @@ function getBenchmarkTest()
 end
 
 function getIntegrationTest()
-	return "npm run test:intergration"
+	return "npm run test:integration"
 end
 
 function find_project_root()
