@@ -195,6 +195,9 @@ return packer.startup(function(use)
 	use({ "mfussenegger/nvim-dap", commit = "6b12294a57001d994022df8acbe2ef7327d30587" })
 	use({ "rcarriga/nvim-dap-ui", commit = "1cd4764221c91686dcf4d6b62d7a7b2d112e0b13" })
 	use({ "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de" })
+	use({ "jay-babu/mason-nvim-dap.nvim" })
+	use("leoluz/nvim-dap-go")
+
 	-- use({ "Pocco81/DAPInstall.nvim", commit = "24923c3819a450a772bb8f675926d530e829665f" })
 	use({ "theHamsta/nvim-dap-virtual-text" })
 	use("nvim-telescope/telescope-dap.nvim")
@@ -246,6 +249,10 @@ return packer.startup(function(use)
 	use({ "Mofiqul/dracula.nvim" })
 	use("Civitasv/cmake-tools.nvim")
 	use("vim-test/vim-test")
+	use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
+
+	use({ "fatih/vim-go" })
+	use({ "joerdav/templ.vim" })
 
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
