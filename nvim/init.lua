@@ -1,17 +1,19 @@
+vim.loader.enable()
+
 -- Base
 require("user.keymaps")
 require("user.plugins")
 require("user.options")
 
-require("user.dap.nvim-dap").setup()
-
 -- Languages
 require("user.languages.init")
+require("user.dap.nvim-dap").setup()
 
 -- Interface
+require("user.interface.barbar")
 require("user.interface.lualine")
 require("user.interface.nvim-tree")
-require("user.interface.bufferline")
+--[[ require("user.interface.bufferline") ]]
 require("user.interface.alpha")
 require("user.interface.dressing")
 require("user.interface.tagbar")
@@ -32,13 +34,13 @@ require("user.commands.comment")
 require("user.commands.vim-sneak")
 require("user.commands.whichkey")
 require("user.commands.harpoon")
-require("user.commands.folding")
+--[[ require("user.commands.folding") ]]
 
 -- Others
 require("user.others.project")
-require("user.others.impatient")
-require("user.others.numb")
-require("user.others.filetype")
+--[[ require("user.others.impatient") ]]
+--[[ require("user.others.numb") ]]
+--[[ require("user.others.filetype") ]]
 
 -- Theme
 require("user.theme")
