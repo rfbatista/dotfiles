@@ -10,6 +10,4 @@ M.capabilities = capabilities
 
 M.filetypes = { "html" }
 
-M.cmd = { "vscode-html-language-server", "--stdio" }
-
 return M

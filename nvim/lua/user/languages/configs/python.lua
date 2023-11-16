@@ -78,39 +78,37 @@ C.env = function(root_dir)
 	return _virtual_env ~= "" and py_bin_dir() or ""
 end
 
--- PEP 582 support
-C.pep582 = function(root_dir)
-	local pdm_match = vim.fn.glob(path.join(root_dir, "pdm.lock"))
-	if pdm_match ~= "" then
-		_package = get_pdm_package()
-	end
-
-	if _package ~= "" then
-		return path.join(_package, "lib")
-	end
-end
-
-C.conda = function(root_dir) end
+--[[ -- PEP 582 support ]]
+--[[ C.pep582 = function(root_dir) ]]
+--[[ 	local pdm_match = vim.fn.glob(path.join(root_dir, "pdm.lock")) ]]
+--[[ 	if pdm_match ~= "" then ]]
+--[[ 		_package = get_pdm_package() ]]
+--[[ 	end ]]
+--[[ 	if _package ~= "" then ]]
+--[[ 		return path.join(_package, "lib") ]]
+--[[ 	end ]]
+--[[ end ]]
+--[[]]
+--[[ C.conda = function(root_dir) end ]]
 -- M.on_init = function(_, config)
 -- 	config.settings.python.pythonPath = get_python_path(config.root_dir)
 -- end
 
 M.on_attach = keymap.on_attach
 
-M.on_new_config = function(new_config, root_dir)
-	local pipfile_exists = require("lspconfig").util.search_ancestors(root_dir, function(path)
-		local pipfile = require("lspconfig").util.path.join(path, "Pipfile")
-		if require("lspconfig").util.path.is_file(pipfile) then
-			return true
-		else
-			return false
-		end
-	end)
-
-	if pipfile_exists then
-		new_config.cmd = { "pipenv", "run", "pyright-langserver", "--stdio" }
-	end
-end
+--[[ M.on_new_config = function(new_config, root_dir) ]]
+--[[ 	local pipfile_exists = require("lspconfig").util.search_ancestors(root_dir, function(path) ]]
+--[[ 		local pipfile = require("lspconfig").util.path.join(path, "Pipfile") ]]
+--[[ 		if require("lspconfig").util.path.is_file(pipfile) then ]]
+--[[ 			return true ]]
+--[[ 		else ]]
+--[[ 			return false ]]
+--[[ 		end ]]
+--[[ 	end) ]]
+--[[ 	if pipfile_exists then ]]
+--[[ 		new_config.cmd = { "pipenv", "run", "pyright-langserver", "--stdio" } ]]
+--[[ 	end ]]
+--[[ end ]]
 
 M.settings = {
 	python = {
