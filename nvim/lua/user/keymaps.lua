@@ -72,14 +72,13 @@ keymap("n", "<A-2>", "<cmd>lua require'telescope.builtin'.find_files(require('te
 keymap("n", "<A-3>", "<cmd>lua require'telescope.builtin'.live_grep()<cr>", opts)
 keymap("n", "<A-4>", "<cmd>lua require'telescope.builtin'.buffers()<cr>", opts)
 
-
 -- Buffers
 keymap("n", "<A-q>", "<cmd>close<cr>", opts)
-keymap("n", "<A-w>", ":BufferLineCycleNext<CR>", opts)
-keymap("n", "<A-e>", ":BufferLineCyclePrev<CR>", opts)
-
+--[[ keymap("n", "<A-w>", ":BufferLineCycleNext<CR>", opts) ]]
+--[[ keymap("n", "<A-e>", ":BufferLineCyclePrev<CR>", opts) ]]
+keymap("n", "<A-w>", ":BufferNext<CR>", opts)
+keymap("n", "<A-e>", ":BufferPrevious<CR>", opts)
 -- Subsistitute
 
 -- Clear Highlights
-keymap("n", "<C-l>", ':noh<CR><CR>', opts)
-
+keymap("n", "<C-l>", ":noh<CR><CR>", opts)
