@@ -102,7 +102,7 @@ return packer.startup(function(use)
 	-- use "fsouza/prettierd"
 
 	-- Fort HTML/React
-	use("windwp/nvim-ts-autotag")
+	--[[ use("windwp/nvim-ts-autotag") ]]
 
 	-- cmp plugins
 	use({ "hrsh7th/nvim-cmp", commit = "b0dff0ec4f2748626aae13f011d1a47071fe9abc" }) -- The completion plugin
@@ -163,7 +163,7 @@ return packer.startup(function(use)
 	})
 
 	-- buffer
-	use({ "akinsho/bufferline.nvim", commit = "83bf4dc7bff642e145c8b4547aa596803a8b4dc4" })
+	--[[ use({ "akinsho/bufferline.nvim", commit = "83bf4dc7bff642e145c8b4547aa596803a8b4dc4" }) ]]
 	use({ "moll/vim-bbye", commit = "25ef93ac5a87526111f43e5110675032dbcacf56" })
 
 	-- Whick key
@@ -253,6 +253,14 @@ return packer.startup(function(use)
 
 	use({ "fatih/vim-go" })
 	use({ "joerdav/templ.vim" })
+	--[[ use({ "Jezda1337/nvim-html-css" }) ]]
+
+	use("nvim-tree/nvim-web-devicons") -- OPTIONAL: for file icons
+	use("lewis6991/gitsigns.nvim") -- OPTIONAL: for git status
+	use("romgrk/barbar.nvim")
+
+	-- Python
+	use("PieterjanMontens/vim-pipenv")
 
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
