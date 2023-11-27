@@ -36,14 +36,15 @@ end
 
 local function run_jest(args, config)
 	local t = {}
-	table.insert(t, "terminal " .. config.jest_cmd)
+	table.insert(t, config.cmd)
 	if args ~= nil then
 		for _, v in pairs(args) do
 			table.insert(t, v)
 		end
 	end
-	local jest_cmd = table.concat(t, "")
-	vim.api.nvim_command(jest_cmd)
+	local cmd = table.concat(t, "")
+	local command = string.format('1TermExec cmd="%s"', cmd)
+	vim.cmd(command)
 end
 
 M.get_local_jest = get_local_jest
@@ -51,18 +52,16 @@ M.get_local_jest = get_local_jest
 M.run_jest = run_jest
 
 M.run = function(args, c_file, config)
-	helper.create_window()
 	table.insert(args, " -- --runTestsByPath " .. c_file)
 	table.insert(args, " --watch")
 	run_jest(args, config)
-	helper.focus_last_accessed_window()
 end
 
 M.integration_test = function()
 	local config = {}
 	local c_file = helper.get_current_file_path()
 	local args = {}
-	config.cmd = "npm run test:intergration"
+	config.cmd = "npm run test:integration"
 	M.run(args, c_file, config)
 end
 

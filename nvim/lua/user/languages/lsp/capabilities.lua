@@ -13,6 +13,7 @@ capabilities.textDocument.foldingRange = {
 }
 M.capabilities = capabilities
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
-M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
+--[[ M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities) ]]
+M.capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 return M

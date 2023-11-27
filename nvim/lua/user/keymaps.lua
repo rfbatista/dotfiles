@@ -37,6 +37,8 @@ keymap("n", "<Space><Tab>", ":NvimTreeToggle<cr>", opts)
 -- Navigate buffers
 keymap("n", "<S-Left>", ":bnext<CR>", opts)
 keymap("n", "<S-Right>", ":bprevious<CR>", opts)
+-- Go to previous edited buffer
+keymap("n", "<A-p>", "<C-^>", opts)
 
 -- Move text up and down
 -- keymap("n", "<C-Up>", "<Esc>:m .-2<CR>==gi", opts)
