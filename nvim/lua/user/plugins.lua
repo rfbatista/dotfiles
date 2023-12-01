@@ -216,8 +216,8 @@ return packer.startup(function(use)
 	-- Trouble
 	use({ "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" })
 
-	-- Filetype
-	use("nathom/filetype.nvim")
+	--[[ -- Filetype ]]
+	--[[ use("nathom/filetype.nvim") ]]
 
 	use("David-Kunz/jester")
 
@@ -251,7 +251,7 @@ return packer.startup(function(use)
 	use("vim-test/vim-test")
 	use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
 
-	use({ "fatih/vim-go" })
+	--[[ use({ "fatih/vim-go" }) ]]
 	use({ "joerdav/templ.vim" })
 	--[[ use({ "Jezda1337/nvim-html-css" }) ]]
 
@@ -261,6 +261,11 @@ return packer.startup(function(use)
 
 	-- Python
 	use("PieterjanMontens/vim-pipenv")
+
+	-- Javascript
+	use("alvan/vim-closetag")
+	use("jonsmithers/vim-html-template-literals")
+	use("pangloss/vim-javascript")
 
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
