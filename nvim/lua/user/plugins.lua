@@ -109,13 +109,16 @@ return packer.startup(function(use)
 	use({ "hrsh7th/cmp-buffer", commit = "3022dbc9166796b644a841a02de8dd1cc1d311fa" }) -- buffer completions
 	use({ "hrsh7th/cmp-path", commit = "447c87cdd6e6d6a1d2488b1d43108bfa217f56e1" }) -- path completions
 	use({ "saadparwaiz1/cmp_luasnip", commit = "a9de941bcbda508d0a45d28ae366bb3f08db2e36" }) -- snippet completions
-	use({ "hrsh7th/cmp-nvim-lsp", commit = "affe808a5c56b71630f17aa7c38e15c59fd648a8" })
+	--[[ use({ "hrsh7th/cmp-nvim-lsp", commit = "affe808a5c56b71630f17aa7c38e15c59fd648a8" }) ]]
+	use({ "hrsh7th/cmp-nvim-lsp" })
 	use({ "hrsh7th/cmp-nvim-lua", commit = "d276254e7198ab7d00f117e88e223b4bd8c02d21" })
 
 	-- LSP
 	use("williamboman/nvim-lsp-installer") -- simple to use language server installer
-	use({ "williamboman/mason.nvim", commit = "c2002d7a6b5a72ba02388548cfaf420b864fbc12" })
-	use({ "williamboman/mason-lspconfig.nvim", commit = "0eb7cfefbd3a87308c1875c05c3f3abac22d367c" })
+	--[[ use({ "williamboman/mason.nvim", commit = "c2002d7a6b5a72ba02388548cfaf420b864fbc12" }) ]]
+	--[[ use({ "williamboman/mason-lspconfig.nvim", commit = "0eb7cfefbd3a87308c1875c05c3f3abac22d367c" }) ]]
+	use({ "williamboman/mason.nvim" })
+	use({ "williamboman/mason-lspconfig.nvim" })
 	use({ "neovim/nvim-lspconfig", commit = "f11fdff7e8b5b415e5ef1837bdcdd37ea6764dda" }) -- enable LSP
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("jose-elias-alvarez/nvim-lsp-ts-utils")
@@ -232,11 +235,6 @@ return packer.startup(function(use)
 	-- Todo
 	use("folke/todo-comments.nvim")
 
-	-- Automatically set up your configuration after cloning packer.nvim
-	-- Put this at the end after all plugins
-	use("plytophogy/vim-virtualenv")
-	use("PieterjanMontens/vim-pipenv")
-
 	use({ "ckipp01/stylua-nvim", run = "cargo install stylua" })
 	-- use { "wellle/context.vim", branch = "master" }
 
@@ -260,7 +258,10 @@ return packer.startup(function(use)
 	use("romgrk/barbar.nvim")
 
 	-- Python
-	use("PieterjanMontens/vim-pipenv")
+	-- Automatically set up your configuration after cloning packer.nvim
+	-- Put this at the end after all plugins
+	--[[ use("plytophogy/vim-virtualenv") ]]
+	--[[ use("PieterjanMontens/vim-pipenv") ]]
 
 	-- Javascript
 	use("alvan/vim-closetag")
