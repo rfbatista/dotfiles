@@ -43,12 +43,6 @@ require("mason-nvim-dap").setup({
 	ensure_installed = { "python", "delve", "cppdbg", "node2" },
 	automatic_installation = true,
 })
-vim.cmd([[
-  autocmd BufRead,BufNewFile *.html setfiletype html
-]])
-vim.cmd([[
-  autocmd BufRead,BufNewFile *.sql setfiletype sql
-]])
 lspconfig.sumneko_lua.setup(require("user.languages.configs.sumneko"))
 lspconfig.tsserver.setup(require("user.languages.configs.tsserver"))
 lspconfig.gopls.setup(require("user.languages.configs.gopls"))
@@ -58,12 +52,6 @@ lspconfig.pyright.setup(require("user.languages.configs.python"))
 --[[ lspconfig.pyright.setup(require("user.languages.configs.python")) ]]
 --[[ lspconfig.sqls.setup(require("user.languages.configs.sql")) ]]
 lspconfig.templ.setup(require("user.languages.configs.templ"))
-lspconfig.tailwindcss.setup(require("user.languages.configs.tailwind"))
+js = require("user.languages.configs.javascript")
+js.setup()
 
---[[]]
---[[ if not lspconfig.ruff_lsp then ]]
---[[ 	lspconfig.ruff_lsp = { ]]
---[[ 		default_config = require("user.languages.configs.python"), ]]
---[[ 	} ]]
---[[   lspconfig.ruff_lsp.setup{} ]]
---[[ end ]]
