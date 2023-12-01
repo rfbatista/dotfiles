@@ -20,6 +20,7 @@ local servers = {
 	"dockerls",
 	"sqls",
 	"templ",
+	"ruff_lsp",
 }
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
@@ -48,8 +49,9 @@ lspconfig.gopls.setup(require("user.languages.configs.gopls"))
 lspconfig.clangd.setup(require("user.languages.configs.cpp"))
 lspconfig.html.setup(require("user.languages.configs.html"))
 lspconfig.pyright.setup(require("user.languages.configs.python"))
+--[[ lspconfig.pyright.setup(require("user.languages.configs.python")) ]]
 --[[ lspconfig.sqls.setup(require("user.languages.configs.sql")) ]]
 lspconfig.templ.setup(require("user.languages.configs.templ"))
-lspconfig.tailwindcss.setup(require("user.languages.configs.tailwind"))
 js = require("user.languages.configs.javascript")
 js.setup()
+
