@@ -9,7 +9,8 @@ vim.filetype.add({
 local M = {}
 
 M.on_attach = function(client, bufnr)
-  keymap.on_attach(client, bufnr, { allowed_clients = { "gopls" }, format_on_save = true })
+  --[[ keymap.on_attach(client, bufnr, { allowed_clients = { "gopls" }, format_on_save = true }) ]]
+  keymap.on_attach(client, bufnr)
 end
 
 return M

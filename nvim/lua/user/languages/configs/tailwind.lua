@@ -9,6 +9,8 @@ M.filetypes = {
 	"tsx",
 	"jsx",
 	"html",
+  "hbs",
+  "handlebars",
 }
 
 return M

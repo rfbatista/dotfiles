@@ -8,6 +8,6 @@ M.on_attach = base.on_attach
 
 M.capabilities = capabilities
 
-M.filetypes = { "html" }
+M.filetypes = { "html", "handlebars", "hbs" }
 
 return M
