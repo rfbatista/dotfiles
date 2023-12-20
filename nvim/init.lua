@@ -1,5 +1,9 @@
 vim.loader.enable()
 
+vim.cmd([[
+  set nofoldenable
+]])
+
 -- Base
 require("user.keymaps")
 require("user.plugins")
@@ -7,7 +11,7 @@ require("user.options")
 
 -- Languages
 require("user.languages.init")
-require("user.dap.nvim-dap").setup()
+--require("user.dap.nvim-dap").setup()
 
 -- Interface
 require("user.interface.barbar")
@@ -29,12 +33,11 @@ require("user.interface.highlight-color")
 -- Commands
 require("user.commands.autocommands")
 require("user.commands.autopairs")
-require("user.commands.cinnamon")
 require("user.commands.comment")
 require("user.commands.vim-sneak")
 require("user.commands.whichkey")
 require("user.commands.harpoon")
---[[ require("user.commands.folding") ]]
+require("user.commands.folding")
 
 -- Others
 require("user.others.project")
