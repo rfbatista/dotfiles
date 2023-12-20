@@ -42,6 +42,7 @@ lspconfig.sumneko_lua.setup(require("user.languages.configs.sumneko"))
 lspconfig.gopls.setup(require("user.languages.configs.gopls"))
 lspconfig.clangd.setup(require("user.languages.configs.cpp"))
 lspconfig.pyright.setup(require("user.languages.configs.python"))
+--[[ lspconfig.pyright.setup(require("user.languages.configs.python")) ]]
 --[[ lspconfig.sqls.setup(require("user.languages.configs.sql")) ]]
 
 -- Frontend
@@ -77,3 +78,4 @@ js.setup()
 --[[ end ]]
 --[[ require('ufo').setup() ]]
 --[[]]
+
