@@ -14,6 +14,7 @@ require("user.languages.init")
 --require("user.dap.nvim-dap").setup()
 
 -- Interface
+require("user.interface.rainbow")
 require("user.interface.barbar")
 require("user.interface.lualine")
 require("user.interface.nvim-tree")
