@@ -20,6 +20,7 @@ local servers = {
   "dockerls",
   "sqls",
   "templ",
+  "dartls",
 }
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
@@ -42,13 +43,15 @@ lspconfig.sumneko_lua.setup(require("user.languages.configs.sumneko"))
 lspconfig.gopls.setup(require("user.languages.configs.gopls"))
 lspconfig.clangd.setup(require("user.languages.configs.cpp"))
 lspconfig.pyright.setup(require("user.languages.configs.python"))
+lspconfig.dartls.setup(require("user.languages.configs.dart"))
 --[[ lspconfig.pyright.setup(require("user.languages.configs.python")) ]]
 --[[ lspconfig.sqls.setup(require("user.languages.configs.sql")) ]]
 
 -- Frontend
-lspconfig.templ.setup(require("user.languages.configs.templ"))
+--[[ lspconfig.templ.setup(require("user.languages.configs.templ")) ]]
 lspconfig.html.setup(require("user.languages.configs.html"))
 lspconfig.tailwindcss.setup(require("user.languages.configs.tailwind"))
+lspconfig.eslint.setup(require("user.languages.configs.eslint"))
 require("typescript").setup({
   disable_commands = false, -- prevent the plugin from creating Vim commands
   debug = false,           -- enable debug logging for commands
@@ -78,4 +81,3 @@ js.setup()
 --[[ end ]]
 --[[ require('ufo').setup() ]]
 --[[]]
-
