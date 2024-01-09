@@ -13,6 +13,7 @@ null_ls.setup({
     formatting.prettierd,
     formatting.stylua,
     diagnostics.eslint_d,
+    code_actions.eslint_d,
     --[[ code_actions.eslint_d, ]]
     formatting.clang_format,
     formatting.sqlfluff.with({
@@ -30,7 +31,7 @@ null_ls.setup({
         group = augroup,
         buffer = bufnr,
         callback = function()
-          vim.lsp.buf.format({ bufnr = bufnr })
+          --[[ vim.lsp.buf.format({ bufnr = bufnr }) ]]
         end,
       })
     end

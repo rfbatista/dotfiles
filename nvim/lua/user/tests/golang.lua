@@ -1,4 +1,4 @@
-local helper = require("user.languages.tests.helper")
+local helper = require("user.tests.helper")
 
 local M = {}
 
