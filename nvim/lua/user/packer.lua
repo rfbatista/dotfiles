@@ -77,6 +77,9 @@ return packer.startup(function(use)
   ---------------
   -- Commands --
   ---------------
+  use({ "aklt/plantuml-syntax" })
+  use({ "tyru/open-browser.vim" })
+  use({ "weirongxu/plantuml-previewer.vim" })
   use({ "tpope/vim-surround", tag = "v2.2" })
   -- Navigation
   use("justinmk/vim-sneak")
@@ -128,13 +131,20 @@ return packer.startup(function(use)
   ---------------
   -- Markdown
   -- to use :MarkdownPreview
+  --[[ use({ ]]
+  --[[   "iamcco/markdown-preview.nvim", ]]
+  --[[   run = "cd app && npm install", ]]
+  --[[   setup = function() ]]
+  --[[     vim.g.mkdp_filetypes = { "markdown" } ]]
+  --[[   end, ]]
+  --[[   ft = { "markdown" }, ]]
+  --[[ }) ]]
+
   use({
     "iamcco/markdown-preview.nvim",
-    run = "cd app && npm install",
-    setup = function()
-      vim.g.mkdp_filetypes = { "markdown" }
+    run = function()
+      vim.fn["mkdp#util#install"]()
     end,
-    ft = { "markdown" },
   })
   -- snippets
   use({ "L3MON4D3/LuaSnip", tag = "v1.1.0" }) --snippet engine
