@@ -1,0 +1,6 @@
+[submodule "polybar"]
+	path = polybar
+	url = git@github.com:polybar/polybar.git
+[submodule "i3lock-color"]
+	path = i3lock-color
+	url = https://github.com/Raymo111/i3lock-color.git

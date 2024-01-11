@@ -77,6 +77,9 @@ return packer.startup(function(use)
   ---------------
   -- Commands --
   ---------------
+  use({ "aklt/plantuml-syntax" })
+  use({ "tyru/open-browser.vim" })
+  use({ "weirongxu/plantuml-previewer.vim" })
   use({ "tpope/vim-surround", tag = "v2.2" })
   -- Navigation
   use("justinmk/vim-sneak")
@@ -84,7 +87,7 @@ return packer.startup(function(use)
   use({
     "nvim-telescope/telescope.nvim",
     requires = { { "nvim-lua/plenary.nvim" } },
-    commit = "76ea9a898d3307244dce3573392dcf2cc38f340f",
+    tag = "0.1.5",
   })
   use("nvim-telescope/telescope-media-files.nvim")
   use({ "JoosepAlviste/nvim-ts-context-commentstring", commit = "32d9627123321db65a4f158b72b757bcaef1a3f4" })
@@ -128,7 +131,21 @@ return packer.startup(function(use)
   ---------------
   -- Markdown
   -- to use :MarkdownPreview
-  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", cmd = "MarkdownPreview" })
+  --[[ use({ ]]
+  --[[   "iamcco/markdown-preview.nvim", ]]
+  --[[   run = "cd app && npm install", ]]
+  --[[   setup = function() ]]
+  --[[     vim.g.mkdp_filetypes = { "markdown" } ]]
+  --[[   end, ]]
+  --[[   ft = { "markdown" }, ]]
+  --[[ }) ]]
+
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+  })
   -- snippets
   use({ "L3MON4D3/LuaSnip", tag = "v1.1.0" }) --snippet engine
   use("rafamadriz/friendly-snippets")        -- a bunch of snippets to use
@@ -162,7 +179,8 @@ return packer.startup(function(use)
     run = ":TSUpdate",
   })
 
-  use("p00f/nvim-ts-rainbow")
+  --[[ use("p00f/nvim-ts-rainbow") ]]
+  use({ "HiPhish/rainbow-delimiters.nvim", tag = "v0.3.0" })
   --use 'nvim-telescope/telescope-media-files.nvim'
 
   use({

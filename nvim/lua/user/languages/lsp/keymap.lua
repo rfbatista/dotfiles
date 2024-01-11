@@ -96,11 +96,11 @@ local on_attach = function(client, bufnr, format_opts)
 	end
 end
 
-local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+--[[ local lsp_capabilities = require("cmp_nvim_lsp").server_capabilities() ]]
 
 M = {
 	on_attach = on_attach,
-	lsp_capabilities = lsp_capabilities,
+	--[[ lsp_capabilities = lsp_capabilities, ]]
 }
 
 return M

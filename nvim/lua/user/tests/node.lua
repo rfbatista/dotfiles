@@ -1,18 +1,18 @@
-local helper = require("user.languages.tests.helper")
+local helper = require("user.tests.helper")
 
 local M = {}
 
 function _JESTER_DEBUG()
   return {
     {
-      cmd = "jest -t '$result' -- $file",             -- run command
-      identifiers = { "test", "it" },                 -- used to identify tests
-      prepend = { "describe" },                       -- prepend describe blocks
-      expressions = { "call_expression" },            -- tree-sitter object used to scan for tests/describe blocks
-      path_to_jest_run = "jest",                      -- used to run tests
+      cmd = "jest -t '$result' -- $file",          -- run command
+      identifiers = { "test", "it" },              -- used to identify tests
+      prepend = { "describe" },                    -- prepend describe blocks
+      expressions = { "call_expression" },         -- tree-sitter object used to scan for tests/describe blocks
+      path_to_jest_run = "jest",                   -- used to run tests
       path_to_jest_debug = "./node_modules/bin/jest", -- used for debugging
-      terminal_cmd = ":vsplit",                       -- used to spawn a terminal for running tests, for debugging refer to nvim-dap's config
-      dap = {                                         -- debug adapter configuration
+      terminal_cmd = ":vsplit",                    -- used to spawn a terminal for running tests, for debugging refer to nvim-dap's config
+      dap = {                                      -- debug adapter configuration
         type = "node2",
         request = "launch",
         cwd = vim.fn.getcwd(),
@@ -36,33 +36,36 @@ end
 
 local function run_jest(args, config)
   local t = {}
-  table.insert(t, "terminal " .. config.cmd)
+  table.insert(t, config.cmd)
   if args ~= nil then
     for _, v in pairs(args) do
       table.insert(t, v)
     end
   end
   local jest_cmd = table.concat(t, "")
-  vim.api.nvim_command(jest_cmd)
+  local jestCmd = require("neotest-jest.jest-util").getJestCommand(vim.fn.expand("%:p:h"))
+  local command = string.format("lua require('neotest').run.run({ jestCommand = '%s' })", jestCmd .. jest_cmd)
+  vim.api.nvim_command(command)
 end
 
 M.get_local_jest = get_local_jest
 
 M.run_jest = run_jest
 
+local unit_test = ""
+local int_test = ""
+
 M.run = function(args, c_file, config)
-  helper.create_window()
   table.insert(args, " -- --runTestsByPath " .. c_file)
   table.insert(args, " --watch")
   run_jest(args, config)
-  helper.focus_last_accessed_window()
 end
 
 M.integration_test = function()
   local config = {}
   local c_file = helper.get_current_file_path()
   local args = {}
-  config.cmd = "npm run test:int"
+  config.cmd = int_test
   M.run(args, c_file, config)
 end
 
@@ -70,7 +73,7 @@ M.unit_test = function()
   local config = {}
   local c_file = helper.get_current_file_path()
   local args = {}
-  config.cmd = "npm run test:unit"
+  config.cmd = unit_test
   M.run(args, c_file, config)
 end
 
@@ -78,7 +81,7 @@ M.benchmark_test = function()
   local config = {}
   local c_file = helper.get_current_file_path()
   local args = {}
-  config.cmd = "npm run test:unit"
+  config.cmd = unit_test
   M.run(args, c_file, config)
 end
 
