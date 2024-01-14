@@ -1,4 +1,6 @@
 vim.cmd [[
+  autocmd BufReadPost * if &readonly | set noreadonly | endif
+
   augroup _general_settings
     autocmd!
     autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR> 

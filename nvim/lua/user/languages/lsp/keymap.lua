@@ -6,6 +6,8 @@ local buf_map = function(bufnr, mode, lhs, rhs, opts)
 	})
 end
 
+M.buf_map = buf_map
+
 local function lsp_highlight_document(client)
 	-- Set autocommands conditional on server_capabilities
 	if client.server_capabilities.document_highlight then

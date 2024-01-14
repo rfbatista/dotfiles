@@ -84,3 +84,4 @@ keymap("n", "<A-e>", ":BufferPrevious<CR>", opts)
 
 -- Clear Highlights
 keymap("n", "<C-l>", ":noh<CR><CR>", opts)
+
