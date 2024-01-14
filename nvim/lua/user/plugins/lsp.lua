@@ -38,30 +38,28 @@ return {
 			ensure_installed = servers,
 		})
 
-		--[[ require("neodev").setup() ]]
+		require("mason-lspconfig").setup_handlers({
+			["tsserver"] = function()
+				require("lspconfig").tsserver.setup(require("user.languages.configs.tsserver"))
+			end,
+			["lua_ls"] = function()
+				require("lspconfig").lua_ls.setup(require("user.languages.configs.sumneko"))
+			end,
+		})
 
-		--[[ local capabilities = vim.lsp.protocol.make_client_capabilities() ]]
-		--[[ capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities) ]]
-
-		local mason_lspconfig = require("mason-lspconfig")
-
-		local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
-		if not lspconfig_status_ok then
-			return
-		end
-		lspconfig.lua_ls.setup(require("user.languages.configs.sumneko"))
-		--[[ lspconfig.gopls.setup(require("user.languages.configs.gopls")) ]]
-		lspconfig.clangd.setup(require("user.languages.configs.cpp"))
-		lspconfig.pyright.setup(require("user.languages.configs.python"))
-		--[[ lspconfig.dartls.setup(require("user.languages.configs.dart")) ]]
-		--[[ lspconfig.pyright.setup(require("user.languages.configs.python")) ]]
-		--[[ lspconfig.sqls.setup(require("user.languages.configs.sql")) ]]
-
-		-- Frontend
-		--[[ lspconfig.templ.setup(require("user.languages.configs.templ")) ]]
-		lspconfig.html.setup(require("user.languages.configs.html"))
-		lspconfig.tailwindcss.setup(require("user.languages.configs.tailwind"))
-		lspconfig.eslint.setup(require("user.languages.configs.eslint"))
+		-- lspconfig.lua_ls.setup(require("user.languages.configs.sumneko"))
+		-- --[[ lspconfig.gopls.setup(require("user.languages.configs.gopls")) ]]
+		-- lspconfig.clangd.setup(require("user.languages.configs.cpp"))
+		-- lspconfig.pyright.setup(require("user.languages.configs.python"))
+		-- --[[ lspconfig.dartls.setup(require("user.languages.configs.dart")) ]]
+		-- --[[ lspconfig.pyright.setup(require("user.languages.configs.python")) ]]
+		-- --[[ lspconfig.sqls.setup(require("user.languages.configs.sql")) ]]
+		--
+		-- -- Frontend
+		-- --[[ lspconfig.templ.setup(require("user.languages.configs.templ")) ]]
+		-- lspconfig.html.setup(require("user.languages.configs.html"))
+		-- lspconfig.tailwindcss.setup(require("user.languages.configs.tailwind"))
+		-- lspconfig.eslint.setup(require("user.languages.configs.eslint"))
 		--[[ require("typescript").setup({ ]]
 		--[[ disable_commands = false, -- prevent the plugin from creating Vim commands ]]
 		--[[ debug = false,         -- enable debug logging for commands ]]
