@@ -52,6 +52,7 @@ return {
       vim.api.nvim_buf_set_keymap(0, "t", "<C-Down>", [[<C-\><C-n><C-W>j]], opts)
       vim.api.nvim_buf_set_keymap(0, "t", "<C-Up>", [[<C-\><C-n><C-W>k]], opts)
       vim.api.nvim_buf_set_keymap(0, "t", "<C-Left>", [[<C-\><C-n><C-W>l]], opts)
+      vim.api.nvim_buf_set_keymap(0, "t", "<C-n>", [[2<C-\>]], opts)
     end
 
     vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")

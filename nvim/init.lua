@@ -10,7 +10,7 @@ vim.cmd([[
 
 -- Base
 require("user.keymaps")
--- require("user.autocommands")
+require("user.autocommands")
 require("user.lazy")
 require("user.filetype")
 require("user.options")

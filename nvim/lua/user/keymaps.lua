@@ -63,6 +63,8 @@ keymap("x", "<C-Down>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 
+keymap('n', '<Tab>', '<Cmd>Neotree toggle<CR>', opts)
+
 -- Terminal --
 -- Better terminal navigation
 -- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
@@ -74,8 +76,11 @@ keymap("n", "<A-2>", "<cmd>lua require'telescope.builtin'.find_files(require('te
 keymap("n", "<A-3>", "<cmd>lua require'telescope.builtin'.live_grep()<cr>", opts)
 keymap("n", "<A-4>", "<cmd>lua require'telescope.builtin'.buffers()<cr>", opts)
 
+
+-- Close buffers
+keymap("n", "<A-k>", "<cmd>BufferCloseAllButCurrent<CR>", opts)
 -- Buffers
-keymap("n", "<A-q>", "<cmd>close<cr>", opts)
+keymap("n", "<A-q>", "<cmd>BufferClose<cr>", opts)
 --[[ keymap("n", "<A-w>", ":BufferLineCycleNext<CR>", opts) ]]
 --[[ keymap("n", "<A-e>", ":BufferLineCyclePrev<CR>", opts) ]]
 keymap("n", "<A-w>", ":BufferNext<CR>", opts)

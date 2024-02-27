@@ -1,10 +1,17 @@
 #!/usr/bin/zsh
+
+# Clear NVIM setup
+# rm ~/.local/share/nvim
+
 # Enable vi mode
+alias httpie="AppImageLauncher /home/renan/Applications/HTTPie-2023.3.6_bc1b7fbc9017d1d0ec6e01c70298ef57.AppImage"
+alias ink="/home/renan/Applications/Inkscape-091e20e-x86_64_2bd2bdeb4951060756249f31e3562326.AppImage"
 export ZSH="/home/renan/.oh-my-zsh"
 alias nv="/home/renan/neovim/build/bin/nvim"
 alias nvim="/home/renan/neovim/build/bin"
 alias jetbrains="/opt/jetbrains-toolbox-1.22.10740/jetbrains-toolbox"
 alias config="cd ~/.config/nvim"
+alias geny="cd /opt/genymobile/genymotion"
 
 alias dotfiles="cd /home/renan/dotfiles"
 alias ej="cd /projetos/education_journey/"
@@ -23,6 +30,9 @@ bindkey -v
 # Architecture Decision Records 
 #############################
 alias adr="/home/renan/dotfiles/adr-tools/src/adr"
+
+fpath+=~/.zfunc
+autoload -Uz compinit && compinit
 
 #############################
 # Javscript
