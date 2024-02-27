@@ -1,13 +1,16 @@
-local base = require("user.languages.lsp.keymap")
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+local keymap = require("user.languages.lsp.keymap")
 
 local M = {}
 
-M.on_attach = base.on_attach
+M.on_attach = function(client, bufnr)
+  client.server_capabilities.document_formatting = false
+  client.server_capabilities.document_range_formatting = false
+  keymap.on_attach(client, bufnr)
+end
 
-M.capabilities = capabilities
+M.capabilities = vim.lsp.protocol.make_client_capabilities()
+M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-M.filetypes = { "html", "handlebars", "hbs" }
+M.filetypes = { "html", "handlebars", "hbs", "templ" }
 
 return M

@@ -76,15 +76,20 @@ return {
 			adapters = {
 				require("neotest-go"),
 				require("neotest-jest")({
-					jestCommand = "jest --setupFiles dotenv/config",
-					jestConfigFile = function()
-						local file = vim.fn.expand("%:p")
-						-- if string.find(file, "/packages/") then
-						-- 	return string.match(file, "(.-/[^/]+/)src") .. "jest.config.ts"
-						-- end
-						return vim.fn.getcwd() .. "/jest/jest.config.int.ts"
+					cwd = function(path)
+						return vim.fn.getcwd()
 					end,
 				}),
+				-- require("neotest-jest")({
+				-- 	jestCommand = "jest --setupFiles dotenv/config",
+				-- 	jestConfigFile = function()
+				-- 		local file = vim.fn.expand("%:p")
+				-- 		-- if string.find(file, "/packages/") then
+				-- 		-- 	return string.match(file, "(.-/[^/]+/)src") .. "jest.config.ts"
+				-- 		-- end
+				-- 		return vim.fn.getcwd() .. "/jest/jest.config.unit.ts"
+				-- 	end,
+				-- }),
 			},
 			-- status = {virtual_text = true}
 			output = { open_on_run = true },
