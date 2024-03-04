@@ -42,10 +42,10 @@ return {
 			"terraformls",
 			"dockerls",
 			"sqls",
-      "templ",
-      "htmx",
-      "tailwindcss",
-      "cssls",
+			"templ",
+			"htmx",
+			"tailwindcss",
+			"cssls",
 		}
 
 		require("mason-lspconfig").setup({
@@ -58,6 +58,9 @@ return {
 			end,
 			["cssls"] = function()
 				require("lspconfig").cssls.setup(require("user.languages.configs.css"))
+			end,
+			["pyright"] = function()
+				require("lspconfig").pyright.setup(require("user.languages.configs.python"))
 			end,
 			["lua_ls"] = function()
 				require("lspconfig").lua_ls.setup(require("user.languages.configs.sumneko"))
@@ -89,7 +92,6 @@ return {
 			end,
 			["tailwindcss"] = function()
 				require("lspconfig").tailwindcss.setup(require("user.languages.configs.tailwind"))
-				require("lspconfig").tailwind.setup(require("user.languages.configs.tailwind"))
 			end,
 		})
 
@@ -102,7 +104,6 @@ return {
 		-- 	}, -- a list of key maps
 		-- 	lsp = { disable_lsp = { "gopls", "tsserver", "lua_ls", "jsonls", "html", "templ" } }, -- disable pylsp setup from navigator
 		-- })
-
 
 		require("typescript-tools").setup({
 			-- disable_commands = false, -- prevent the plugin from creating Vim commands
@@ -139,14 +140,14 @@ return {
 		-- require("flutter-tools").setup({}) -- use defaults
 		require("go").setup()
 
-		-- local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
-		-- vim.api.nvim_create_autocmd("BufWritePre", {
-		-- 	pattern = "*.go",
-		-- 	callback = function()
-		-- 		require("go.format").goimport()
-		-- 	end,
-		-- 	group = format_sync_grp,
-		-- })
+		local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			pattern = "*.go",
+			callback = function()
+				require("go.format").goimport()
+			end,
+			group = format_sync_grp,
+		})
 
 		vim.diagnostic.config({
 			title = false,

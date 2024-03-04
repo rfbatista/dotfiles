@@ -54,6 +54,18 @@ function OpenNeoTree()
 	vim.cmd("<cmd>Neotree reveal=true toggle<cr>")
 end
 
+local diagnostics_trouble = {
+	keymap = {
+		name = "Diagnostics",
+		a = { "<cmd>TroubleToggle<cr>", "Toggle" },
+		s = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace Diagnostics" },
+		q = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document Diagnostics" },
+		w = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
+		e = { "<cmd>TroubleToggle loclist<cr>", "Loclist" },
+		d = { "<cmd>TroubleToggle lsp_references<cr>", "LSP References" },
+	},
+}
+
 local mappings = {
 	D = Diagnostics.keymap,
 	G = Golang.keymap,
@@ -63,7 +75,7 @@ local mappings = {
 		"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
 		"Buffers",
 	},
-	r = require("user.interface.trouble").keymap,
+	r = diagnostics_trouble.keymap,
 	j = require("user.languages.configs.jsonls").keymap,
 	m = require("user.languages.configs.plantuml").keymap,
 	["M"] = { "<cmd>MarkdownPreview<cr>", "Open Markdown" },
