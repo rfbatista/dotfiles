@@ -36,11 +36,12 @@ client.background       $bg-color
 exec --no-startup-id numlockx on
 
 # set initial brightness
-exec xrandr --output eDP-1 --brightness 1.5
+#exec xrandr --output eDP-1 --brightness 1.0
+#exec brightnessctl --device='intel_backlight' set 96000
 
 # SCREENSHOTS WITH MAIM
 
-# take screenshot with Print key (requires maim)
+# take sereenshot with Print key (requires maim)
 # with Shift: take screenshot of active window
 bindsym                 Print exec --no-startup-id maim                               ~/data/pictures/screenshots/$(date +%F-%T).png && notify-send "png screenshot taken"
 bindsym --release Shift+Print exec --no-startup-id maim -i $(xdotool getactivewindow) ~/data/pictures/screenshots/$(date +%F-%T).png && notify-send "png screenshot of window taken"
@@ -229,8 +230,10 @@ bindsym $mod+r mode "resize"
 ################################
 # exec xrandr --output HDMI-A-0 --mode 2560x1440
 exec_always xrandr --output HDMI-1 --mode 1920x1080 --right-of eDP-1
+#exec_always xrandr --output HDMI-1 --auto --left-of eDP-1
 # exec xrandr --output HDMI-A-0 --mode 3840x2160
-
+# Moving workspaces between screens 
+bindsym $mod+p move workspace to output right
 ################################
 # Polybar
 ################################
@@ -240,9 +243,9 @@ exec_always xrandr --output HDMI-1 --mode 1920x1080 --right-of eDP-1
 ################################
 # Keyboard 
 ################################
-# exec_always setxkbmap -layout us -variant altgr-intl
+exec_always setxkbmap -layout us -variant altgr-intl
 
-exec_always setxkbmap -model abnt2 -layout br
+# exec_always setxkbmap -model abnt2 -layout br
 
 ################################
 # Background
@@ -291,6 +294,13 @@ exec_always sh $HOME/dotfiles/scripts/wallpaper.sh
 # Docker
 # More info: https://docs.docker.com/engine/security/rootless/
 exec_always dockerd-rootless.sh --experimental
+
+# # Enable/disable caps mode
+# mode "caps" {
+#         bindsym Caps_Lock mode "default"
+# }
+# bindsym Caps_Lock mode "caps"
+
 
 bar {
         # start using custom config file (full path)
