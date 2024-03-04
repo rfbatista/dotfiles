@@ -22,16 +22,17 @@ return {
 					"terraform_fmt", -- terraform formatter
 					"terraform_validate", -- terraform linter
 					"shellcheck", -- shell linter
-					"yamllint", -- yaml linter
 					"buf", -- buf formatter
-					"beautysh", -- shell formatter
-					"gofumpt", -- go formatter
-					-- "gofmt",
+					"gofumpt", -- go formatter "gofmt",
 					"golines",
 					"goimports_reviser",
 					"yamlfmt", -- yaml formatter
 					"goimports",
 					"spell", -- spell checker
+					"black",
+          "blackd",
+					"pylint",
+					"golangci_lint",
 				},
 			})
 
@@ -50,11 +51,13 @@ return {
 					formatting.gofumpt,
 					formatting.terraform_fmt,
 					formatting.buf,
-					formatting.beautysh,
 					formatting.yamlfmt,
 					formatting.goimports,
 					formatting.golines,
 					formatting.goimports_reviser,
+					formatting.black,
+          -- The only way to configure the formatter is by using the provided config options, it will not pick up on config files.
+          -- formatting.blackd,
 					-- diagnostics.eslint_d,
 					diagnostics.eslint_d.with({ -- js/ts linter
 						condition = function(utils)
@@ -63,8 +66,20 @@ return {
 					}),
 					diagnostics.golangci_lint,
 					diagnostics.terraform_validate,
-					diagnostics.shellcheck,
 					diagnostics.yamllint,
+					diagnostics.pylint.with({
+						diagnostics_postprocess = function(diagnostic)
+							diagnostic.code = diagnostic.message_id
+						end,
+						condition = function(utils)
+							return utils.root_has_file({
+								".eslintrc.js",
+								".eslintrc.cjs",
+								"poetry.lock",
+								"pyproject.toml",
+							}) -- only enable if root has .eslintrc.js or .eslintrc.cjs
+						end,
+					}),
 
 					code_actions.gitsigns,
 					code_actions.refactoring,

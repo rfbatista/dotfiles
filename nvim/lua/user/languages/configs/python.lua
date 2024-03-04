@@ -22,6 +22,9 @@ M.capabilities = keymap.lsp_capabilities
 --[[ M.rootdir = function(fname) ]]
 --[[ 	return lspconfig.util.find_git_ancestor(fname) ]]
 --[[ end ]]
+M.on_new_config = function(cfg, root)
+	print(root)
+end
 
 M.settings = {
 	python = {

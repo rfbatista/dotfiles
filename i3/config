@@ -229,7 +229,7 @@ bindsym $mod+r mode "resize"
 # screen
 ################################
 # exec xrandr --output HDMI-A-0 --mode 2560x1440
-exec_always xrandr --output HDMI-1 --mode 1920x1080 --left-of eDP-1
+exec_always xrandr --output HDMI-1 --mode 1920x1080 --right-of eDP-1
 #exec_always xrandr --output HDMI-1 --auto --left-of eDP-1
 # exec xrandr --output HDMI-A-0 --mode 3840x2160
 # Moving workspaces between screens 
