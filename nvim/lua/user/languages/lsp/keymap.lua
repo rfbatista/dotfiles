@@ -6,6 +6,8 @@ local buf_map = function(bufnr, mode, lhs, rhs, opts)
 	})
 end
 
+M.buf_map = buf_map
+
 local function lsp_highlight_document(client)
 	-- Set autocommands conditional on server_capabilities
 	if client.server_capabilities.document_highlight then
@@ -91,9 +93,9 @@ local on_attach = function(client, bufnr, format_opts)
 		return
 	end
 	illuminate.on_attach(client)
-	if format_opts.format_on_save then
-		register_format_on_save(bufnr, format_opts.allowed_clients or { client.name })
-	end
+	-- if format_opts.format_on_save then
+	-- 	register_format_on_save(bufnr, format_opts.allowed_clients or { client.name })
+	-- end
 end
 
 --[[ local lsp_capabilities = require("cmp_nvim_lsp").server_capabilities() ]]

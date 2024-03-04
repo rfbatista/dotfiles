@@ -4,3 +4,9 @@
 [submodule "i3lock-color"]
 	path = i3lock-color
 	url = https://github.com/Raymo111/i3lock-color.git
+[submodule "dap/vscode-node-debug2"]
+	path = dap/vscode-node-debug2
+	url = https://github.com/microsoft/vscode-node-debug2.git
+[submodule "tmux-config"]
+	path = tmux-config
+	url = https://github.com/samoshkin/tmux-config.git
