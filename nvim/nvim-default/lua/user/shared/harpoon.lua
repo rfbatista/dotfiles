@@ -1,0 +1,1 @@
+/home/rfbatista/dotfiles/nvim/plugins/harpoon.lua

@@ -1,0 +1,33 @@
+return {
+  "folke/which-key.nvim",
+  event = "VeryLazy",
+  dependencies = {
+    "stevearc/dressing.nvim", -- optional for vim.ui.select
+  },
+  init = function()
+    vim.o.timeout = true
+    vim.o.timeoutlen = 300
+  end,
+  opts = {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+  },
+  config = function()
+    function ADD_TAGS()
+      vim.ui.select({ "json", "db" }, {
+        prompt = "Title",
+        telescope = require("telescope.themes").get_cursor(),
+      }, function(selected)
+          vim.cmd("GoTagAdd " .. selected)
+        end)
+    end
+
+    local wk = require("which-key")
+    wk.register({
+      ["q"] = { "<cmd>q!<cr>", "Quit" },
+      ["w"] = { "<cmd>w!<CR>", "Save" },
+    }, { prefix = "<leader>" })
+  end,
+}
+
