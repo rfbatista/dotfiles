@@ -29,6 +29,8 @@ vv() {
   do NVIM_APPNAME=$(basename $config) nvim $@; break; done
 }
 
+export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
+alias swagger='sudo docker run --rm -it  --user $(id -u):$(id -g) -e GOPATH=$(go env GOPATH):/go -v $HOME:$HOME -w $(pwd) quay.io/goswagger/swagger'
 
 # POETRY
 alias poetry="$HOME/.local/bin/poetry"
@@ -50,7 +52,7 @@ alias stylua="/home/renan/dotfiles/stylua"
 alias lg="lazygit"
 alias ld="lazydocker"
 
-export PATH=$PATH:$(/home/renan/.asdf/shims/go env GOPATH)/bin
+# export PATH=$PATH:$(/home/renan/.asdf/shims/go env GOPATH)/bin
 #############################
 # Architecture Decision Records 
 #############################
@@ -213,9 +215,4 @@ fi
 
 #export NVM_DIR="/home/renan/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
-# Docker configs
-export PATH=/usr/bin:$PATH
-export DOCKER_HOST=unix:///run/user/1000/docker.sock
-
 
