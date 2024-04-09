@@ -46,6 +46,7 @@ return {
 			"htmx",
 			"tailwindcss",
 			"cssls",
+      "rust_analyzer"
 		}
 
 		require("mason-lspconfig").setup({
@@ -95,25 +96,7 @@ return {
 			end,
 		})
 
-		-- require("navigator").setup({
-		-- 	mason = true,
-		-- 	keymaps = {
-		-- 		{ key = "gK", func = vim.lsp.declaration, desc = "declaration" },
-		-- 		{ key = "gr", func = vim.lsp.buf.rename, desc = "rename" },
-		-- 		{ key = "gR", func = vim.lsp.buf.references, desc = "references" },
-		-- 	}, -- a list of key maps
-		-- 	lsp = { disable_lsp = { "gopls", "tsserver", "lua_ls", "jsonls", "html", "templ" } }, -- disable pylsp setup from navigator
-		-- })
-
 		require("typescript-tools").setup({
-			-- disable_commands = false, -- prevent the plugin from creating Vim commands
-			-- debug = false, -- enable debug logging for commands
-			-- go_to_source_definition = {
-			-- 	fallback = true, -- fall back to standard LSP definition on failure
-			-- },
-			-- server = {
-			-- 	copabilities = require("user.languages.lsp.capabilities").capabilities,
-			-- },
 			on_attach = function(client, bufnr)
 				client.server_capabilities.document_formatting = false
 				client.server_capabilities.document_range_formatting = false
@@ -121,23 +104,6 @@ return {
 			end,
 		})
 
-		-- require("typescript").setup({
-		-- 	disable_commands = false, -- prevent the plugin from creating Vim commands
-		-- 	debug = false, -- enable debug logging for commands
-		-- 	go_to_source_definition = {
-		-- 		fallback = true, -- fall back to standard LSP definition on failure
-		-- 	},
-		-- 	server = {
-		-- 		copabilities = require("user.languages.lsp.capabilities").capabilities,
-		-- 		on_attach = function(client, bufnr)
-		-- 			client.server_capabilities.document_formatting = false
-		-- 			client.server_capabilities.document_range_formatting = false
-		-- 			require("user.languages.lsp.keymap").on_attach(client, bufnr)
-		-- 		end,
-		-- 	},
-		-- })
-		--
-		-- require("flutter-tools").setup({}) -- use defaults
 		require("go").setup()
 
 		local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})

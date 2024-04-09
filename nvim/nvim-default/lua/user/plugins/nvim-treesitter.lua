@@ -40,6 +40,7 @@ return {
           "gosum",
           "terraform",
           "proto",
+          "templ",
         },
         sync_install = "yes", -- install languages synchronously (only applied to `ensure_installed`)
         ignore_install = { "" }, -- List of parsers to ignore installing
