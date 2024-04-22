@@ -16,8 +16,9 @@ local M = {}
 M.on_attach = keymap.on_attach
 
 --[[ M.filetype = { "py", "python" } ]]
-
-M.capabilities = keymap.lsp_capabilities
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+M.capabilities = capabilities
 
 --[[ M.rootdir = function(fname) ]]
 --[[ 	return lspconfig.util.find_git_ancestor(fname) ]]

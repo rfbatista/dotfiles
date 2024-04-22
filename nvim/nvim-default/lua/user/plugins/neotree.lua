@@ -104,6 +104,7 @@ return {
               show_path = "none", -- "none", "relative", "absolute"
             },
           },
+          ["."] = "set_root",
           ["r"] = "rename",
           ["y"] = "copy_to_clipboard",
           ["x"] = "cut_to_clipboard",
