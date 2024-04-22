@@ -231,8 +231,8 @@ bindsym $mod+r mode "resize"
 # screen
 ################################
 # exec xrandr --output HDMI-A-0 --mode 2560x1440
-exec_always xrandr --output HDMI-1 --auto --left-of eDP-1
-exec_always xrandr --output HDMI-1 --auto --right-of eDP-1
+# exec_always xrandr --output HDMI-1 --auto --left-of eDP-1
+exec xrandr --output HDMI-1 --auto --left-of eDP-1
 # exec xrandr --output HDMI-A-0 --mode 3840x2160
 # Moving workspaces between screens 
 bindsym $mod+p move workspace to output right
@@ -245,9 +245,9 @@ exec_always --no-startup-id $HOME/dotfiles/polybar/launch.sh
 ################################
 # Keyboard 
 ################################
-exec_always setxkbmap -layout us -variant altgr-intl
+# exec_always setxkbmap -layout us -variant altgr-intl
 
-# exec_always setxkbmap -model abnt2 -layout br
+exec_always setxkbmap -model abnt2 -layout br
 
 ################################
 # Background
@@ -302,6 +302,8 @@ exec_always dockerd-rootless.sh --experimental
 #         bindsym Caps_Lock mode "default"
 # }
 # bindsym Caps_Lock mode "caps"
+
+exec_always --no-startup-id dunst -config ~/.config/dunst/dunstrc
 
 bar {
     output            LVDS1
