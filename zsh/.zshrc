@@ -42,7 +42,7 @@ autoload -Uz compinit && compinit
 alias httpie="AppImageLauncher /home/renan/Applications/HTTPie-2023.3.6_bc1b7fbc9017d1d0ec6e01c70298ef57.AppImage"
 alias ink="/home/renan/Applications/Inkscape-091e20e-x86_64_2bd2bdeb4951060756249f31e3562326.AppImage"
 export ZSH="/home/renan/.oh-my-zsh"
-alias nv="NVIM_APPNAME=nvim-default nvim"
+alias nv="NVIM_APPNAME=nvim-default $HOME/neovim/build/bin/nvim"
 alias config="cd ~/.config/nvim"
 alias dotf="cd $HOME/dotfiles"
 alias ej="cd $HOME/projetos/education_journey/"
