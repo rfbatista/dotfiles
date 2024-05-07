@@ -37,6 +37,10 @@ alias poetry="$HOME/.local/bin/poetry"
 fpath+=~/.zfunc
 autoload -Uz compinit && compinit
 
+##################
+# Tmux
+##################
+alias tmuxa="tmux attach-session -t 0"
 
 # Enable vi mode
 alias httpie="AppImageLauncher /home/renan/Applications/HTTPie-2023.3.6_bc1b7fbc9017d1d0ec6e01c70298ef57.AppImage"
@@ -215,3 +219,6 @@ fi
 #export NVM_DIR="/home/renan/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
+
+# Created by `pipx` on 2024-05-05 03:54:36
+export PATH="$PATH:/home/rfbatista/.local/bin"

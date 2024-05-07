@@ -22,3 +22,7 @@ https://github.com/spaceship-prompt/spaceship-prompt/blob/master/docs/options.md
 # lazydocker
 
 https://github.com/jesseduffield/lazydocker
+
+# Utils
+
+- https://github.com/AlDanial/cloc
