@@ -2,7 +2,13 @@
 
 ![terminal image](images/image.png?raw=true)
 
-# Font
+
+# Wallpapers
+
+[https://wallhaven.cc/](https://wallhaven.cc/)
+[https://www.reddit.com/r/wallpapers/](https://www.reddit.com/r/wallpapers/)
+
+# Fonts
 
 https://github.com/IdreesInc/Monocraft
 

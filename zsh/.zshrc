@@ -29,7 +29,7 @@ vv() {
   do NVIM_APPNAME=$(basename $config) nvim $@; break; done
 }
 
-export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
+# export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
 alias swagger='sudo docker run --rm -it  --user $(id -u):$(id -g) -e GOPATH=$(go env GOPATH):/go -v $HOME:$HOME -w $(pwd) quay.io/goswagger/swagger'
 
 # POETRY
