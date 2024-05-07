@@ -1,7 +1,11 @@
 plugin
 ngrok
 .zcompdump*
-
+fonts/*.ttf
 
 nvim/.github
 lazygit
+i3/keyring.deb
+tmux/plugins
+tmux/tmux
+fonts/JetBrainsMono.zip
