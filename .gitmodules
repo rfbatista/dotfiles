@@ -10,3 +10,6 @@
 [submodule "tmux-config"]
 	path = tmux-config
 	url = https://github.com/samoshkin/tmux-config.git
+[submodule "antigen"]
+	path = antigen
+	url = https://github.com/zsh-users/antigen.git
