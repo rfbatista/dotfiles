@@ -1,21 +1,24 @@
 #!/usr/bin/zsh
 source $HOME/dotfiles/zsh/antigen.zsh
-. /opt/asdf-vm/asdf.sh
+# . /opt/asdf-vm/asdf.sh
 
 antigen use oh-my-zsh
 
 # THEME
 # antigen theme robbyrussell/oh-my-zsh themes/agnoster
 antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
+# antigen theme robbyrussell
+
 # ANTIGEN BUNDLES
 antigen bundle aws
 antigen bundle command-not-found
 antigen bundle copyfile
-antigen bundle docker
+# antigen bundle docker
 antigen bundle extract
 antigen bundle git
 antigen bundle node
 antigen bundle npm
+antigen bundle pip
 antigen bundle screen
 antigen bundle unixorn/autoupdate-antigen.zshplugin
 antigen bundle zsh-users/zsh-completions
@@ -31,6 +34,7 @@ vv() {
 
 # export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
 alias swagger='sudo docker run --rm -it  --user $(id -u):$(id -g) -e GOPATH=$(go env GOPATH):/go -v $HOME:$HOME -w $(pwd) quay.io/goswagger/swagger'
+alias aws='/usr/local/bin/aws'
 
 # POETRY
 alias poetry="$HOME/.local/bin/poetry"
@@ -154,15 +158,16 @@ tmux-commands(){
     tmux ls List sessions
     tmux attach-session -t 0 Attach to session 0
     tmux kill-server kill all sessions
-    Ctrl+b c Create a new window (with shell)
-    Ctrl+b w Choose window from a list
-    Ctrl+b 0 Switch to window 0 (by number )
-    Ctrl+b , Rename the current window
-    Ctrl+b % Split current pane horizontally into two panes
-    Ctrl+b " Split current pane vertically into two panes
-    Ctrl+b o Go to the next pane
-    Ctrl+b ; Toggle between the current and previcus pane
-    Ctrl+b x Close the current pane
+    <prefix> + $ Rename current session
+    <prefix> + c Create a new window (with shell)
+    <prefix> + w Choose window from a list
+    <prefix> + 0 Switch to window 0 (by number )
+    <prefix> + , Rename the current window
+    <prefix> + % Split current pane horizontally into two panes
+    <prefix> + " Split current pane vertically into two panes
+    <prefix> + o Go to the next pane
+    <prefix> + ; Toggle between the current and previcus pane
+    <prefix> + x Close the current pane
   '
 }
 

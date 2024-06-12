@@ -89,14 +89,14 @@ floating_modifier $mod
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec kitty
 
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run 
+# bindsym $mod+d exec dmenu_run 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -227,31 +227,6 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-################################
-# screen
-################################
-# exec xrandr --output HDMI-A-0 --mode 2560x1440
-# exec_always xrandr --output HDMI-1 --auto --left-of eDP-1
-exec xrandr --output HDMI-1 --auto --left-of eDP-1
-# exec xrandr --output HDMI-A-0 --mode 3840x2160
-# Moving workspaces between screens 
-bindsym $mod+p move workspace to output right
-################################
-# Polybar
-################################
-exec_always --no-startup-id $HOME/dotfiles/polybar/launch.sh
-# bindsym $mod+Shift+p exec "sh $HOME/dotfiles/configs/polybar/launch.sh &"
-
-################################
-# Keyboard 
-################################
-# exec_always setxkbmap -layout us -variant altgr-intl
-
-exec_always setxkbmap -model abnt2 -layout br
-
-################################
-# Background
-################################
 
 ################################
 # i3 Gaps 
@@ -268,9 +243,6 @@ smart_borders no_gaps
 # Google chrome password fix
 # exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 
-################################
-# Worksapce programs
-################################
 
 ################################
 # Picom
@@ -279,23 +251,6 @@ smart_borders no_gaps
 #exec $HOME/.fehbg
 exec_always picom --config $HOME/dotfiles/picom/picom.conf &
 
-################################
-# Rofi
-################################
-# bindsym $mod+d exec --no-startup-id rofi -show drun
-
-# exec_always set -eu | export DISPLAY=:0 | /usr/bin/feh --bg-fill --randomize /home/renan/Pictures/wallpapers/*
-
-
-
-################################
-# Scripts
-################################
-# Walppaper
-exec_always sh $HOME/dotfiles/scripts/wallpaper.sh
-# Docker
-# More info: https://docs.docker.com/engine/security/rootless/
-exec_always dockerd-rootless.sh --experimental
 
 # # Enable/disable caps mode
 # mode "caps" {
@@ -304,6 +259,30 @@ exec_always dockerd-rootless.sh --experimental
 # bindsym Caps_Lock mode "caps"
 
 exec_always --no-startup-id dunst -config ~/.config/dunst/dunstrc
+
+exec_always --no-startup-id "kitty --class terminal1 htop"
+for_window [class="terminal1"], move scratchpad
+bindsym $mod+u [class="terminal1"] scratchpad show
+
+exec_always --no-startup-id "kitty --class terminal2 lazydocker"
+for_window [class="terminal2"], move scratchpad
+bindsym $mod+i [class="terminal2"] scratchpad show
+
+exec_always --no-startup-id "kitty --class terminal3"
+for_window [class="terminal3"], move scratchpad
+bindsym $mod+o [class="terminal3"] scratchpad show
+
+# Tornar a janela atual em scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Exibir a primeira janela oculta em scratchpad
+bindsym $mod+minus scratchpad show
+
+include $HOME/dotfiles/i3/keyboard.conf
+include $HOME/dotfiles/i3/scripts.conf
+include $HOME/dotfiles/i3/rofi.conf
+include $HOME/dotfiles/i3/monitor.conf
+include $HOME/dotfiles/i3/polybar.conf
 
 bar {
     output            LVDS1
