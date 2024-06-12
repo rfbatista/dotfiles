@@ -50,11 +50,11 @@ local register_format_on_save = function(bufnr, allowed_clients)
 	})
 end
 
-local navic = require("nvim-navic")
+-- local navic = require("nvim-navic")
 
 local on_attach = function(client, bufnr, format_opts)
 	if client.server_capabilities.documentSymbolProvider then
-		navic.attach(client, bufnr)
+		-- navic.attach(client, bufnr)
 	end
 	if client.name == "jsonls" or client.name == "ansiblels" or client.name == "tsserver" or client.name == "html" then
 		client.server_capabilities.document_formatting = false

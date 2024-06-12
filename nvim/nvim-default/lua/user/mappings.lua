@@ -190,7 +190,8 @@ local mappings = {
     b = { "<cmd>lua require('dapui').close()<cr>", "Close" },
     c = { "<cmd>lua require('dapui').close()<cr>", "Toggle" },
     d = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Toggle Breakpoint" },
-    e = { "<cmd>lua require('dap').continue()<cr>", "Continue" },
+    e = { "<cmd>lua require('dapui').eval()<cr>", "Eval" },
+    s = { "<cmd>lua require('dap').continue()<cr>", "Start" },
   },
 }
 
