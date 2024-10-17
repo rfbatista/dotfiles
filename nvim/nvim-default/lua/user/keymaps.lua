@@ -63,7 +63,7 @@ keymap("x", "<C-Down>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 
-keymap('n', '<Tab>', '<Cmd>Neotree toggle<CR>', opts)
+keymap('n', '<Tab>', '<Cmd>Neotree reveal<CR>', opts)
 
 -- Terminal --
 -- Better terminal navigation

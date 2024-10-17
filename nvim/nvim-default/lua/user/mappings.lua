@@ -23,6 +23,8 @@ local Golang = {
     name = "Golang",
     a = { "<cmd>GoAddTag json<cr>", "Add json tags" },
     A = { "<cmd>GoRmTag json<cr>", "Remove json tags" },
+    b = { "<cmd>GoAddTag form<cr>", "Add form tags" },
+    B = { "<cmd>GoRmTag form<cr>", "Remove form tags" },
     c = { "<cmd>GoRename<cr>", "Renomear variavel" },
     d = { "<cmd>GoFillStruct<cr>", "Auto fill struct" },
     e = { "<cmd>GoIfErr	<cr>", "Add if err" },
@@ -31,6 +33,8 @@ local Golang = {
     g = { "<cmd>GoImpl<cr>", "Implmenta interface" },
     h = { "<cmd>GoModTidy<cr>", "go mod tidy (restart)" },
     h = { "<cmd>GoModInit<cr>", "go mod init (restart)" },
+    i = { "<cmd>GoAddTag param<cr>", "Add param tags" },
+    I = { "<cmd>GoRmTag param<cr>", "Remove param tags" },
   },
 }
 
@@ -191,6 +195,7 @@ local mappings = {
     c = { "<cmd>lua require('dapui').close()<cr>", "Toggle" },
     d = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Toggle Breakpoint" },
     e = { "<cmd>lua require('dapui').eval()<cr>", "Eval" },
+    f = { "<cmd>lua require('dap').clear_breakpoints()<cr>", "Clear ALL Breakpoints" },
     s = { "<cmd>lua require('dap').continue()<cr>", "Start" },
   },
 }
