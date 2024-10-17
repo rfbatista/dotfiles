@@ -2,6 +2,28 @@
 source $HOME/dotfiles/zsh/antigen.zsh
 # . /opt/asdf-vm/asdf.sh
 
+###########################################################
+# AWS
+###########################################################
+alias aws-ls="aws configure list-profiles"
+aws-set() {
+    local name="$1"
+    # Replace this with the command you want to execute using $name
+    echo "Hello, $name!"
+    export AWS_PROFILE=$name
+}
+###########################################################
+# KUBERNETES
+###########################################################
+alias k="kubectl"
+
+###########################################################
+# TERRAFORM
+###########################################################
+alias t="terraform"
+alias tg="terragrunt"
+
+
 antigen use oh-my-zsh
 
 # THEME
@@ -36,10 +58,20 @@ vv() {
 alias swagger='sudo docker run --rm -it  --user $(id -u):$(id -g) -e GOPATH=$(go env GOPATH):/go -v $HOME:$HOME -w $(pwd) quay.io/goswagger/swagger'
 alias aws='/usr/local/bin/aws'
 
+# VPN
+alias vpn='sudo openvpn --config $HOME/projetos/new-way/fw01-UDP4-1200-renan.batista-config.ovpn --auth-nocache'
+
 # POETRY
 alias poetry="$HOME/.local/bin/poetry"
 fpath+=~/.zfunc
 autoload -Uz compinit && compinit
+
+##################
+# zellij
+##################
+# eval "$(zellij setup --generate-auto-start zsh)"
+#!/usr/bin/env bash
+alias zl="zellij --config $HOME/dotfiles/zellij/config.kdl"
 
 ##################
 # Tmux
@@ -146,6 +178,29 @@ alias find-fonts="gucharmap"
 #############################
 alias chrome='google-chrome --password-store=gnome'
 
+
+keys(){
+  echo """
+    Ctrl + a : move to the beginning of line.
+    Ctrl + d : if you've type something, Ctrl + d deletes the character under the cursor, else, it escapes the current shell.
+    Ctrl + e : move to the end of line.
+    Ctrl + k : delete all text from the cursor to the end of line.
+    Ctrl + l : equivalent to clear.
+    Ctrl + n : same as Down arrow.
+    Ctrl + p : same as Up arrow.
+    Ctrl + q : to resume output to terminal after Ctrl + s.
+    Ctrl + r : begins a backward search through command history.(keep pressing Ctrl + r to move backward)
+    Ctrl + s : to stop output to terminal.
+    Ctrl + t : transpose the character before the cursor with the one under the cursor, press Esc + t to transposes the two words before the cursor.
+    Ctrl + u : cut the line before the cursor; then Ctrl + y paste it
+    Ctrl + w : cut the word before the cursor; then Ctrl + y paste it
+    Ctrl + x + backspace : delete all text from the beginning of line to the cursor.
+    Ctrl + x + Ctrl + e : launch editor defined by $EDITOR to input your command. Useful for multi-line commands.
+    Ctrl + z : stop current running process and keep it in background. You can use `fg` to continue the process in the foreground, or `bg` to continue the process in the background.
+    Ctrl + _ : undo typing.
+  """
+}
+
 # Polybar
 alias start-polybar='polybar -c=$HOME/.config/polybar/config.ini -r i3'
 
@@ -227,3 +282,23 @@ fi
 
 # Created by `pipx` on 2024-05-05 03:54:36
 export PATH="$PATH:/home/rfbatista/.local/bin"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/renan/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/renan/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/renan/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/renan/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+export PATH="/usr/bin/flutter/bin:$PATH"
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/terragrunt terragrunt

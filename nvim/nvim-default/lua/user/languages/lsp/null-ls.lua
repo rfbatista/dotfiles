@@ -16,6 +16,7 @@ null_ls.setup({
     code_actions.eslint_d,
     --[[ code_actions.eslint_d, ]]
     formatting.clang_format,
+    formatting.sql_formatter,
     formatting.sqlfluff.with({
       --[[ extra_args = { "--dialect", "postgres" }, -- change to your dialect ]]
     }),

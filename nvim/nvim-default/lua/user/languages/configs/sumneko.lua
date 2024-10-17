@@ -10,4 +10,13 @@ M.on_attach = function(client, bufnr)
   keymap.on_attach(client, bufnr)
 end
 
+M.settings = {
+  Lua = {
+    diagnostics = {
+      -- Get the language server to recognize the `vim` global
+      globals = { "vim" },
+    },
+  },
+}
+
 return M
