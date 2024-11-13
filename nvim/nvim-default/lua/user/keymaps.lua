@@ -9,6 +9,7 @@ local keymap = vim.api.nvim_set_keymap
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+-- vim.g.mapleader = "<Space>"
 
 -- Modes
 --   normal_mode = "n",
@@ -26,7 +27,7 @@ keymap("n", "<A-k>", "<C-w>k", opts)
 keymap("n", "<A-l>", "<C-w>l", opts)
 
 -- Explorer
-keymap("n", "<Space><Tab>", ":NvimTreeToggle<cr>", opts)
+-- keymap("n", "<Space><Tab>", ":NvimTreeToggle<cr>", opts)
 
 -- Resize with arrows
 -- keymap("n", "<C-Up>", ":resize -2<CR>", opts)
@@ -89,4 +90,4 @@ keymap("n", "<A-e>", ":BufferPrevious<CR>", opts)
 
 -- Clear Highlights
 keymap("n", "<C-l>", ":noh<CR><CR>", opts)
-
+ 

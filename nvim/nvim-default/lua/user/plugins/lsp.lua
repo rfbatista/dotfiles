@@ -111,6 +111,9 @@ return {
 			["clangd"] = function()
 				require("lspconfig").clangd.setup(require("user.languages.configs.clangd"))
 			end,
+			["bicep"] = function()
+				require("lspconfig").bicep.setup(require("user.languages.configs.bicep"))
+			end,
 		})
 
 		require("typescript-tools").setup({

@@ -1,8 +1,3 @@
-local status_ok = pcall(require, "which-key")
-if not status_ok then
-  return
-end
-
 local go_tests = require("user.tests.golang")
 local node_tests = require("user.tests.node")
 
