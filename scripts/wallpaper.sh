@@ -1,6 +1,6 @@
 #!/bin/sh  
 while true  
 do  
-  set -eu | export DISPLAY=:0 | /usr/bin/feh --bg-fill --randomize $HOME/Imagens/wallpapers/*
+  set -eu | export DISPLAY=:0 | /usr/bin/feh --bg-fill --randomize $HOME/wallpapers/*
   sleep 60
 done
