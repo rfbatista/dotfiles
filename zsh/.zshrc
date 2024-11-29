@@ -16,6 +16,8 @@ aws-set() {
 # KUBERNETES
 ###########################################################
 alias k="kubectl"
+alias mk="minikube"
+alias mks="minikube status"
 
 ###########################################################
 # TERRAFORM
@@ -27,12 +29,13 @@ alias tg="terragrunt"
 antigen use oh-my-zsh
 
 # THEME
-# antigen theme robbyrussell/oh-my-zsh themes/agnoster
-antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
-# antigen theme robbyrussell
+antigen theme robbyrussell/oh-my-zsh themes/agnoster
+# antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
+antigen theme fino-time
 
 # ANTIGEN BUNDLES
 antigen bundle aws
+antigen bundle azure
 antigen bundle command-not-found
 antigen bundle copyfile
 # antigen bundle docker
