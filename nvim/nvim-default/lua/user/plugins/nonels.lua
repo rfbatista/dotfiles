@@ -32,6 +32,8 @@ return {
 					"black",
 					"blackd",
 					"pylint",
+					"djlint",
+					"djhtml",
 					-- "golangci_lint",
 				},
 			})
@@ -57,6 +59,7 @@ return {
 					formatting.goimports_reviser,
 					formatting.black,
 					formatting.sql_formatter,
+					-- formatting.djhtml,
 					-- The only way to configure the formatter is by using the provided config options, it will not pick up on config files.
 					-- formatting.blackd,
 					-- diagnostics.eslint_d,
@@ -68,7 +71,8 @@ return {
 					-- diagnostics.golangci_lint,
 					diagnostics.terraform_validate,
 					diagnostics.yamllint,
-					diagnostics.pylint,
+					diagnostics.djlint,
+					-- diagnostics.pylint,
 					diagnostics.sqlfluff.with({
 						extra_args = { "--dialect", "postgres" }, -- change to your dialect
 					}),

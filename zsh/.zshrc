@@ -29,7 +29,7 @@ alias tg="terragrunt"
 antigen use oh-my-zsh
 
 # THEME
-antigen theme robbyrussell/oh-my-zsh themes/agnoster
+# antigen theme robbyrussell/oh-my-zsh themes/agnoster
 # antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
 antigen theme fino-time
 
@@ -53,19 +53,22 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen apply
 
 vv() {
-  select config in $(fd --max-depth 1 --glob 'nvim-*' ~/.config)
+  select config in $(fd --max-depth 1 --glob 'nvim-*' $HOME/dotfiles/nvim )
   do NVIM_APPNAME=$(basename $config) nvim $@; break; done
 }
 
 # export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
 alias swagger='sudo docker run --rm -it  --user $(id -u):$(id -g) -e GOPATH=$(go env GOPATH):/go -v $HOME:$HOME -w $(pwd) quay.io/goswagger/swagger'
 alias aws='/usr/local/bin/aws'
+alias docker="podman"
 
 # VPN
 alias vpn='sudo openvpn --config $HOME/projetos/new-way/fw01-UDP4-1200-renan.batista-config.ovpn --auth-nocache'
 
+alias codefusion='./build/codefusion  -m ./model/Meta-Llama-3.1-8B-Instruct-Q8_0.gguf'
+
 # POETRY
-alias poetry="$HOME/.local/bin/poetry"
+# alias poetry="$HOME/.local/bin/poetry"
 fpath+=~/.zfunc
 autoload -Uz compinit && compinit
 

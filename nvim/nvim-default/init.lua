@@ -9,6 +9,7 @@ vim.cmd([[
 ]])
 
 -- Base
+require("user.languages.lsp.handlers").setup()
 require("user.keymaps")
 require("user.autocommands")
 require("user.lazy")
