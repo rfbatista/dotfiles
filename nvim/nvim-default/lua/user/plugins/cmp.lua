@@ -98,9 +98,9 @@ return {
 				documentation = cmp.config.window.bordered(),
 			},
 			sources = {
-				-- { name = "copilot" },
+				{ name = "copilot", group_index = 2 },
+				{ name = "nvim_lsp", group_index = 2 },
 				{ name = "buffer" },
-				{ name = "nvim_lsp" },
 				{ name = "nvim_lua" },
 				{ name = "luasnip" },
 				{ name = "buffer" },
@@ -129,7 +129,11 @@ return {
 						return vim_item
 					else
 						-- From lspkind
-						return lspkind.cmp_format()(entry, vim_item)
+						return lspkind.cmp_format({
+							mode = "symbol",
+							max_width = 50,
+							symbol_map = { Copilot = "" },
+						})(entry, vim_item)
 					end
 				end,
 			},
