@@ -46,7 +46,8 @@ local M = {
     d = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", "Debug the nearest test" },
     s = {
       function()
-        require("neotest").summary.toggle()
+        neotest = require("neotest")
+        neotest.summary.toggle()
       end,
       "Show summary",
     },

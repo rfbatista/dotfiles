@@ -6,6 +6,7 @@ return {
     "antoinemadec/FixCursorHold.nvim",
     "nvim-neotest/neotest-go",
     "nvim-neotest/neotest-jest",
+    "nvim-neotest/neotest-python",
   },
   keys = {
     {
@@ -74,6 +75,7 @@ return {
     require("neotest").setup({
       adapters = {
         require("neotest-go"),
+        require("neotest-python"),
         require("neotest-jest")({
           jestCommand = "npm test --",
           jestConfigFile = "jest.config.js",
