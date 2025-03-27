@@ -14,7 +14,7 @@ local Diagnostics = {
     q = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document Diagnostics" },
     w = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
     e = { "<cmd>TroubleToggle loclist<cr>", "Loclist" },
-    d = { "<cmd>TroubleToggle lsp_references<cr>", "LSP References" },
+    d = { "<cmd>Trouble lsp toggle focus=false win.position=right<cr><cr>", "LSP References" },
   },
 }
 
@@ -62,28 +62,30 @@ local diagnostics_trouble = {
   keymap = {
     name = "Diagnostics",
     a = { "<cmd>TroubleToggle<cr>", "Toggle" },
-    s = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace Diagnostics" },
-    q = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document Diagnostics" },
+    s = { "<cmd>Trouble diagnostics toggle<cr>", "Workspace Diagnostics" },
+    q = { "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", "Document Diagnostics" },
     w = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
     e = { "<cmd>TroubleToggle loclist<cr>", "Loclist" },
-    d = { "<cmd>TroubleToggle lsp_references<cr>", "LSP References" },
+    d = { "<cmd>Trouble lsp toggle focus=true win.position=bottom<cr><cr>", "LSP References" },
   },
 }
 
 local mappings = {
+  a = require("user.tests.main").keymap,
+  ["b"] = { "<cmd>lua require('telescope').extensions.aerial.aerial()<cr>", "Open Markdown" },
   D = Diagnostics.keymap,
   G = Golang.keymap,
   T = Typescript,
-  a = require("user.tests.main").keymap,
-  ["b"] = {
-    "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-    "Buffers",
+  d = {
+    name = "Requests",
+    d = { "<cmd>lua require('kulala').run()<cr>", "Run under cursor request" },
+    i = { "<cmd>lua require('kulala').inspect()<cr>", "Inspect current request" },
+    b = { "<cmd>lua require('kulala').toggle_view()<cr>", "Toggle between body and headers" },
   },
   r = diagnostics_trouble.keymap,
   j = require("user.languages.configs.jsonls").keymap,
   m = require("user.languages.configs.plantuml").keymap,
   ["M"] = { "<cmd>MarkdownPreview<cr>", "Open Markdown" },
-  -- ["e"] = { "<cmd>lua OpenNeoTree()<cr>", "Explorer" },
   ["q"] = { "<cmd>q!<cr>", "Quit" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
   ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
@@ -92,7 +94,6 @@ local mappings = {
   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
   ["u"] = { "<cmd>set noexpandtab<cr><cmd>retab!<cr>", "Spaces to Tabs" },
   ["i"] = { "<cmd>set expandtab<cr><cmd>retab!<cr>", "Tabs to spaces" },
-  n = { "<cmd>Telekasten panel<cr>", "Anotações" },
 
   N = {
     name = "Node",
@@ -158,6 +159,7 @@ local mappings = {
   p = {
     name = "Python",
     a = { "<cmd>2TermExec cmd='pipenv run python %'<cr>", "Run current file" },
+    b = { "<cmd>2TermExec cmd='make run'<cr>", "Run application" },
   },
 
   s = {
