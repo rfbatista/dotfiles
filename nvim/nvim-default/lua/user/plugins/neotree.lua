@@ -120,7 +120,7 @@ return {
       buffers = {
         follow_current_file = {
           enabled = true,     -- This will find and focus the file in the active buffer every time
-          -- leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+          leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
         },
       },
       filesystem = {
