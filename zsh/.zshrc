@@ -25,11 +25,40 @@ alias mks="minikube status"
 alias t="terraform"
 alias tg="terragrunt"
 
+###########################################################
+# UTILITIES
+###########################################################
+alias disable_touchpad="xinput disable 12"
+export ENCORE_INSTALL="/home/renan/.encore"
+export PATH="$ENCORE_INSTALL/bin:$PATH"
+
+ko(){ 
+  command sudo kill $(sudo lsof -t -i:$1)
+  # port=$(lsof -i:$1 | grep LISTEN | awk '{print $2}')
+  # if [ port ]; then
+  #   command echo "Process number: " $(sudo lsof -t -i:$1)
+  #   raw_ports=$(sudo lsof -t -i:$1)
+  #   command echo "'$raw_ports'"
+  #   post_list = (echo $raw_ports | cut -d'' -f2)
+  #   for str in $post_list; do
+  #     if read -q "Do you wish to kill this process?: ${post_list[$str]} "; then
+  #       command echo "Killing the process"
+  #       command kill -9 $(str)
+  #     else
+  #       command echo "'$choice' not 'Y' or 'y'. Exiting..."
+  #     fi
+  #   done
+  # else 
+  #   command echo "There is no service attached to this port"
+  # fi
+}
+
+
 
 antigen use oh-my-zsh
 
 # THEME
-antigen theme robbyrussell/oh-my-zsh themes/agnoster
+# antigen theme robbyrussell/oh-my-zsh themes/agnoster
 # antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
 antigen theme fino-time
 
@@ -53,19 +82,22 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen apply
 
 vv() {
-  select config in $(fd --max-depth 1 --glob 'nvim-*' ~/.config)
+  select config in $(fd --max-depth 1 --glob 'nvim-*' $HOME/dotfiles/nvim )
   do NVIM_APPNAME=$(basename $config) nvim $@; break; done
 }
 
 # export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
 alias swagger='sudo docker run --rm -it  --user $(id -u):$(id -g) -e GOPATH=$(go env GOPATH):/go -v $HOME:$HOME -w $(pwd) quay.io/goswagger/swagger'
 alias aws='/usr/local/bin/aws'
+alias docker="podman"
 
 # VPN
 alias vpn='sudo openvpn --config $HOME/projetos/new-way/fw01-UDP4-1200-renan.batista-config.ovpn --auth-nocache'
 
+alias codefusion='./build/codefusion  -m ./model/Meta-Llama-3.1-8B-Instruct-Q8_0.gguf'
+
 # POETRY
-alias poetry="$HOME/.local/bin/poetry"
+# alias poetry="$HOME/.local/bin/poetry"
 fpath+=~/.zfunc
 autoload -Uz compinit && compinit
 
@@ -127,26 +159,6 @@ ts_setup(){
 #############################
 # Linux
 #############################
-ko(){ 
-  command sudo kill $(sudo lsof -t -i:$1)
-  # port=$(lsof -i:$1 | grep LISTEN | awk '{print $2}')
-  # if [ port ]; then
-  #   command echo "Process number: " $(sudo lsof -t -i:$1)
-  #   raw_ports=$(sudo lsof -t -i:$1)
-  #   command echo "'$raw_ports'"
-  #   post_list = (echo $raw_ports | cut -d'' -f2)
-  #   for str in $post_list; do
-  #     if read -q "Do you wish to kill this process?: ${post_list[$str]} "; then
-  #       command echo "Killing the process"
-  #       command kill -9 $(str)
-  #     else
-  #       command echo "'$choice' not 'Y' or 'y'. Exiting..."
-  #     fi
-  #   done
-  # else 
-  #   command echo "There is no service attached to this port"
-  # fi
-}
 
 #############################
 # Work alias
@@ -165,6 +177,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 # Python
 #############################
 # source /home/renan/anaconda3/bin/activate  # commented out by conda initialize
+alias poetry_shell='. "$(dirname $(poetry run which python))/activate"'
 
 
 #############################
@@ -259,6 +272,7 @@ Moving Windows
 export GOPATH="$HOME/go"
 PATH="$GOPATH/bin:$PATH"
 
+export PATH=$PATH:~/zig
 
 ###############################################
 # asdf setup

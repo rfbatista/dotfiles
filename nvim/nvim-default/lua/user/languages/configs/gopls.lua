@@ -1,4 +1,4 @@
-local keymap = require("user.languages.lsp.keymap")
+local keymap = require("languages.lsp.keymap")
 
 local util = require("lspconfig/util")
 
@@ -11,7 +11,7 @@ M.cmd = { "gopls" }
 M.on_attach = function(client, bufnr)
 	keymap.on_attach(client, bufnr, { allowed_clients = { "gopls" }, format_on_save = true })
 	-- Set some keybinds conditional on server capabilities
-	if client.resolved_capabilities.document_highlight then
+	if client.resolved_capabilities and client.resolved_capabilities.document_highlight then
 		vim.api.nvim_exec(
 			[[
       hi LspReferenceRead cterm=bold ctermbg=DarkMagenta guibg=LightYellow
@@ -39,6 +39,11 @@ M.on_attach = function(client, bufnr)
 	-- })
 end
 
+M.toggle_inlay_hints = function()
+	local bufnr = vim.api.nvim_get_current_buf()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr }), { bufnr })
+end
+
 M.filetypes = {
 	"go",
 }
@@ -58,3 +63,4 @@ M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 return M
+
