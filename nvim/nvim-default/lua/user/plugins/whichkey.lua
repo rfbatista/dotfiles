@@ -1,82 +1,932 @@
 return {
-  "folke/which-key.nvim",
-  event = "VeryLazy",
-  lazy = true,
-  opts = {
-    plugins = {
-      marks = true,   -- shows a list of your marks on ' and `
-      registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
-      spelling = {
-        enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-        suggestions = 20, -- how many suggestions should be shown in the list?
-      },
-      -- the presets plugin, adds help for a bunch of default keybindings in Neovim
-      -- No actual key bindings are created
-      presets = {
-        operators = false, -- adds help for operators like d, y, ... and registers them for motion / text object completion
-        motions = true,  -- adds help for motions
-        text_objects = true, -- help for text objects triggered after entering an operator
-        windows = true,  -- default bindings on <c-w>
-        nav = true,      -- misc bindings to work with windows
-        z = true,        -- bindings for folds, spelling and others prefixed with z
-        g = true,        -- bindings for prefixed with g
-      },
-    },
-    -- add operators that will trigger motion and text object completion
-    -- to enable all native operators, set the preset / operators plugin above
-    -- operators = { gc = "Comments" },
-    key_labels = {
-      -- override the label used to display some keys. It doesn't effect WK in any other way.
-      -- For example:
-      -- ["<space>"] = "SPC",
-      -- ["<cr>"] = "RET",
-      -- ["<tab>"] = "TAB",
-    },
-    icons = {
-      breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-      separator = "➜", -- symbol used between a key and it's label
-      group = "+", -- symbol prepended to a group
-    },
-    popup_mappings = {
-      scroll_down = "<c-d>", -- binding to scroll down inside the popup
-      scroll_up = "<c-u>", -- binding to scroll up inside the popup
-    },
-    window = {
-      border = "rounded",    -- none, single, double, shadow
-      position = "bottom",   -- bottom, top
-      margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
-      padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-      winblend = 0,
-    },
-    layout = {
-      height = { min = 4, max = 25 },                                           -- min and max height of the columns
-      width = { min = 20, max = 50 },                                           -- min and max width of the columns
-      spacing = 3,                                                              -- spacing between columns
-      align = "left",                                                           -- align columns left, center or right
-    },
-    ignore_missing = true,                                                      -- enable this to hide mappings for which you didn't specify a label
-    hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
-    show_help = true,                                                           -- show help message on the command line when the popup is visible
-    triggers = "auto",                                                          -- automatically setup triggers
-    -- triggers = {"<leader>"} -- or specify a list manually
-    triggers_blacklist = {
-      -- list of mode / prefixes that should never be hooked by WhichKey
-      -- this is mostly relevant for key maps that start with a native binding
-      -- most people should not need to change this
-      i = { "j", "k" },
-      v = { "j", "k" },
-    },
-  },
-  config = function(_, opts)
-    local which_key = require("which-key")
-    which_key.setup(opts)
-    which_key.register(require("user.mappings"), {
-      mode = "n",  -- NORMAL mode
-      prefix = "<leader>",
-      buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-      silent = true, -- use `silent` when creating keymaps
-      noremap = true, -- use `noremap` when creating keymaps
-      nowait = true, -- use `nowait` when creating keymaps
-    })
-  end,
+	"folke/which-key.nvim",
+	event = "VeryLazy",
+	lazy = true,
+	opts = {
+		plugins = {
+			marks = true, -- shows a list of your marks on ' and `
+			registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+			spelling = {
+				enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+				suggestions = 20, -- how many suggestions should be shown in the list?
+			},
+			-- the presets plugin, adds help for a bunch of default keybindings in Neovim
+			-- No actual key bindings are created
+			presets = {
+				operators = false, -- adds help for operators like d, y, ... and registers them for motion / text object completion
+				motions = true, -- adds help for motions
+				text_objects = true, -- help for text objects triggered after entering an operator
+				windows = true, -- default bindings on <c-w>
+				nav = true, -- misc bindings to work with windows
+				z = true, -- bindings for folds, spelling and others prefixed with z
+				g = true, -- bindings for prefixed with g
+			},
+		},
+		-- add operators that will trigger motion and text object completion
+		-- to enable all native operators, set the preset / operators plugin above
+		-- operators = { gc = "Comments" },
+		key_labels = {
+			-- override the label used to display some keys. It doesn't effect WK in any other way.
+			-- For example:
+			-- ["<space>"] = "SPC",
+			-- ["<cr>"] = "RET",
+			-- ["<tab>"] = "TAB",
+		},
+		icons = {
+			breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
+			separator = "➜", -- symbol used between a key and it's label
+			group = "+", -- symbol prepended to a group
+		},
+		popup_mappings = {
+			scroll_down = "<c-d>", -- binding to scroll down inside the popup
+			scroll_up = "<c-u>", -- binding to scroll up inside the popup
+		},
+		window = {
+			border = "rounded", -- none, single, double, shadow
+			position = "bottom", -- bottom, top
+			margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
+			padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
+			winblend = 0,
+		},
+		layout = {
+			height = { min = 4, max = 25 }, -- min and max height of the columns
+			width = { min = 20, max = 50 }, -- min and max width of the columns
+			spacing = 3, -- spacing between columns
+			align = "left", -- align columns left, center or right
+		},
+		ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
+		hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
+		show_help = true, -- show help message on the command line when the popup is visible
+		triggers = "auto", -- automatically setup triggers
+		-- triggers = {"<leader>"} -- or specify a list manually
+		triggers_blacklist = {
+			-- list of mode / prefixes that should never be hooked by WhichKey
+			-- this is mostly relevant for key maps that start with a native binding
+			-- most people should not need to change this
+			i = { "j", "k" },
+			v = { "j", "k" },
+		},
+	},
+	keys = {
+		{
+			"<leader>Da",
+			"<cmd>TroubleToggle<cr>",
+			desc = "Toggle",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>Dd",
+			"<cmd>Trouble lsp toggle focus=false win.position=right<cr><cr>",
+			desc = "LSP References",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>De",
+			"<cmd>TroubleToggle loclist<cr>",
+			desc = "Loclist",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>Dq",
+			"<cmd>TroubleToggle document_diagnostics<cr>",
+			desc = "Document Diagnostics",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>Ds",
+			"<cmd>TroubleToggle workspace_diagnostics<cr>",
+			desc = "Workspace Diagnostics",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>Dw",
+			"<cmd>TroubleToggle quickfix<cr>",
+			desc = "Quickfix",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>GA",
+			"<cmd>GoRmTag json<cr>",
+			desc = "Remove json tags",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>GB",
+			"<cmd>GoRmTag form<cr>",
+			desc = "Remove form tags",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>GF",
+			"<cmd>GoRmTag db<cr>",
+			desc = "Remove db tags",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>GI",
+			"<cmd>GoRmTag param<cr>",
+			desc = "Remove param tags",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>Ga",
+			"<cmd>GoAddTag json<cr>",
+			desc = "Add json tags",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>Gb",
+			"<cmd>GoAddTag form<cr>",
+			desc = "Add form tags",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>Gc",
+			"<cmd>GoRename<cr>",
+			desc = "Renomear variavel",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>Gd",
+			"<cmd>GoFillStruct<cr>",
+			desc = "Auto fill struct",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>Ge",
+			"<cmd>GoIfErr\t<cr>",
+			desc = "Add if err",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>Gf",
+			"<cmd>GoAddTag db<cr>",
+			desc = "Add db tags",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>Gg",
+			"<cmd>GoImpl<cr>",
+			desc = "Implmenta interface",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>Gh",
+			"<cmd>GoModInit<cr>",
+			desc = "go mod init (restart)",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>Gi",
+			"<cmd>GoAddTag param<cr>",
+			desc = "Add param tags",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>M",
+			"<cmd>MarkdownPreview<cr>",
+			desc = "Open Markdown",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>Na",
+			"<cmd>2TermExec cmd='node %'<cr>",
+			desc = "Run current file",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>Nb",
+			"<cmd>2TermExec cmd='npx ts-node-dev %'<cr>",
+			desc = "Run current file with typescript",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>P",
+			"<cmd>lua require('telescope').extensions.projects.projects()<cr>",
+			desc = "Projects",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>Tb",
+			"<cmd>TSToolsOrganizeImports<CR>",
+			desc = "Organize imports",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>Tc",
+			"<cmd>TSToolsRenameFile<CR>",
+			desc = "Typescript Rename File",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>Td",
+			"<cmd>TSToolsAddMissingImports<CR>",
+			desc = "Import all",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>Te",
+			"<cmd>TSToolsFixAll<CR>",
+			desc = "Fix all",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>Tm",
+			"<cmd>TSToolsRemoveUnusedImports<CR>",
+			desc = "Remover imports nao utilizados",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>aa",
+			"<cmd>lua RUN_UNIT()<cr>",
+			desc = "Run current unit test file [WATCH MODE]",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>ab",
+			'<cmd>lua require("neotest").run.run()<cr>',
+			desc = "Run the nearest test",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>ac",
+			"<cmd>lua Benchmark_test()<cr>",
+			desc = "Run benchmark test",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>ad",
+			"<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>",
+			desc = "Debug the nearest test",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>ai",
+			"<cmd>lua Integration_test()<cr>",
+			desc = "Run current integration test file",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>b",
+			"<cmd>lua require('telescope').extensions.aerial.aerial()<cr>",
+			desc = "File Structure",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>c",
+			"<cmd>Bdelete!<CR>",
+			desc = "Close Buffer",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>db",
+			"<cmd>Rest run<cr>",
+			desc = "Run request",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>db",
+			"<cmd>Rest open<cr>",
+			desc = "Open result pane",
+			nowait = true,
+			remap = false,
+		},
+		-- {
+		-- 	"<leader>db",
+		-- 	"<cmd>lua require('kulala').toggle_view()<cr>",
+		-- 	desc = "Toggle between body and headers",
+		-- 	nowait = true,
+		-- 	remap = false,
+		-- },
+		-- {
+		-- 	"<leader>dd",
+		-- 	"<cmd>lua require('kulala').run()<cr>",
+		-- 	desc = "Run under cursor request",
+		-- 	nowait = true,
+		-- 	remap = false,
+		-- },
+		-- {
+		-- 	"<leader>di",
+		-- 	"<cmd>lua require('kulala').inspect()<cr>",
+		-- 	desc = "Inspect current request",
+		-- 	nowait = true,
+		-- 	remap = false,
+		-- },
+		{
+			"<leader>gR",
+			"<cmd>lua require 'gitsigns'.reset_buffer()<cr>",
+			desc = "Reset Buffer",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>gb",
+			"<cmd>Telescope git_branches<cr>",
+			desc = "Checkout branch",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>gc",
+			"<cmd>Telescope git_commits<cr>",
+			desc = "Checkout commit",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>gd",
+			"<cmd>Gitsigns diffthis HEAD<cr>",
+			desc = "Diff",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>gg",
+			"<cmd>lua _LAZYGIT_TOGGLE()<CR>",
+			desc = "Lazygit",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>gj",
+			"<cmd>lua require 'gitsigns'.next_hunk()<cr>",
+			desc = "Next Hunk",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>gk",
+			"<cmd>lua require 'gitsigns'.prev_hunk()<cr>",
+			desc = "Prev Hunk",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>gl",
+			"<cmd>lua require 'gitsigns'.blame_line()<cr>",
+			desc = "Blame",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>go",
+			"<cmd>Telescope git_status<cr>",
+			desc = "Open changed file",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>gp",
+			"<cmd>lua require 'gitsigns'.preview_hunk()<cr>",
+			desc = "Preview Hunk",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>gr",
+			"<cmd>lua require 'gitsigns'.reset_hunk()<cr>",
+			desc = "Reset Hunk",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>gs",
+			"<cmd>lua require 'gitsigns'.stage_hunk()<cr>",
+			desc = "Stage Hunk",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>gu",
+			"<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
+			desc = "Undo Stage Hunk",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>h",
+			"<cmd>nohlsearch<CR>",
+			desc = "No Highlight",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>i",
+			"<cmd>set expandtab<cr><cmd>retab!<cr>",
+			desc = "Tabs to spaces",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>k",
+			"<cmd>BufferCloseAllButCurrent<CR>",
+			desc = "close all buffers",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>lI",
+			"<cmd>LspInstallInfo<cr>",
+			desc = "Installer Info",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>lS",
+			"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+			desc = "Workspace Symbols",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>la",
+			"<cmd>lua vim.lsp.buf.code_action()<cr>",
+			desc = "Code Action",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>lf",
+			"<cmd>lua _FORMAT_CODE()<cr>",
+			desc = "Format",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>lh",
+			"<cmd>Telescope lsp_document_diagnostics<cr>",
+			desc = "Document Diagnostics",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>li",
+			"<cmd>LspInfo<cr>",
+			desc = "Info",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>lj",
+			"<cmd>lua vim.diagnostic.goto_next()<CR>",
+			desc = "Next Diagnostic",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>lk",
+			"<cmd>lua vim.diagnostic.goto_prev()<cr>",
+			desc = "Prev Diagnostic",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>ll",
+			"<cmd>lua vim.lsp.codelens.run()<cr>",
+			desc = "CodeLens Action",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>lq",
+			"<cmd>lua vim.diagnostic.setloclist()<cr>",
+			desc = "Quickfix",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>lr",
+			"<cmd>lua vim.lsp.buf.rename()<cr>",
+			desc = "Rename",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>ls",
+			"<cmd>Telescope lsp_document_symbols<cr>",
+			desc = "Document Symbols",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>lw",
+			"<cmd>Telescope lsp_workspace_diagnostics<cr>",
+			desc = "Workspace Diagnostics",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>ma",
+			"<cmd>PlantumlOpen<cr>",
+			desc = "Start Plant UML",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>md",
+			"<cmd>PlantumlStop<cr>",
+			desc = "Stop",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>mp",
+			"<cmd>lua _PLANTUML_SAVE_PDF()<cr>",
+			desc = "Save PDF",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>ms",
+			"<cmd>PlantumlSave<cr>",
+			desc = "Save PNG",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>oa",
+			"<cmd>lua require('dapui').open()<cr>",
+			desc = "Open",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>ob",
+			"<cmd>lua require('dapui').close()<cr>",
+			desc = "Close",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>oc",
+			"<cmd>lua require('dapui').close()<cr>",
+			desc = "Toggle",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>od",
+			"<cmd>lua require('dap').toggle_breakpoint()<cr>",
+			desc = "Toggle Breakpoint",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>oe",
+			"<cmd>lua require('dapui').eval()<cr>",
+			desc = "Eval",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>of",
+			"<cmd>lua require('dap').clear_breakpoints()<cr>",
+			desc = "Clear ALL Breakpoints",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>os",
+			"<cmd>lua require('dap').continue()<cr>",
+			desc = "Start",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>pa",
+			"<cmd>2TermExec cmd='python %'<cr>",
+			desc = "Run current file",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>pb",
+			"<cmd>2TermExec cmd='make run'<cr>",
+			desc = "Run application",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>q",
+			"<cmd>q!<cr>",
+			desc = "Quit",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>ra",
+			"<cmd>TroubleToggle<cr>",
+			desc = "Toggle",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>rd",
+			"<cmd>Trouble lsp toggle focus=true win.position=bottom<cr><cr>",
+			desc = "LSP References",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>re",
+			"<cmd>TroubleToggle loclist<cr>",
+			desc = "Loclist",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>rq",
+			"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+			desc = "Document Diagnostics",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>rs",
+			"<cmd>Trouble diagnostics toggle<cr>",
+			desc = "Workspace Diagnostics",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>rw",
+			"<cmd>TroubleToggle quickfix<cr>",
+			desc = "Quickfix",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>sC",
+			"<cmd>Telescope commands<cr>",
+			desc = "Commands",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>sM",
+			"<cmd>Telescope man_pages<cr>",
+			desc = "Man Pages",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>sR",
+			"<cmd>Telescope registers<cr>",
+			desc = "Registers",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>sb",
+			"<cmd>Telescope git_branches<cr>",
+			desc = "Checkout branch",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>sc",
+			"<cmd>Telescope colorscheme<cr>",
+			desc = "Colorscheme",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>sh",
+			"<cmd>Telescope help_tags<cr>",
+			desc = "Find Help",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>sk",
+			"<cmd>Telescope keymaps<cr>",
+			desc = "Keymaps",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>sr",
+			"<cmd>Telescope oldfiles<cr>",
+			desc = "Open Recent File",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>tb",
+			"<cmd>ToggleTerm direction=tab<cr>",
+			desc = "Tab",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>td",
+			"<cmd>lua _LAZYDOCKER_TOGGLE()<cr>",
+			desc = "Lazy Docker",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>te",
+			"<cmd>lua _START_NGROK()<cr>",
+			desc = "Start Ngrok",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>tf",
+			"<cmd>lua _OPEN_NGROK()<cr>",
+			desc = "Open Ngrok",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>th",
+			"<cmd>ToggleTerm size=10 direction=horizontal<cr>",
+			desc = "Horizontal",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>tl",
+			"<cmd>lua _LAZYGIT_TOGGLE()<cr>",
+			desc = "Lazy Git",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>tn",
+			"<cmd>lua _NODE_TOGGLE()<cr>",
+			desc = "Node",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>tp",
+			"<cmd>lua _PYTHON_TOGGLE()<cr>",
+			desc = "Python",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>tt",
+			"<cmd>lua _HTOP_TOGGLE()<cr>",
+			desc = "Htop",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>tu",
+			"<cmd>lua _NCDU_TOGGLE()<cr>",
+			desc = "NCDU",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>tv",
+			"<cmd>ToggleTerm size=80 direction=vertical<cr>",
+			desc = "Vertical",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>u",
+			"<cmd>set noexpandtab<cr><cmd>retab!<cr>",
+			desc = "Spaces to Tabs",
+			nowait = true,
+			remap = false,
+		},
+		{
+			"<leader>w",
+			"<cmd>w!<CR>",
+			desc = "Save",
+			nowait = true,
+			remap = false,
+		},
+	},
+	config = function(_, opts)
+		local which_key = require("which-key")
+		which_key.setup(opts)
+		which_key.add({
+			{
+				"<leader>D",
+				group = "Diagnostics",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>G",
+				group = "Golang",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>N",
+				group = "Node",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>T",
+				group = "Typescript",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>a",
+				group = "Tests",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>d",
+				group = "Requests",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>g",
+				group = "Git",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>l",
+				group = "LSP",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>m",
+				group = "Plant UML",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>o",
+				group = "DAP",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>p",
+				group = "Python",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>r",
+				group = "Diagnostics",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>s",
+				group = "Search",
+				nowait = true,
+				remap = false,
+			},
+			{
+				"<leader>t",
+				group = "Terminal",
+				nowait = true,
+				remap = false,
+			},
+		})
+	end,
 }

@@ -43,10 +43,10 @@ return {
           mappings = {
             i = {
               ["<esc>"] = actions.close,
-              ["<C-t>"] = trouble.open_with_trouble,
+              ["<C-t>"] = require("trouble.sources.telescope").open,
             },
 
-            n = { ["<C-t>"] = trouble.open_with_trouble },
+            n = { ["<C-t>"] = require("trouble.sources.telescope").open },
           },
           previewer = false,
           prompt_prefix = " " .. icons.ui.Telescope .. " ",

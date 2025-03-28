@@ -18,6 +18,7 @@ return {
 					"prettier", -- prettier formatter
 					"stylua", -- lua formatter
 					"eslint_d", -- js linter
+          "eslint",
 					"golangci_lint", -- go linter
 					"terraform_fmt", -- terraform formatter
 					"terraform_validate", -- terraform linter
@@ -32,6 +33,9 @@ return {
 					"black",
 					"blackd",
 					"pylint",
+					"djlint",
+					"djhtml",
+          "dxfmt",
 					-- "golangci_lint",
 				},
 			})
@@ -56,7 +60,10 @@ return {
 					formatting.golines,
 					formatting.goimports_reviser,
 					formatting.black,
-					formatting.sql_formatter,
+          formatting.dxfmt,
+          formatting.djlint,
+          formatting.djhtml,
+					-- formatting.djhtml,
 					-- The only way to configure the formatter is by using the provided config options, it will not pick up on config files.
 					-- formatting.blackd,
 					-- diagnostics.eslint_d,
@@ -68,7 +75,8 @@ return {
 					-- diagnostics.golangci_lint,
 					diagnostics.terraform_validate,
 					diagnostics.yamllint,
-					diagnostics.pylint,
+					diagnostics.djlint,
+					-- diagnostics.pylint,
 					diagnostics.sqlfluff.with({
 						extra_args = { "--dialect", "postgres" }, -- change to your dialect
 					}),
