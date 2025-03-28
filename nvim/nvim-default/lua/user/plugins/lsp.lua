@@ -4,14 +4,14 @@ return {
 	dependencies = {
 		{ "williamboman/mason.nvim", config = true },
 		"williamboman/mason-lspconfig.nvim",
-		{ "j-hui/fidget.nvim", opts = {} },
+		{ "j-hui/fidget.nvim",       opts = {} },
 		"folke/neodev.nvim",
 		{ "b0o/schemastore.nvim" },
 		{ "hrsh7th/cmp-nvim-lsp" },
 		{ "HiPhish/rainbow-delimiters.nvim" },
 		{ "b0o/schemastore.nvim" },
 		{ "ray-x/navigator.lua" },
-		{ "ray-x/guihua.lua", run = "cd lua/fzy && make" },
+		{ "ray-x/guihua.lua",               run = "cd lua/fzy && make" },
 		"ray-x/go.nvim",
 		"ray-x/guihua.lua",
 		"nvim-treesitter/nvim-treesitter",
@@ -37,7 +37,6 @@ return {
 			"lua_ls",
 			"gopls",
 			"clangd",
-			"tsserver",
 			"kotlin_language_server",
 			"terraformls",
 			"dockerls",
@@ -48,7 +47,7 @@ return {
 			"rust_analyzer",
 			"sqls",
 			"terraformls",
-			"hcl",
+			"jinja_lsp",
 		}
 
 		require("mason-lspconfig").setup({
@@ -66,7 +65,7 @@ return {
 				require("lspconfig").cssls.setup(require("user.languages.configs.css"))
 			end,
 			["pyright"] = function()
-				require("lspconfig").pyright.setup(require("user.languages.configs.python"))
+				require("lspconfig").pyright.setup(require("user.languages.configs.pyright"))
 			end,
 			["lua_ls"] = function()
 				require("lspconfig").lua_ls.setup(require("user.languages.configs.sumneko"))
@@ -87,11 +86,17 @@ return {
 			["html"] = function()
 				require("lspconfig").html.setup(require("user.languages.configs.html"))
 			end,
+			["jinja_lsp"] = function()
+				require("lspconfig").jinja_lsp.setup(require("user.languages.configs.jinja"))
+			end,
 			-- ["dartls"] = function()
 			-- 	require("lspconfig").dartls.setup(require("user.languages.configs.dart"))
 			-- end,
 			["templ"] = function()
 				require("lspconfig").templ.setup(require("user.languages.configs.templ"))
+			end,
+			["eslint"] = function()
+				require("lspconfig").eslint.setup(require("user.languages.configs.eslint"))
 			end,
 			["htmx"] = function()
 				require("lspconfig").htmx.setup(require("user.languages.configs.htmx"))
@@ -114,6 +119,25 @@ return {
 			["bicep"] = function()
 				require("lspconfig").bicep.setup(require("user.languages.configs.bicep"))
 			end,
+			-- ["ruff"] = function()
+			-- 	require("lspconfig").ruff.setup(require("user.languages.configs.pyright"))
+			-- end,
+		})
+
+		-- dont use ruff for text/hover
+		vim.api.nvim_create_autocmd("LspAttach", {
+			group = vim.api.nvim_create_augroup("lsp_attach_disable_ruff_hover", { clear = true }),
+			callback = function(args)
+				local client = vim.lsp.get_client_by_id(args.data.client_id)
+				if client == nil then
+					return
+				end
+				if client.name == "ruff" then
+					-- Disable hover in favor of Pyright
+					client.server_capabilities.hoverProvider = false
+				end
+			end,
+			desc = "LSP: Disable hover capability from Ruff",
 		})
 
 		require("typescript-tools").setup({
