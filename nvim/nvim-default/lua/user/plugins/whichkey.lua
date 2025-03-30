@@ -77,7 +77,7 @@ return {
 		},
 		{
 			"<leader>Dd",
-			"<cmd>Trouble lsp toggle focus=false win.position=right<cr><cr>",
+			"<cmd>lua require('telescope.builtin').lsp_references()<cr>",
 			desc = "LSP References",
 			nowait = true,
 			remap = false,
@@ -658,7 +658,7 @@ return {
 		},
 		{
 			"<leader>rd",
-			"<cmd>Trouble lsp toggle focus=true win.position=bottom<cr><cr>",
+			"<cmd>lua require('telescope.builtin').lsp_references()<cr>",
 			desc = "LSP References",
 			nowait = true,
 			remap = false,
