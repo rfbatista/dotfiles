@@ -53,6 +53,12 @@ ko(){
   # fi
 }
 
+###########################################################
+# ASDF
+###########################################################
+export PATH="$HOME/.asdf/shims:$PATH"
+export PATH="$HOME/.asdf/bin:$PATH"
+
 
 
 antigen use oh-my-zsh
