@@ -1,6 +1,7 @@
 return {
   "folke/trouble.nvim",
   cmd = { "TroubleToggle", "Trouble" },
+  tag = "v3.7.1",
   opts = { use_diagnostic_signs = true },
   lazy = true,
   config = function()
