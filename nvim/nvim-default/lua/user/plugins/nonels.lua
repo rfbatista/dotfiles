@@ -60,6 +60,7 @@ return {
 					formatting.golines,
 					formatting.goimports_reviser,
 					formatting.black,
+          formatting.sql_formatter,
           formatting.dxfmt,
           formatting.djlint,
           formatting.djhtml,
@@ -77,9 +78,9 @@ return {
 					diagnostics.yamllint,
 					diagnostics.djlint,
 					-- diagnostics.pylint,
-					diagnostics.sqlfluff.with({
-						extra_args = { "--dialect", "postgres" }, -- change to your dialect
-					}),
+					-- diagnostics.sqlfluff.with({
+					-- 	extra_args = { "--dialect", "postgres" }, -- change to your dialect
+					-- }),
 					code_actions.gitsigns,
 					code_actions.refactoring,
 				},
