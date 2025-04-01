@@ -65,5 +65,6 @@ return {
 			},
 		}
 		require("dapui").setup({})
+    require('dap-go').setup()
 	end,
 }
