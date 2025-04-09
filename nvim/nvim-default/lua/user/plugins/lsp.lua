@@ -4,14 +4,14 @@ return {
 	dependencies = {
 		{ "williamboman/mason.nvim", config = true },
 		"williamboman/mason-lspconfig.nvim",
-		{ "j-hui/fidget.nvim",       opts = {} },
+		{ "j-hui/fidget.nvim", opts = {} },
 		"folke/neodev.nvim",
 		{ "b0o/schemastore.nvim" },
 		{ "hrsh7th/cmp-nvim-lsp" },
 		{ "HiPhish/rainbow-delimiters.nvim" },
 		{ "b0o/schemastore.nvim" },
 		{ "ray-x/navigator.lua" },
-		{ "ray-x/guihua.lua",               run = "cd lua/fzy && make" },
+		{ "ray-x/guihua.lua", run = "cd lua/fzy && make" },
 		"ray-x/go.nvim",
 		"ray-x/guihua.lua",
 		"nvim-treesitter/nvim-treesitter",
@@ -48,6 +48,7 @@ return {
 			"sqls",
 			"terraformls",
 			"jinja_lsp",
+			"svelte",
 		}
 
 		require("mason-lspconfig").setup({
@@ -118,6 +119,9 @@ return {
 			end,
 			["bicep"] = function()
 				require("lspconfig").bicep.setup(require("user.languages.configs.bicep"))
+			end,
+			["svelte"] = function()
+				require("lspconfig").svelte.setup(require("user.languages.configs.svelte"))
 			end,
 			-- ["ruff"] = function()
 			-- 	require("lspconfig").ruff.setup(require("user.languages.configs.pyright"))
