@@ -1,16 +1,15 @@
 return {
 	"stevearc/conform.nvim",
 	tag = "v9.0.0",
-	event = { "BufWritePre" },
 	cmd = { "ConformInfo" },
 	opts = {
 		formatters_by_ft = {
 			lua = { "stylua" },
 
-			go = { "goimports", "gofumpt", "golines" },
+			-- go = { "goimports", "gofumpt", "golines" },
 			templ = { "templ", "injected" },
 
-			javascript = { "prettierd", "prettier", stop_after_first = true },
+			javascript = { "prettierd", "prettier", "injected", stop_after_first = true },
 			typescript = { "prettierd", "prettier", stop_after_first = true },
 			typescriptreact = { "prettierd", "prettier", stop_after_first = true },
 			json = { "biome" },

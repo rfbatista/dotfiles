@@ -10,3 +10,4 @@ tmux/plugins
 tmux/tmux
 fonts/JetBrainsMono.zip
 .env
+.aider*

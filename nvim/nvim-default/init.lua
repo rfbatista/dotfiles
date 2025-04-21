@@ -10,17 +10,17 @@ vim.cmd([[
   set nofoldenable
 ]])
 
-vim.filetype.add {
-  extension = {
-    jinja = 'jinja.html',
-    jinja2 = 'jinja.html',
-    j2 = 'jinja.html',
-  },
-}
+vim.filetype.add({
+	extension = {
+		jinja = "jinja.html",
+		jinja2 = "jinja.html",
+		j2 = "jinja.html",
+	},
+})
 
 -- Base
-require("languages.lsp.handlers").setup()
 require("user.keymaps")
+require("languages.lsp.handlers").setup()
 require("user.autocommands")
 require("user.lazy")
 require("user.filetype")

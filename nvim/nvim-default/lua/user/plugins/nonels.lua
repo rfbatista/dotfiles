@@ -73,7 +73,7 @@ return {
 					--     return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs
 					--   end,
 					-- }),
-					-- diagnostics.golangci_lint,
+					diagnostics.golangci_lint,
 					diagnostics.terraform_validate,
 					diagnostics.yamllint,
 					diagnostics.djlint,

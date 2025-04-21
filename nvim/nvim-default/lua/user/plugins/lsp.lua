@@ -2,7 +2,7 @@ return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		{ "williamboman/mason.nvim", config = true },
+		{ "williamboman/mason.nvim", config = true, tag = "v1.11.0" },
 		"williamboman/mason-lspconfig.nvim",
 		{ "j-hui/fidget.nvim", opts = {} },
 		"folke/neodev.nvim",
@@ -49,6 +49,7 @@ return {
 			"terraformls",
 			"jinja_lsp",
 			"svelte",
+			"ts_ls",
 		}
 
 		require("mason-lspconfig").setup({
@@ -56,7 +57,7 @@ return {
 		})
 
 		require("mason-lspconfig").setup_handlers({
-			["tsserver"] = function()
+			["ts_ls"] = function()
 				-- require("lspconfig").tsserver.setup(require("user.languages.configs.tsserver"))
 			end,
 			["sqlls"] = function()
@@ -111,9 +112,9 @@ return {
 			["terraformls"] = function()
 				require("lspconfig").terraformls.setup(require("user.languages.configs.terraformls"))
 			end,
-			["hcl"] = function()
-				require("lspconfig").hcl.setup(require("user.languages.configs.hcl"))
-			end,
+			-- ["hcl"] = function()
+			-- 	require("lspconfig").hcl.setup(require("user.languages.configs.hcl"))
+			-- end,
 			["clangd"] = function()
 				require("lspconfig").clangd.setup(require("user.languages.configs.clangd"))
 			end,
