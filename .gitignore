@@ -9,3 +9,4 @@ i3/keyring.deb
 tmux/plugins
 tmux/tmux
 fonts/JetBrainsMono.zip
+.env
