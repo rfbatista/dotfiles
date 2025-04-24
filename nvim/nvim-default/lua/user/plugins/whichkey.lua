@@ -13,6 +13,13 @@ return {
 	keys = {
 		{ "<leader>f/", "<cmd>Aider toggle<cr>", desc = "Toggle Aider" },
 		{ "<leader>fs", "<cmd>Aider send<cr>", desc = "Send to Aider", mode = { "n", "v" } },
+		{
+			"<leader>fl",
+			function()
+				require("user.aider.aider").select_template()
+			end,
+			desc = "List templates",
+		},
 		{ "<leader>fc", "<cmd>Aider command<cr>", desc = "Aider Commands" },
 		{ "<leader>fb", "<cmd>Aider buffer<cr>", desc = "Send Buffer" },
 		{ "<leader>f+", "<cmd>Aider add<cr>", desc = "Add File" },
