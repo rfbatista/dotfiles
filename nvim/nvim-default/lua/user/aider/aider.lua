@@ -1,39 +1,12 @@
 local M = {}
 
+local terminal = require("user.aider.terminal")
 local vim_notify = require("notify")
 vim.notify = vim_notify
 
--- Utility function to call aider with the given query
-function M.request(query)
-	local cmd = { "aider", query } -- adjust if aider needs more flags/arguments
-	vim.fn.jobstart(cmd, {
-		stdout_buffered = true,
-		on_stdout = function(_, data)
-			if data then
-				-- For example, display aider output as a notification.
-				vim.notify(table.concat(data, "\n"), vim.log.levels.INFO)
-			end
-		end,
-		on_stderr = function(_, data)
-			if data then
-				vim.notify("Aider error: " .. table.concat(data, "\n"), vim.log.levels.ERROR)
-			end
-		end,
-	})
-end
-
--- Setup the aide plugin by creating a user command
-function M.setup()
-	vim.api.nvim_create_user_command("AiderRequest", function(opts)
-		if opts.args == "" then
-			vim.notify("Please provide a query for aider", vim.log.levels.WARN)
-			return
-		end
-		M.request(opts.args)
-	end, {
-		nargs = 1, -- requires one argument (the query)
-	})
-end
+vim.keymap.set({ "n", "t" }, "<A-o>", function()
+	M.toggle()
+end, { noremap = true, silent = true })
 
 function M.select_template()
 	-- Get all files (non-recursively) under the "templates" folder.
@@ -43,7 +16,6 @@ function M.select_template()
 		vim.notify("No template files found in " .. folder, vim.log.levels.WARN)
 		return
 	end
-
 	-- Show a selectable popup list
 	vim.ui.select(files, {
 		prompt = "Select a template file:",
@@ -52,9 +24,35 @@ function M.select_template()
 		end,
 	}, function(choice)
 		if choice then
-			print("Selected file: " .. choice)
+			-- Read the file content as a list of lines and join them into a single string
+			local fileContent = table.concat(vim.fn.readfile(choice), "\n")
+			local selected_text = fileContent
+			-- Store the file content in a module-level variable if needed
+			local input = vim.fn.input("Add a prompt to your selection (empty to skip):")
+			if input ~= nil and input ~= "" then
+				selected_text = input .. "\n> " .. selected_text
+			end
+			M.toggle()
+			terminal.send_to_terminal(selected_text)
+			-- M.selected_template = fileContent
 		end
 	end)
+end
+
+function M.toggle()
+	terminal.toggle()
+end
+
+function M.send_file()
+	local selected_text = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n")
+	local file_type = vim.bo.filetype
+	file_type = file_type == "" and "text" or file_type
+	local input = vim.fn.input("Prompt to file:")
+	if input ~= nil and input ~= "" then
+		selected_text = input .. "\n> " .. selected_text
+	end
+	M.toggle()
+	terminal.send_to_terminal(selected_text)
 end
 
 return M
