@@ -1,5 +1,13 @@
 local M = {}
 
+local vim_notify = require("notify")
+
+function _FORMAT_CODE()
+  vim_notify("Formatando codigo...", "info")
+  vim.lsp.buf.format()
+  vim_notify("Codigo formatado", "info")
+end
+
 -- Utility function to call aider with the given query
 function M.request(query)
   local cmd = { "aider", query }  -- adjust if aider needs more flags/arguments

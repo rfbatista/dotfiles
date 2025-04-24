@@ -326,3 +326,6 @@ export PATH="/usr/bin/flutter/bin:$PATH"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terragrunt terragrunt
+
+# add Pulumi to the PATH
+export PATH=$PATH:/home/renan/.pulumi/bin
