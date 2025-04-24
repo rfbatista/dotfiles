@@ -47,6 +47,8 @@ function M.send_file()
 	local selected_text = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n")
 	local file_type = vim.bo.filetype
 	file_type = file_type == "" and "text" or file_type
+	local file_path = vim.api.nvim_buf_get_name(0)
+	selected_text = "File: " .. file_path .. "\n" .. selected_text
 	local input = vim.fn.input("Prompt to file:")
 	if input ~= nil and input ~= "" then
 		selected_text = input .. "\n> " .. selected_text
