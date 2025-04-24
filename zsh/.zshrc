@@ -31,6 +31,7 @@ alias tg="terragrunt"
 alias disable_touchpad="xinput disable 12"
 export ENCORE_INSTALL="/home/renan/.encore"
 export PATH="$ENCORE_INSTALL/bin:$PATH"
+export PATH=$PATH:~/Downloads/DataGrip-2024.3.5/bin
 
 ko(){ 
   command sudo kill $(sudo lsof -t -i:$1)

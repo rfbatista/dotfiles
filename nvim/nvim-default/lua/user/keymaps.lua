@@ -76,6 +76,7 @@ keymap('n', '<Tab>', '<Cmd>Neotree reveal<CR>', opts)
 keymap("n", "<A-2>", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes'))<cr>", opts)
 keymap("n", "<A-3>", "<cmd>lua require'telescope.builtin'.live_grep()<cr>", opts)
 keymap("n", "<A-4>", "<cmd>lua require'telescope.builtin'.buffers()<cr>", opts)
+keymap("n", "<A-f>", "<cmd>Aider toggle<cr>", opts)
 
 
 -- Close buffers
