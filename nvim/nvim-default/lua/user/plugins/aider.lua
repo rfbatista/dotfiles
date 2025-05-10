@@ -8,9 +8,6 @@ return {
 		"catppuccin/nvim",
 		"nvim-tree/nvim-tree.lua",
 		--- Neo-tree integration
-		keys = {
-			{ "<A-f>", "<cmd>Aider toggle<cr>", desc = "Toggle Aider", mode = { "n", "t", "v" } },
-		},
 		{
 			"nvim-neo-tree/neo-tree.nvim",
 			opts = function(_, opts)

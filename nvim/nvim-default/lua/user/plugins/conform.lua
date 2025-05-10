@@ -14,6 +14,7 @@ return {
 			typescriptreact = { "prettierd", "prettier", stop_after_first = true },
 			json = { "biome" },
 			sql = { "sql_formatter" },
+      yaml = {"yamlfmt", "yamlfix"},
 
 			sh = { "beautysh" },
 			zsh = { "beautysh" },

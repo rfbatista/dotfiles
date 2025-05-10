@@ -124,6 +124,9 @@ return {
 			["svelte"] = function()
 				require("lspconfig").svelte.setup(require("user.languages.configs.svelte"))
 			end,
+			["yamlls"] = function()
+				require("lspconfig").yamlls.setup(require("user.languages.configs.yamlls"))
+			end,
 			-- ["ruff"] = function()
 			-- 	require("lspconfig").ruff.setup(require("user.languages.configs.pyright"))
 			-- end,

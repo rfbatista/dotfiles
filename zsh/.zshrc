@@ -61,6 +61,11 @@ export PATH="$HOME/.asdf/shims:$PATH"
 export PATH="$HOME/.asdf/bin:$PATH"
 
 
+###########################################################
+# bw
+###########################################################
+export BW_SESSION="Ewhi3wPIW5hSV+Zubjrp+V3K7UEPJboD1rolUa+uPEnxdKIBMUHcxbBB/rPYfgT8jJhFYE8veY5wjf+ZA/DULA=="
+
 
 antigen use oh-my-zsh
 

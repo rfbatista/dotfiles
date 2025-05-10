@@ -2,6 +2,7 @@ local M = {}
 
 local terminal = require("user.aider.terminal")
 local vim_notify = require("notify")
+local commands = require("user.aider.commands")
 vim.notify = vim_notify
 
 vim.keymap.set({ "n", "t" }, "<A-o>", function()
@@ -24,17 +25,7 @@ function M.select_template()
 		end,
 	}, function(choice)
 		if choice then
-			-- Read the file content as a list of lines and join them into a single string
-			local fileContent = table.concat(vim.fn.readfile(choice), "\n")
-			local selected_text = fileContent
-			-- Store the file content in a module-level variable if needed
-			local input = vim.fn.input("Add a prompt to your selection (empty to skip):")
-			if input ~= nil and input ~= "" then
-				selected_text = input .. "\n> " .. selected_text
-			end
-			M.toggle()
-			terminal.send_to_terminal(selected_text)
-			-- M.selected_template = fileContent
+			terminal.send(commands.add.value .. " " .. choice)
 		end
 	end)
 end
@@ -44,17 +35,8 @@ function M.toggle()
 end
 
 function M.send_file()
-	local selected_text = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n")
-	local file_type = vim.bo.filetype
-	file_type = file_type == "" and "text" or file_type
 	local file_path = vim.api.nvim_buf_get_name(0)
-	selected_text = "File: " .. file_path .. "\n" .. selected_text
-	local input = vim.fn.input("Prompt to file:")
-	if input ~= nil and input ~= "" then
-		selected_text = input .. "\n> " .. selected_text
-	end
-	M.toggle()
-	terminal.send_to_terminal(selected_text)
+	terminal.send(commands.add.value .. " " .. file_path)
 end
 
 return M

@@ -64,7 +64,7 @@ keymap("x", "<C-Down>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 
-keymap('n', '<Tab>', '<Cmd>Neotree reveal<CR>', opts)
+keymap("n", "<Tab>", "<Cmd>Neotree reveal<CR>", opts)
 
 -- Terminal --
 -- Better terminal navigation
@@ -76,8 +76,6 @@ keymap('n', '<Tab>', '<Cmd>Neotree reveal<CR>', opts)
 keymap("n", "<A-2>", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes'))<cr>", opts)
 keymap("n", "<A-3>", "<cmd>lua require'telescope.builtin'.live_grep()<cr>", opts)
 keymap("n", "<A-4>", "<cmd>lua require'telescope.builtin'.buffers()<cr>", opts)
-keymap("n", "<A-f>", "<cmd>Aider toggle<cr>", opts)
-
 
 -- Close buffers
 keymap("n", "<A-k>", "<cmd>BufferCloseAllButCurrent<CR>", opts)
@@ -91,4 +89,3 @@ keymap("n", "<A-e>", ":BufferPrevious<CR>", opts)
 
 -- Clear Highlights
 keymap("n", "<C-l>", ":noh<CR><CR>", opts)
- 

@@ -99,7 +99,6 @@ return {
       },
       sources = {
         { name = "nvim_lsp",  priority = 1,   group_index = 1 },
-        { name = "copilot",   priority = 2,   group_index = 1 },
         { name = "buffer",    group_index = 2 },
         { name = "nvim_lua" },
         { name = "luasnip" },
@@ -121,7 +120,6 @@ return {
               nvim_lsp = "[LSP]",
               nvim_lua = "[Lua]",
               luasnip = "[LuaSnip]",
-              copilot = "[Copilot]",
               buffer = "[Buffer]",
               latex_symbols = "[LaTeX]",
             })[entry.source.name]
