@@ -1,36 +1,55 @@
 return {
+	-- Core LSP and Mason
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
+		-- Mason and LSP installer
 		{ "williamboman/mason.nvim", config = true, tag = "v1.11.0" },
 		"williamboman/mason-lspconfig.nvim",
+
+		-- LSP UI/UX
 		{ "j-hui/fidget.nvim", opts = {} },
 		"folke/neodev.nvim",
 		{ "b0o/schemastore.nvim" },
 		{ "hrsh7th/cmp-nvim-lsp" },
 		{ "HiPhish/rainbow-delimiters.nvim" },
-		{ "b0o/schemastore.nvim" },
 		{ "ray-x/navigator.lua" },
 		{ "ray-x/guihua.lua", run = "cd lua/fzy && make" },
-		"ray-x/go.nvim",
-		"ray-x/guihua.lua",
 		"nvim-treesitter/nvim-treesitter",
 		"akinsho/flutter-tools.nvim",
 		"nvim-lua/plenary.nvim",
 		"stevearc/dressing.nvim", -- optional for vim.ui.select
 		"pmizio/typescript-tools.nvim",
+		-- Language-specific
+		"ray-x/go.nvim",
 	},
 	config = function()
-		require("mason").setup({
-			ui = {
-				border = "rounded",
-				icons = {
-					package_installed = "✓",
-					package_pending = "➜",
-					package_uninstalled = "✗",
+		local function setup_diagnostic_signs()
+			local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+			for type, icon in pairs(signs) do
+				local hl = "DiagnosticSign" .. type
+				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+			end
+		end
+
+		local function setup_diagnostics()
+			vim.diagnostic.config({
+				title = false,
+				underline = true,
+				virtual_text = true,
+				signs = true,
+				update_in_insert = false,
+				severity_sort = true,
+				float = {
+					source = "always",
+					style = "minimal",
+					border = "rounded",
+					header = "",
+					prefix = "",
 				},
-			},
-		})
+			})
+		end
+
 		local servers = {
 			"pyright",
 			"jsonls",
@@ -46,19 +65,30 @@ return {
 			"cssls",
 			"rust_analyzer",
 			"sqls",
-			"terraformls",
 			"jinja_lsp",
 			"svelte",
 			"ts_ls",
 		}
 
+		require("mason").setup({
+			ui = {
+				border = "rounded",
+				icons = {
+					package_installed = "✓",
+					package_pending = "➜",
+					package_uninstalled = "✗",
+				},
+			},
+		})
+
 		require("mason-lspconfig").setup({
 			ensure_installed = servers,
 		})
 
-		require("mason-lspconfig").setup_handlers({
+		-- LSP server handlers
+		local lsp_handlers = {
 			["ts_ls"] = function()
-				-- require("lspconfig").tsserver.setup(require("user.languages.configs.tsserver"))
+				-- require("lspconfig").ts_ls.setup(require("user.languages.configs.tsserver"))
 			end,
 			["sqlls"] = function()
 				require("lspconfig").sqlls.setup(require("user.languages.configs.sql"))
@@ -91,9 +121,6 @@ return {
 			["jinja_lsp"] = function()
 				require("lspconfig").jinja_lsp.setup(require("user.languages.configs.jinja"))
 			end,
-			-- ["dartls"] = function()
-			-- 	require("lspconfig").dartls.setup(require("user.languages.configs.dart"))
-			-- end,
 			["templ"] = function()
 				require("lspconfig").templ.setup(require("user.languages.configs.templ"))
 			end,
@@ -112,9 +139,6 @@ return {
 			["terraformls"] = function()
 				require("lspconfig").terraformls.setup(require("user.languages.configs.terraformls"))
 			end,
-			-- ["hcl"] = function()
-			-- 	require("lspconfig").hcl.setup(require("user.languages.configs.hcl"))
-			-- end,
 			["clangd"] = function()
 				require("lspconfig").clangd.setup(require("user.languages.configs.clangd"))
 			end,
@@ -127,27 +151,36 @@ return {
 			["yamlls"] = function()
 				require("lspconfig").yamlls.setup(require("user.languages.configs.yamlls"))
 			end,
-			-- ["ruff"] = function()
-			-- 	require("lspconfig").ruff.setup(require("user.languages.configs.pyright"))
-			-- end,
-		})
+		}
 
-		-- dont use ruff for text/hover
-		vim.api.nvim_create_autocmd("LspAttach", {
-			group = vim.api.nvim_create_augroup("lsp_attach_disable_ruff_hover", { clear = true }),
-			callback = function(args)
-				local client = vim.lsp.get_client_by_id(args.data.client_id)
-				if client == nil then
-					return
-				end
-				if client.name == "ruff" then
-					-- Disable hover in favor of Pyright
-					client.server_capabilities.hoverProvider = false
-				end
-			end,
-			desc = "LSP: Disable hover capability from Ruff",
-		})
+		require("mason-lspconfig").setup_handlers(lsp_handlers)
 
+		-- Autocommands
+		local function setup_autocmds()
+			-- Disable hover for Ruff
+			vim.api.nvim_create_autocmd("LspAttach", {
+				group = vim.api.nvim_create_augroup("lsp_attach_disable_ruff_hover", { clear = true }),
+				callback = function(args)
+					local client = vim.lsp.get_client_by_id(args.data.client_id)
+					if client and client.name == "ruff" then
+						client.server_capabilities.hoverProvider = false
+					end
+				end,
+				desc = "LSP: Disable hover capability from Ruff",
+			})
+
+			-- Go import formatting
+			local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				pattern = "*.go",
+				callback = function()
+					require("go.format").goimport()
+				end,
+				group = format_sync_grp,
+			})
+		end
+
+		-- Plugin setups
 		require("typescript-tools").setup({
 			on_attach = function(client, bufnr)
 				client.server_capabilities.document_formatting = false
@@ -158,35 +191,9 @@ return {
 
 		require("go").setup()
 
-		local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			pattern = "*.go",
-			callback = function()
-				require("go.format").goimport()
-			end,
-			group = format_sync_grp,
-		})
-
-		vim.diagnostic.config({
-			title = false,
-			underline = true,
-			virtual_text = true,
-			signs = true,
-			update_in_insert = false,
-			severity_sort = true,
-			float = {
-				source = "always",
-				style = "minimal",
-				border = "rounded",
-				header = "",
-				prefix = "",
-			},
-		})
-
-		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-		for type, icon in pairs(signs) do
-			local hl = "DiagnosticSign" .. type
-			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-		end
+		-- Setup diagnostics and signs
+		setup_diagnostics()
+		setup_diagnostic_signs()
+		setup_autocmds()
 	end,
 }

@@ -22,6 +22,8 @@ local M = {}
 M.defaults = {
 	aider_cmd = "aider",
 	args = {
+    "--model o3-mini",
+    "--api-key openai=",
 		"--no-auto-commits",
 		"--pretty",
 		"--stream",
