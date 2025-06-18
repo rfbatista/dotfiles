@@ -8,6 +8,7 @@ return {
 
 			-- go = { "goimports", "gofumpt", "golines" },
 			templ = { "templ", "injected" },
+			python = { "isort", "black" },
 
 			javascript = { "prettierd", "prettier", "injected", stop_after_first = true },
 			javascriptreact = { "prettierd", "prettier", stop_after_first = true },
@@ -15,7 +16,7 @@ return {
 			typescriptreact = { "prettierd", "prettier", stop_after_first = true },
 			json = { "biome" },
 			sql = { "sql_formatter" },
-      yaml = {"yamlfmt", "yamlfix"},
+			yaml = { "yamlfmt", "yamlfix" },
 
 			sh = { "beautysh" },
 			zsh = { "beautysh" },

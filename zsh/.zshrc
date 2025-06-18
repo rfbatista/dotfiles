@@ -101,6 +101,9 @@ vv() {
 # export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
 alias swagger='sudo docker run --rm -it  --user $(id -u):$(id -g) -e GOPATH=$(go env GOPATH):/go -v $HOME:$HOME -w $(pwd) quay.io/goswagger/swagger'
 alias aws='/usr/local/bin/aws'
+
+# PODMAN
+export DOCKER_HOST=unix:///run/user/1000/podman/podman.sock
 alias docker="podman"
 
 # VPN

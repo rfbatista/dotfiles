@@ -17,13 +17,32 @@
 ---@field theme? nvim_aider.Theme
 ---@field win? snacks.win.Config
 ---@field picker_cfg? snacks.picker.layout.Config
+
+local function get_env_value(key)
+	local envPath = os.getenv("HOME") .. "/dotfiles/.env"
+	local file = io.open(envPath, "r")
+	if not file then
+		return nil
+	end
+	for line in file:lines() do
+		local k, v = line:match("^%s*(%w+)%s*=%s*(.+)%s*$")
+		if k == key then
+			file:close()
+			return v
+		end
+	end
+	file:close()
+	return nil
+end
+
 local M = {}
 
+local api_key = get_env_value("AIDER_OPENAI_API_KEY") or ""
+vim.notify(string.format("found: %s", api_key))
 M.defaults = {
 	aider_cmd = "aider",
 	args = {
-    "--model o3-mini",
-    "--api-key openai=",
+		"--model o3-mini",
 		"--no-auto-commits",
 		"--pretty",
 		"--stream",
@@ -98,7 +117,6 @@ function M.setup(opts)
 	end
 
 	M.options = vim.tbl_deep_extend("force", M.options, opts or {})
-	Snacks.config.style("nvim_aider", {})
 	return M.options
 end
 
