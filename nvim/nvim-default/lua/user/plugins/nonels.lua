@@ -19,7 +19,7 @@ return {
 					"stylua", -- lua formatter
 					"eslint_d", -- js linter
           "eslint",
-					"golangci_lint", -- go linter
+					-- "golangci_lint", -- go linter
 					"terraform_fmt", -- terraform formatter
 					"terraform_validate", -- terraform linter
 					"shellcheck", -- shell linter
@@ -53,7 +53,7 @@ return {
 					-- formatting.stylua,
 					-- formatting.prettier,
 					-- formatting.gofumpt,
-					-- formatting.terraform_fmt,
+					formatting.terraform_fmt,
 					-- formatting.buf,
 					-- formatting.yamlfmt,
 					-- formatting.goimports,
@@ -73,7 +73,7 @@ return {
 					--     return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs
 					--   end,
 					-- }),
-					diagnostics.golangci_lint,
+					-- diagnostics.golangci_lint,
 					diagnostics.terraform_validate,
 					diagnostics.yamllint,
 					diagnostics.djlint,

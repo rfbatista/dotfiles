@@ -72,7 +72,8 @@ antigen use oh-my-zsh
 # THEME
 # antigen theme robbyrussell/oh-my-zsh themes/agnoster
 # antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
-antigen theme fino-time
+antigen theme spaceship-prompt/spaceship-prompt
+# antigen theme fino-time
 
 # ANTIGEN BUNDLES
 antigen bundle aws

@@ -83,7 +83,7 @@ return {
 				"prettier", -- prettier formatter
 				"stylua", -- lua formatter
 				"eslint_d", -- js linter
-				"golangci_lint", -- go linter
+				-- "golangci_lint", -- go linter
 				"terraform_fmt", -- terraform formatter
 				"terraform_validate", -- terraform linter
 				"shellcheck", -- shell linter
@@ -97,7 +97,7 @@ return {
 				"black",
 				"blackd",
 				"pylint",
-				"golangci_lint",
+				-- "golangci_lint",
 			},
 		})
 
