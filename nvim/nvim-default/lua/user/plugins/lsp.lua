@@ -3,23 +3,25 @@ return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
+		-- { "nvim-java/nvim-java", tag = "v2.1.2" },
+		-- { "mfussenegger/nvim-jdtls", tag = "0.2.0" },
+		{ "virchau13/tree-sitter-astro" },
 		-- Mason and LSP installer
-		{ "williamboman/mason.nvim", config = true, tag = "v1.11.0" },
-		"williamboman/mason-lspconfig.nvim",
+		{ "williamboman/mason.nvim", config = true, tag = "v2.0.0" },
+		{ "williamboman/mason-lspconfig.nvim", tag = "v2.0.0" },
 
 		-- LSP UI/UX
 		{ "j-hui/fidget.nvim", opts = {} },
 		"folke/neodev.nvim",
 		{ "b0o/schemastore.nvim" },
 		{ "hrsh7th/cmp-nvim-lsp" },
-		{ "HiPhish/rainbow-delimiters.nvim" },
+		-- { "HiPhish/rainbow-delimiters.nvim" },
 		{ "ray-x/navigator.lua" },
 		{ "ray-x/guihua.lua", run = "cd lua/fzy && make" },
 		"nvim-treesitter/nvim-treesitter",
 		"akinsho/flutter-tools.nvim",
 		"nvim-lua/plenary.nvim",
 		"stevearc/dressing.nvim", -- optional for vim.ui.select
-		"pmizio/typescript-tools.nvim",
 		-- Language-specific
 		"ray-x/go.nvim",
 	},
@@ -49,27 +51,6 @@ return {
 				},
 			})
 		end
-
-		local servers = {
-			"pyright",
-			"jsonls",
-			"lua_ls",
-			"gopls",
-			"clangd",
-			"kotlin_language_server",
-			"terraformls",
-			"dockerls",
-			"templ",
-			"htmx",
-			"tailwindcss",
-			"cssls",
-			"rust_analyzer",
-			"sqls",
-			"jinja_lsp",
-			"svelte",
-			"ts_ls",
-		}
-
 		require("mason").setup({
 			ui = {
 				border = "rounded",
@@ -80,30 +61,23 @@ return {
 				},
 			},
 		})
-
-		require("mason-lspconfig").setup({
-			ensure_installed = servers,
-		})
+		-- require("mason-lspconfig").setup({
+		-- 	ensure_installed = servers,
+		-- })
 
 		-- LSP server handlers
 		local lsp_handlers = {
-			["ts_ls"] = function()
-				-- require("lspconfig").ts_ls.setup(require("user.languages.configs.tsserver"))
-			end,
 			["sqlls"] = function()
 				require("lspconfig").sqlls.setup(require("user.languages.configs.sql"))
-			end,
-			["cssls"] = function()
-				require("lspconfig").cssls.setup(require("user.languages.configs.css"))
 			end,
 			["pyright"] = function()
 				require("lspconfig").pyright.setup(require("user.languages.configs.pyright"))
 			end,
+			["astro"] = function()
+				require("lspconfig").astro.setup(require("user.languages.configs.astro"))
+			end,
 			["lua_ls"] = function()
 				require("lspconfig").lua_ls.setup(require("user.languages.configs.sumneko"))
-			end,
-			["gopls"] = function()
-				require("lspconfig").gopls.setup(require("user.languages.configs.gopls"))
 			end,
 			["jsonls"] = function()
 				require("lspconfig").jsonls.setup({
@@ -115,26 +89,8 @@ return {
 					},
 				})
 			end,
-			["html"] = function()
-				require("lspconfig").html.setup(require("user.languages.configs.html"))
-			end,
 			["jinja_lsp"] = function()
 				require("lspconfig").jinja_lsp.setup(require("user.languages.configs.jinja"))
-			end,
-			["templ"] = function()
-				require("lspconfig").templ.setup(require("user.languages.configs.templ"))
-			end,
-			["eslint"] = function()
-				require("lspconfig").eslint.setup(require("user.languages.configs.eslint"))
-			end,
-			["htmx"] = function()
-				require("lspconfig").htmx.setup(require("user.languages.configs.htmx"))
-			end,
-			["tailwindcss"] = function()
-				require("lspconfig").tailwindcss.setup(require("user.languages.configs.tailwind"))
-			end,
-			["zls"] = function()
-				require("lspconfig").zls.setup(require("user.languages.configs.zig"))
 			end,
 			["terraformls"] = function()
 				require("lspconfig").terraformls.setup(require("user.languages.configs.terraformls"))
@@ -142,18 +98,14 @@ return {
 			["clangd"] = function()
 				require("lspconfig").clangd.setup(require("user.languages.configs.clangd"))
 			end,
-			["bicep"] = function()
-				require("lspconfig").bicep.setup(require("user.languages.configs.bicep"))
-			end,
-			["svelte"] = function()
-				require("lspconfig").svelte.setup(require("user.languages.configs.svelte"))
-			end,
 			["yamlls"] = function()
 				require("lspconfig").yamlls.setup(require("user.languages.configs.yamlls"))
 			end,
 		}
 
-		require("mason-lspconfig").setup_handlers(lsp_handlers)
+		for _, handler in pairs(lsp_handlers) do
+			handler()
+		end
 
 		-- Autocommands
 		local function setup_autocmds()
@@ -179,17 +131,6 @@ return {
 				group = format_sync_grp,
 			})
 		end
-
-		-- Plugin setups
-		require("typescript-tools").setup({
-			on_attach = function(client, bufnr)
-				client.server_capabilities.document_formatting = false
-				client.server_capabilities.document_range_formatting = false
-				require("user.languages.lsp.keymap").on_attach(client, bufnr)
-			end,
-		})
-
-		require("go").setup()
 
 		-- Setup diagnostics and signs
 		setup_diagnostics()

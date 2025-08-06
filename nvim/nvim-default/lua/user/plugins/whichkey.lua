@@ -392,27 +392,6 @@ return {
 			remap = false,
 		},
 		{
-			"<leader>gr",
-			"<cmd>lua require 'gitsigns'.reset_hunk()<cr>",
-			desc = "Reset Hunk",
-			nowait = true,
-			remap = false,
-		},
-		{
-			"<leader>gs",
-			"<cmd>lua require 'gitsigns'.stage_hunk()<cr>",
-			desc = "Stage Hunk",
-			nowait = true,
-			remap = false,
-		},
-		{
-			"<leader>gu",
-			"<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
-			desc = "Undo Stage Hunk",
-			nowait = true,
-			remap = false,
-		},
-		{
 			"<leader>h",
 			"<cmd>nohlsearch<CR>",
 			desc = "No Highlight",

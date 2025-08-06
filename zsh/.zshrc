@@ -32,6 +32,7 @@ alias disable_touchpad="xinput disable 12"
 export ENCORE_INSTALL="/home/renan/.encore"
 export PATH="$ENCORE_INSTALL/bin:$PATH"
 export PATH=$PATH:~/Downloads/DataGrip-2024.3.5/bin
+alias webrpc="$HOME/dotfiles/webrpc-gen.linux-amd64"
 
 ko(){ 
   command sudo kill $(sudo lsof -t -i:$1)
@@ -73,6 +74,9 @@ antigen use oh-my-zsh
 # antigen theme robbyrussell/oh-my-zsh themes/agnoster
 # antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
 antigen theme spaceship-prompt/spaceship-prompt
+export SPACESHIP_TIME_SHOW=true
+export SPACESHIP_UV_SHOW=true
+export SPACESHIP_VENV_SHOW=true
 # antigen theme fino-time
 
 # ANTIGEN BUNDLES
@@ -133,7 +137,8 @@ alias tmuxa="tmux attach-session -t 0"
 alias httpie="AppImageLauncher /home/renan/Applications/HTTPie-2023.3.6_bc1b7fbc9017d1d0ec6e01c70298ef57.AppImage"
 alias ink="/home/renan/Applications/Inkscape-091e20e-x86_64_2bd2bdeb4951060756249f31e3562326.AppImage"
 export ZSH="/home/renan/.oh-my-zsh"
-alias nv="NVIM_APPNAME=nvim-default $HOME/neovim/build/bin/nvim"
+# alias nv="NVIM_APPNAME=nvim-default $HOME/neovim/build/bin/nvim"
+alias nv="NVIM_APPNAME=nvim-default $HOME/neovim-11/build/bin/nvim"
 alias config="cd ~/.config/nvim"
 alias dotf="cd $HOME/dotfiles"
 alias ej="cd $HOME/projetos/education_journey/"
