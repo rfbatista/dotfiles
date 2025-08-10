@@ -20,7 +20,7 @@ vim.filetype.add({
 
 -- Base
 require("user.keymaps")
-require("languages.lsp.handlers").setup()
+require("user.languages.lsp.handlers").setup()
 require("user.autocommands")
 require("user.lazy")
 require("user.filetype")

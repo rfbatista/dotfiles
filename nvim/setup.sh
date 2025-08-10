@@ -1,21 +1,16 @@
-configs=("nvim-default" "nvim-node" "nvim-go")
+configs=("nvim-default" "nvim-node" "nvim-go" "nvim-java", "nvim-python", "nvim-ts")
 commons=("autocommands.lua" "filetype.lua" "options.lua")
 
-
-for key in "${configs[@]}"
-do
-  if [ ! \( -e "$HOME/.config/$key" \) ]
-  then
+for key in "${configs[@]}"; do
+  if [ ! \( -e "$HOME/.config/$key" \) ]; then
     echo ln -s "$HOME/dotfiles/nvim/$key" "$HOME/.config/$key"
     ln -s "$HOME/dotfiles/nvim/$key" "$HOME/.config/$key"
   else
     echo "$key config already exists"
   fi
-  for common in "${commons[@]}"
-  do
+  for common in "${commons[@]}"; do
     commonfile="$HOME/dotfiles/nvim/$key/lua/user/$common"
-    if [ ! \( -e "$commonfile" \) ]
-    then
+    if [ ! \( -e "$commonfile" \) ]; then
       echo creating symling "$commonfile"
       ln -s "$HOME/dotfiles/nvim/$common" "$commonfile"
     else
@@ -25,7 +20,7 @@ do
   # for pluginlocal in $(ls $HOME/dotfiles/nvim/plugins/*)
   #   do
   #     pluginname=$(basename $pluginlocal)
-  #     pluginfile="$HOME/dotfiles/nvim/$key/lua/user/shared/$pluginname" 
+  #     pluginfile="$HOME/dotfiles/nvim/$key/lua/user/shared/$pluginname"
   #     if [ ! \( -e "$pluginfile" \) ]
   #     then
   #       echo creating symling "$pluginfile"

@@ -369,7 +369,7 @@ exec_always --no-startup-id "kitty --class terminal1 btop"
 for_window [class="terminal1"], move scratchpad
 bindsym $mod+u [class="terminal1"] scratchpad show
 
-exec_always --no-startup-id "kitty --class terminal2 lazydocker"
+exec_always --no-startup-id "kitty --class terminal2"
 for_window [class="terminal2"], move scratchpad
 bindsym $mod+i [class="terminal2"] scratchpad show
 

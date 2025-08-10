@@ -12,6 +12,24 @@ aws-set() {
     echo "Hello, $name!"
     export AWS_PROFILE=$name
 }
+
+###########################################################
+# GIT
+###########################################################
+select_ssh_key() {
+    local key
+    echo "Select an SSH key from $HOME/.ssh:"
+    select key in "$HOME/.ssh"/*; do
+        if [[ -n "$key" ]]; then
+            export GIT_SSH_COMMAND="ssh -i $key -o IdentitiesOnly=yes"
+            echo "GIT_SSH_COMMAND set to use key: $key"
+            break
+        else
+            echo "Invalid selection."
+        fi
+    done
+}
+
 ###########################################################
 # KUBERNETES
 ###########################################################
@@ -24,6 +42,23 @@ alias mks="minikube status"
 ###########################################################
 alias t="terraform"
 alias tg="terragrunt"
+
+###########################################################
+# JAVA
+###########################################################
+export JAVA_HOME=/usr/lib/jvm/java-24-openjdk
+export PATH=$JAVA_HOME/bin:$PATH
+
+
+###########################################################
+# NEOVIM
+###########################################################
+# alias nv="NVIM_APPNAME=nvim-default $HOME/neovim/build/bin/nvim"
+alias nv="NVIM_APPNAME=nvim-default $HOME/neovim-11/build/bin/nvim"
+alias nvjava="NVIM_APPNAME=nvim-java $HOME/neovim-11/build/bin/nvim"
+alias nvgo="NVIM_APPNAME=nvim-go $HOME/neovim-11/build/bin/nvim"
+alias nvpy="NVIM_APPNAME=nvim-python $HOME/neovim-11/build/bin/nvim"
+alias nvts="NVIM_APPNAME=nvim-ts $HOME/neovim-11/build/bin/nvim"
 
 ###########################################################
 # UTILITIES
@@ -137,8 +172,6 @@ alias tmuxa="tmux attach-session -t 0"
 alias httpie="AppImageLauncher /home/renan/Applications/HTTPie-2023.3.6_bc1b7fbc9017d1d0ec6e01c70298ef57.AppImage"
 alias ink="/home/renan/Applications/Inkscape-091e20e-x86_64_2bd2bdeb4951060756249f31e3562326.AppImage"
 export ZSH="/home/renan/.oh-my-zsh"
-# alias nv="NVIM_APPNAME=nvim-default $HOME/neovim/build/bin/nvim"
-alias nv="NVIM_APPNAME=nvim-default $HOME/neovim-11/build/bin/nvim"
 alias config="cd ~/.config/nvim"
 alias dotf="cd $HOME/dotfiles"
 alias ej="cd $HOME/projetos/education_journey/"
