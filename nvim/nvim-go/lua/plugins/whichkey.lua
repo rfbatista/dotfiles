@@ -118,6 +118,13 @@ return {
       remap = false,
     },
     {
+      "<leader>Gy",
+      "<cmd>GoAddTag yaml<cr>",
+      desc = "Add yaml tags",
+      nowait = true,
+      remap = false,
+    },
+    {
       "<leader>Gb",
       "<cmd>GoAddTag form<cr>",
       desc = "Add form tags",

@@ -384,7 +384,7 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 include $HOME/dotfiles/i3/keyboard.conf
-exec_always setxkbmap -layout us -variant altgr-intl
+# exec_always setxkbmap -layout us -variant altgr-intl
 # include $HOME/dotfiles/i3/scripts.conf
 # include $HOME/dotfiles/i3/rofi.conf
 # include $HOME/dotfiles/i3/monitor.conf

@@ -5,6 +5,7 @@
 -- https://github.com/nvim-neo-tree/neo-tree.nvim/wiki/Recipes
 return {
   "nvim-neo-tree/neo-tree.nvim",
+  enabled = true,
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons",
@@ -31,8 +32,8 @@ return {
   },
   event = "VeryLazy",
   keys = {
-    { "<leader>e",     ":Neotree toggle float<CR>", silent = true, desc = "Float File Explorer" },
-    { "<leader><tab>", ":Neotree toggle float<CR>",  silent = true, desc = "Left File Explorer" },
+    { "<leader>e", ":Neotree toggle float<CR>", silent = true, desc = "Float File Explorer" },
+    { "<leader><tab>", ":Neotree toggle float<CR>", silent = true, desc = "Left File Explorer" },
   },
   config = function()
     require("neo-tree").setup({
@@ -56,6 +57,7 @@ return {
           folder_open = "",
           folder_empty = "",
           folder_empty_open = "",
+          default = "",
         },
         git_status = {
           symbols = {
@@ -119,7 +121,7 @@ return {
       },
       buffers = {
         follow_current_file = {
-          enabled = true,     -- This will find and focus the file in the active buffer every time
+          enabled = true, -- This will find and focus the file in the active buffer every time
           leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
         },
       },

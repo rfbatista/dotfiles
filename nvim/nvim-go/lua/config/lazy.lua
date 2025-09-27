@@ -18,6 +18,7 @@ require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    { import = "lazyvim.plugins.extras.linting.eslint" },
     -- import/override with your plugins
     { import = "plugins" },
   },
@@ -36,8 +37,7 @@ require("lazy").setup({
     notify = false, -- notify on update
   }, -- automatically check for plugin updates
   performance = {
-    rtp = {
-      -- disable some rtp plugins
+    rtp = { -- disable some rtp plugins
       disabled_plugins = {
         "gzip",
         -- "matchit",

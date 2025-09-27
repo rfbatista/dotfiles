@@ -18,6 +18,7 @@ return {
           "http",
           "graphql",
           "bash",
+          "bicep",
           "c",
           "html",
           "javascript",

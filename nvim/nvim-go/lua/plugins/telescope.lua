@@ -16,7 +16,7 @@ return {
       local telescope = require("telescope")
       local actions = require("telescope.actions")
       local trouble = require("trouble.providers.telescope")
-      local icons = require("user.icons")
+      local icons = require("icons")
 
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "TelescopeResults",
@@ -145,7 +145,7 @@ return {
         },
         extensions = {
           fzf = {
-            fuzzy = true,             -- false will only do exact matching
+            fuzzy = true, -- false will only do exact matching
             override_generic_sorter = true, -- override the generic sorter
             override_file_sorter = true, -- override the file sorter
             case_mode = "smart_case", -- or "ignore_case" or "respect_case"
@@ -169,8 +169,9 @@ return {
       })
       telescope.load_extension("fzf")
       telescope.load_extension("ui-select")
+      telescope.load_extension("git_worktree")
       -- telescope.load_extension("refactoring")
-      telescope.load_extension("dap")
+      -- telescope.load_extension("dap")
     end,
   },
 }

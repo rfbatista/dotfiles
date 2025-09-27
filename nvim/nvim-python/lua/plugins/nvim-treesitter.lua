@@ -20,6 +20,7 @@ return {
           "bash",
           "c",
           "html",
+          "htmldjango",
           "javascript",
           "json",
           "lua",

@@ -5,7 +5,7 @@ return {
   dependencies = {
     {
       "mason-org/mason.nvim",
-      opts = { ensure_installed = {} },
+      opts = { ensure_installed = { "prettier" } },
       config = function()
         require("mason").setup({
           ui = {
@@ -48,8 +48,13 @@ return {
       },
     },
   },
-  opts = {
-    servers = {},
-    setup = {},
+  opts = function()
+    local keys = require("lazyvim.plugins.lsp.keymaps").get()
+    -- change a keymap
+    keys[#keys + 1] = { "gr", "<cmd>lua vim.lsp.buf.rename()<cr>" }
+  end,
+  servers = {
+    cmd = { "django-template-lsp" },
+    filetypes = { "htmldjango", "djangohtml" },
   },
 }

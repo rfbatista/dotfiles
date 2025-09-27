@@ -1,4 +1,4 @@
-configs=("nvim-default" "nvim-node" "nvim-go" "nvim-java", "nvim-python", "nvim-ts")
+configs=("nvim-default" "nvim-node" "nvim-go" "nvim-java", "nvim-python", "nvim-ts", "nvim-flutter")
 commons=("autocommands.lua" "filetype.lua" "options.lua")
 
 for key in "${configs[@]}"; do

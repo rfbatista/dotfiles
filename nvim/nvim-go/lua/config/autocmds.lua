@@ -138,3 +138,10 @@ vim.api.nvim_create_autocmd("User", {
     })
   end,
 })
+
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = "*.bicep",
+  callback = function()
+    vim.bo.filetype = "bicep"
+  end,
+})

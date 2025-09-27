@@ -10,8 +10,15 @@ return {
       },
     },
     opts = {
+      defaults = {
+        keymaps = false,
+      },
       colorscheme = function()
         require("catppuccin").setup({
+          float = {
+            transparent = false,
+            solid = true,
+          },
           flavour = "mocha",
           background = {
             light = "latte",

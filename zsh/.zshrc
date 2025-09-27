@@ -1,6 +1,9 @@
 #!/usr/bin/zsh
 source $HOME/dotfiles/zsh/antigen.zsh
+export SPACESHIP_CONFIG="$HOME/dotfiles/zsh/spaceship.zsh"
+ZSH_THEME="spaceship"
 # . /opt/asdf-vm/asdf.sh
+alias m="$HOME/dotfiles/scripts/run-makefile.sh"
 
 ###########################################################
 # AWS
@@ -16,11 +19,13 @@ aws-set() {
 ###########################################################
 # GIT
 ###########################################################
-select_ssh_key() {
+  select_ssh_key() {
     local key
     echo "Select an SSH key from $HOME/.ssh:"
     select key in "$HOME/.ssh"/*; do
         if [[ -n "$key" ]]; then
+            eval $(ssh-agent -s)
+            command ssh-add $key
             export GIT_SSH_COMMAND="ssh -i $key -o IdentitiesOnly=yes"
             echo "GIT_SSH_COMMAND set to use key: $key"
             break
@@ -42,6 +47,11 @@ alias mks="minikube status"
 ###########################################################
 alias t="terraform"
 alias tg="terragrunt"
+
+###########################################################
+# PYTHON
+###########################################################
+alias uvr="uv run"
 
 ###########################################################
 # JAVA
@@ -109,9 +119,6 @@ antigen use oh-my-zsh
 # antigen theme robbyrussell/oh-my-zsh themes/agnoster
 # antigen theme https://github.com/denysdovhan/spaceship-zsh-theme spaceship
 antigen theme spaceship-prompt/spaceship-prompt
-export SPACESHIP_TIME_SHOW=true
-export SPACESHIP_UV_SHOW=true
-export SPACESHIP_VENV_SHOW=true
 # antigen theme fino-time
 
 # ANTIGEN BUNDLES
@@ -124,6 +131,7 @@ antigen bundle extract
 antigen bundle git
 antigen bundle node
 antigen bundle npm
+antigen bundle python
 antigen bundle pip
 antigen bundle screen
 antigen bundle unixorn/autoupdate-antigen.zshplugin
@@ -376,3 +384,10 @@ complete -o nospace -C /usr/local/bin/terragrunt terragrunt
 
 # add Pulumi to the PATH
 export PATH=$PATH:/home/renan/.pulumi/bin
+
+# bun completions
+[ -s "/home/renan/.bun/_bun" ] && source "/home/renan/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

@@ -15,7 +15,7 @@ return {
       local telescope = require("telescope")
       local actions = require("telescope.actions")
       local trouble = require("trouble.providers.telescope")
-      local icons = require("user.icons")
+      local icons = require("icons")
 
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "TelescopeResults",
@@ -166,10 +166,10 @@ return {
           },
         },
       })
-      telescope.load_extension("fzf")
+      -- telescope.load_extension("fzf")
       telescope.load_extension("ui-select")
       -- telescope.load_extension("refactoring")
-      telescope.load_extension("dap")
+      -- telescope.load_extension("dap")
     end,
   },
 }

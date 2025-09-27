@@ -9,7 +9,6 @@
 
 -- Autocmds using vim.api.nvim_create_autocmd
 
-
 -- To list all options available run :help options
 local options = {
   backup = false, -- creates a backup file
@@ -48,94 +47,94 @@ local options = {
   guifont = "JetBrains Mono:h17", -- the font used in graphical neovim applications
 }
 
-vim.opt.shortmess:append "c"
+vim.opt.shortmess:append("c")
 
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
-vim.cmd "set whichwrap+=<,>,[,],h,l"
-vim.cmd [[set iskeyword+=-]]
-vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
+vim.cmd("set whichwrap+=<,>,[,],h,l")
+vim.cmd([[set iskeyword+=-]])
+vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work
 
-local general_augroup = vim.api.nvim_create_augroup("_general_settings", { clear = true })
-vim.api.nvim_create_autocmd("BufReadPost", {
-  pattern = "*",
-  command = "if &readonly | set noreadonly | endif",
-})
+-- local general_augroup = vim.api.nvim_create_augroup("_general_settings", { clear = true })
+-- vim.api.nvim_create_autocmd("BufReadPost", {
+--   pattern = "*",
+--   command = "if &readonly | set noreadonly | endif",
+-- })
+--
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "go",
+--   command = "exec 'setlocal lcs=tab:\\▎\\ '",
+-- })
+--
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = { "qf", "help", "man", "lspinfo" },
+--   group = general_augroup,
+--   command = "nnoremap <silent> <buffer> q :close<CR>",
+-- })
+--
+-- vim.api.nvim_create_autocmd("TextYankPost", {
+--   pattern = "*",
+--   group = general_augroup,
+--   callback = function()
+--     require("vim.highlight").on_yank({ higroup = "Visual", timeout = 200 })
+--   end,
+-- })
+--
+-- vim.api.nvim_create_autocmd("BufWinEnter", {
+--   pattern = "*",
+--   group = general_augroup,
+--   command = "set formatoptions-=cro",
+-- })
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "go",
-  command = "exec 'setlocal lcs=tab:\\▎\\ '",
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "qf", "help", "man", "lspinfo" },
-  group = general_augroup,
-  command = "nnoremap <silent> <buffer> q :close<CR>",
-})
-
-vim.api.nvim_create_autocmd("TextYankPost", {
-  pattern = "*",
-  group = general_augroup,
-  callback = function()
-    require('vim.highlight').on_yank({ higroup = 'Visual', timeout = 200 })
-  end,
-})
-
-vim.api.nvim_create_autocmd("BufWinEnter", {
-  pattern = "*",
-  group = general_augroup,
-  command = "set formatoptions-=cro",
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "qf",
-  group = general_augroup,
-  command = "set nobuflisted",
-})
-
-local git_augroup = vim.api.nvim_create_augroup("_git", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "gitcommit",
-  group = git_augroup,
-  command = "setlocal wrap",
-})
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "gitcommit",
-  group = git_augroup,
-  command = "setlocal spell",
-})
-
-local markdown_augroup = vim.api.nvim_create_augroup("_markdown", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "markdown",
-  group = markdown_augroup,
-  command = "setlocal wrap",
-})
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "markdown",
-  group = markdown_augroup,
-  command = "setlocal spell",
-})
-
-local auto_resize_augroup = vim.api.nvim_create_augroup("_auto_resize", { clear = true })
-vim.api.nvim_create_autocmd("VimResized", {
-  pattern = "*",
-  group = auto_resize_augroup,
-  command = "tabdo wincmd =",
-})
-
-local alpha_augroup = vim.api.nvim_create_augroup("_alpha", { clear = true })
-vim.api.nvim_create_autocmd("User", {
-  pattern = "AlphaReady",
-  group = alpha_augroup,
-  callback = function()
-    vim.opt.showtabline = 0
-    vim.api.nvim_create_autocmd("BufUnload", {
-      buffer = 0,
-      group = alpha_augroup,
-      command = "set showtabline=2",
-    })
-  end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "qf",
+--   group = general_augroup,
+--   command = "set nobuflisted",
+-- })
+--
+-- local git_augroup = vim.api.nvim_create_augroup("_git", { clear = true })
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "gitcommit",
+--   group = git_augroup,
+--   command = "setlocal wrap",
+-- })
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "gitcommit",
+--   group = git_augroup,
+--   command = "setlocal spell",
+-- })
+--
+-- local markdown_augroup = vim.api.nvim_create_augroup("_markdown", { clear = true })
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "markdown",
+--   group = markdown_augroup,
+--   command = "setlocal wrap",
+-- })
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "markdown",
+--   group = markdown_augroup,
+--   command = "setlocal spell",
+-- })
+--
+-- local auto_resize_augroup = vim.api.nvim_create_augroup("_auto_resize", { clear = true })
+-- vim.api.nvim_create_autocmd("VimResized", {
+--   pattern = "*",
+--   group = auto_resize_augroup,
+--   command = "tabdo wincmd =",
+-- })
+--
+-- local alpha_augroup = vim.api.nvim_create_augroup("_alpha", { clear = true })
+-- vim.api.nvim_create_autocmd("User", {
+--   pattern = "AlphaReady",
+--   group = alpha_augroup,
+--   callback = function()
+--     vim.opt.showtabline = 0
+--     vim.api.nvim_create_autocmd("BufUnload", {
+--       buffer = 0,
+--       group = alpha_augroup,
+--       command = "set showtabline=2",
+--     })
+--   end,
+-- })
