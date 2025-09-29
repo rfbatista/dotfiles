@@ -19,9 +19,13 @@ return {
           end,
         },
       }, neotest_ns)
+      require("neotest").setup({
+        adapters = {
+          require("neotest-jest")({
+            dap = { justMyCode = false },
+          }),
+        },
+      })
     end,
-    opts = {
-      adapters = { "neotest-jest" },
-    },
   },
 }

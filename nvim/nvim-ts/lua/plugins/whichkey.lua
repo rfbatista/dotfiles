@@ -251,6 +251,13 @@ return {
       remap = false,
     },
     {
+      "<leader>ac",
+      "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>",
+      desc = "Run all tests in file",
+      nowait = true,
+      remap = false,
+    },
+    {
       "<leader>ao",
       '<cmd>lua require("neotest").output.open({ enter = true, auto_close = true })<cr>',
       desc = "Show Output",
