@@ -794,6 +794,7 @@ return {
   config = function(_, opts)
     local which_key = require("which-key")
     which_key.setup(opts)
+    which_key.add(require("plugins.whichkey_commands.json"))
     which_key.add({
       {
         "<leader>D",
