@@ -61,7 +61,7 @@ return {
       require("numb").setup()
     end,
   },
-  { "echasnovski/mini.nvim", version = "*" },
+  { "nvim-mini/mini.nvim",  version = "*" },
   {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },

@@ -5,6 +5,8 @@ return {
   dependencies = {
     {
       "mason-org/mason.nvim",
+      -- tag = "v1.11.0",
+      -- version = "^1.0.0",
       opts = { ensure_installed = { "prettier" } },
       config = function()
         require("mason").setup({
@@ -21,7 +23,8 @@ return {
     },
     {
       "mason-org/mason-lspconfig.nvim",
-      version = "1.31.0",
+      -- tag = "v1.32.0",
+      -- version = "^1.0.0",
       config = function()
         require("mason-lspconfig").setup({
           ensure_installed = {},

@@ -9,7 +9,7 @@ return {
       "nvim-tree/nvim-web-devicons",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       "nvim-telescope/telescope-ui-select.nvim",
-      "telescope-dap.nvim",
+      "nvim-telescope/telescope-dap.nvim",
       "kkharji/sqlite.lua",
     },
     config = function()

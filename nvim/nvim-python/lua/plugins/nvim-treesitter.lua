@@ -1,15 +1,16 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    version = false,
+    commit = "42fc28ba918343ebfd5565147a42a26580579482",
     build = ":TSUpdate",
+    version = false,
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
     },
     opts = function(_, opts)
       if type(opts.ensure_installed) == "table" then
-        vim.list_extend(opts.ensure_installed, { "typescript", "tsx" })
+        vim.list_extend(opts.ensure_installed, { "python" })
       end
     end,
     config = function()
@@ -46,7 +47,7 @@ return {
           "templ",
           "java",
         },
-        sync_install = "yes", -- install languages synchronously (only applied to `ensure_installed`)
+        sync_install = "yes",    -- install languages synchronously (only applied to `ensure_installed`)
         ignore_install = { "" }, -- List of parsers to ignore installing
         autopairs = {
           enable = true,
@@ -55,7 +56,7 @@ return {
           enable = true,
         },
         highlight = {
-          enable = true, -- false will disable the whole extension
+          enable = true,    -- false will disable the whole extension
           disable = { "" }, -- list of language that will be disabled
           additional_vim_regex_highlighting = true,
         },
