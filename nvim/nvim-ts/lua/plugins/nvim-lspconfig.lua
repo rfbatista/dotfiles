@@ -1,128 +1,47 @@
 return {
   {
+    "mason-org/mason.nvim",
+    opts = function(_, opts)
+      opts.ensure_installed = opts.ensure_installed or {}
+      table.insert(opts.ensure_installed, "js-debug-adapter")
+      table.insert(opts.ensure_installed, "prettier")
+      table.insert(opts.ensure_installed, "vtsls")
+      table.insert(opts.ensure_installed, "tsserver")
+      table.insert(opts.ensure_installed, "ts_ls")
+    end,
+    config = function()
+      require("mason").setup({
+        ui = {
+          border = "rounded",
+          icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗",
+          },
+        },
+      })
+    end,
+  },
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    enabled = false,
+    opts = {},
+  },
+  {
     -- Core LSP and Mason
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      {
-        "mason-org/mason.nvim",
-        tag = "v1.11.0",
-        version = "^1.0.0",
-        opts = function(_, opts)
-          opts.ensure_installed = opts.ensure_installed or {}
-          table.insert(opts.ensure_installed, "js-debug-adapter")
-          table.insert(opts.ensure_installed, "prettier")
-        end,
-        config = function()
-          require("mason").setup({
-            ui = {
-              border = "rounded",
-              icons = {
-                package_installed = "✓",
-                package_pending = "➜",
-                package_uninstalled = "✗",
-              },
-            },
-          })
-        end,
-      },
-      {
-        "mason-org/mason-lspconfig.nvim",
-        tag = "v1.32.0",
-        version = "^1.0.0",
-        config = function()
-          require("mason-lspconfig").setup({
-            ensure_installed = {},
-          })
-        end,
-      },
-      {
-        "stevearc/conform.nvim",
-        optional = true,
-        opts = {
-          formatters_by_ft = {
-            go = {},
-          },
-        },
-      },
-      {
-        "mfussenegger/nvim-dap",
-        optional = true,
-        dependencies = {
-          {
-            "leoluz/nvim-dap-go",
-            opts = {},
-          },
-        },
-      },
-      {
-        "pmizio/typescript-tools.nvim",
-        dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-        enabled = true,
-        opts = {},
-      },
-      {
-        "yioneko/nvim-vtsls",
-        commit = "0b5f73c9e50ce95842ea07bb3f05c7d66d87d14a",
-      },
-    },
-    config = function()
-      require("mason-lspconfig").setup({
-        automatic_enable = true,
-      })
-    end,
-    opts = function(_, opts)
+    dependencies = {},
+    opts = function()
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
       -- change a keymap
       keys[#keys + 1] = { "gr", "<cmd>lua vim.lsp.buf.rename()<cr>" }
+      keys[#keys + 1] = { "gd", "<cmd>lua vim.lsp.buf.definition()<cr>" }
+
+      -- require("lspconfig.configs").vtsls = require("vtsls").lspconfig
     end,
-    opts = {
-      -- make sure mason installs the server
-      servers = {
-        ---@type lspconfig.options.tsserver
-        tsserver = {
-          keys = {
-            {
-              "<leader>co",
-              function()
-                vim.lsp.buf.code_action({
-                  apply = true,
-                  context = {
-                    only = { "source.organizeImports.ts" },
-                    diagnostics = {},
-                  },
-                })
-              end,
-              desc = "Organize Imports",
-            },
-            {
-              "<leader>cR",
-              function()
-                vim.lsp.buf.code_action({
-                  apply = true,
-                  context = {
-                    only = { "source.removeUnused.ts" },
-                    diagnostics = {},
-                  },
-                })
-              end,
-              desc = "Remove Unused Imports",
-            },
-          },
-          settings = {
-            typescript = {
-              inlayHints = inlay_hints_settings,
-            },
-            javascript = {
-              inlayHints = inlay_hints_settings,
-            },
-            completions = {
-              completeFunctionCalls = true,
-            },
-          },
-        },
-      },
-    },
+    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
   },
   {
     "nvim-mini/mini.icons",

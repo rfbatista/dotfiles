@@ -357,13 +357,6 @@ return {
       remap = false,
     },
     {
-      "<leader>gg",
-      "<cmd>lua _LAZYGIT_TOGGLE()<CR>",
-      desc = "Lazygit",
-      nowait = true,
-      remap = false,
-    },
-    {
       "<leader>gj",
       "<cmd>lua require 'gitsigns'.next_hunk()<cr>",
       desc = "Next Hunk",
@@ -801,6 +794,8 @@ return {
   config = function(_, opts)
     local which_key = require("which-key")
     which_key.setup(opts)
+    which_key.add(require("plugins.whichkey_commands.tui"))
+    which_key.add(require("plugins.whichkey_commands.json"))
     which_key.add({
       {
         "<leader>D",

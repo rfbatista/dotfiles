@@ -1,4 +1,5 @@
 return {
+  { "ellisonleao/gruvbox.nvim" },
   {
     "LazyVim/LazyVim",
     depends = {
@@ -14,6 +15,9 @@ return {
         keymaps = false,
       },
       colorscheme = function()
+        -- require("gruvbox").setup({
+        --   transparent_mode = true,
+        -- })
         require("catppuccin").setup({
           float = {
             transparent = false,
