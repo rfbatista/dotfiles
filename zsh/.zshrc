@@ -4,6 +4,7 @@ export SPACESHIP_CONFIG="$HOME/dotfiles/zsh/spaceship.zsh"
 ZSH_THEME="spaceship"
 # . /opt/asdf-vm/asdf.sh
 alias m="$HOME/dotfiles/scripts/run-makefile.sh"
+alias z="$HOME/dotfiles/scripts/zellij-select-project.sh"
 
 ###########################################################
 # AWS

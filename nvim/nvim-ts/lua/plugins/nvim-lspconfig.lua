@@ -1,15 +1,4 @@
 return {
-
-  {
-    "pmizio/typescript-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    enabled = false,
-    opts = {},
-  },
-  {
-    "yioneko/nvim-vtsls",
-    commit = "0b5f73c9e50ce95842ea07bb3f05c7d66d87d14a",
-  },
   {
     -- Core LSP and Mason
     "neovim/nvim-lspconfig",
@@ -61,14 +50,20 @@ return {
         optional = true,
         dependencies = {
           {
-            "mason-org/mason.nvim",
-            opts = { ensure_installed = {} },
-          },
-          {
             "leoluz/nvim-dap-go",
             opts = {},
           },
         },
+      },
+      {
+        "pmizio/typescript-tools.nvim",
+        dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+        enabled = true,
+        opts = {},
+      },
+      {
+        "yioneko/nvim-vtsls",
+        commit = "0b5f73c9e50ce95842ea07bb3f05c7d66d87d14a",
       },
     },
     config = function()
@@ -81,6 +76,53 @@ return {
       -- change a keymap
       keys[#keys + 1] = { "gr", "<cmd>lua vim.lsp.buf.rename()<cr>" }
     end,
+    opts = {
+      -- make sure mason installs the server
+      servers = {
+        ---@type lspconfig.options.tsserver
+        tsserver = {
+          keys = {
+            {
+              "<leader>co",
+              function()
+                vim.lsp.buf.code_action({
+                  apply = true,
+                  context = {
+                    only = { "source.organizeImports.ts" },
+                    diagnostics = {},
+                  },
+                })
+              end,
+              desc = "Organize Imports",
+            },
+            {
+              "<leader>cR",
+              function()
+                vim.lsp.buf.code_action({
+                  apply = true,
+                  context = {
+                    only = { "source.removeUnused.ts" },
+                    diagnostics = {},
+                  },
+                })
+              end,
+              desc = "Remove Unused Imports",
+            },
+          },
+          settings = {
+            typescript = {
+              inlayHints = inlay_hints_settings,
+            },
+            javascript = {
+              inlayHints = inlay_hints_settings,
+            },
+            completions = {
+              completeFunctionCalls = true,
+            },
+          },
+        },
+      },
+    },
   },
   {
     "nvim-mini/mini.icons",
