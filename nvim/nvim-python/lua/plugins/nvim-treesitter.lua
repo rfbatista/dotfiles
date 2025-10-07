@@ -1,76 +1,42 @@
 return {
   {
+    "windwp/nvim-ts-autotag",
+    event = "LazyFile",
+    opts = {},
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
-    commit = "42fc28ba918343ebfd5565147a42a26580579482",
-    build = ":TSUpdate",
-    version = false,
-    event = { "BufReadPost", "BufNewFile" },
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
+    opts = {
+      -- LazyVim config for treesitter
+      indent = { enable = true },
+      highlight = { enable = true },
+      folds = { enable = true },
+      ensure_installed = {
+        "bash",
+        "c",
+        "diff",
+        "html",
+        "go",
+        "javascript",
+        "jsdoc",
+        "json",
+        "lua",
+        "luadoc",
+        "luap",
+        "markdown",
+        "markdown_inline",
+        "printf",
+        "python",
+        "query",
+        "regex",
+        "toml",
+        "tsx",
+        "typescript",
+        "vim",
+        "vimdoc",
+        "xml",
+        "yaml",
+      },
     },
-    opts = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
-        vim.list_extend(opts.ensure_installed, { "python", "ninja", "rst" })
-      end
-    end,
-    config = function()
-      require("nvim-treesitter.configs").setup({
-        ensure_installed = {
-          "http",
-          "graphql",
-          "bash",
-          "c",
-          "html",
-          "htmldjango",
-          "javascript",
-          "json",
-          "lua",
-          "luadoc",
-          "luap",
-          "markdown",
-          "markdown_inline",
-          "python",
-          "query",
-          "regex",
-          "tsx",
-          "typescript",
-          "vim",
-          "vimdoc",
-          "yaml",
-          "rust",
-          "go",
-          "gomod",
-          "gowork",
-          "gosum",
-          "terraform",
-          "proto",
-          "templ",
-          "java",
-        },
-        sync_install = "yes",    -- install languages synchronously (only applied to `ensure_installed`)
-        ignore_install = { "" }, -- List of parsers to ignore installing
-        autopairs = {
-          enable = true,
-        },
-        autotag = {
-          enable = true,
-        },
-        highlight = {
-          enable = true,    -- false will disable the whole extension
-          disable = { "" }, -- list of language that will be disabled
-          additional_vim_regex_highlighting = true,
-        },
-        indent = { enable = true, disable = { "yaml" } },
-        rainbow = {
-          enable = true,
-          extended_mode = true,
-          max_file_lines = nil,
-        },
-        context_commentstring = {
-          enable = true,
-          enable_autocmd = false,
-        },
-      })
-    end,
   },
 }

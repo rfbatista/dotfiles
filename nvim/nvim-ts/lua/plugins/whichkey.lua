@@ -202,41 +202,6 @@ return {
       remap = false,
     },
     {
-      "<leader>Tb",
-      "<cmd>lua require('vtsls').commands.sort_imports()<CR>",
-      desc = "Organize imports",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>Tc",
-      "<cmd>lua require('vtsls').commands.rename_file()<CR>",
-      desc = "Typescript Rename File",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>Td",
-      "<cmd>lua require('vtsls').commands.add_missing_imports()<CR>",
-      desc = "Import all",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>Te",
-      "<cmd>lua require('vtsls').commands.fix_all()<CR>",
-      desc = "Fix all",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>Tm",
-      "<cmd>lua require('vtsls').commands.remove_unused_imports()<CR>",
-      desc = "Remover imports nao utilizados",
-      nowait = true,
-      remap = false,
-    },
-    {
       "<leader>aa",
       '<cmd>lua require("neotest").run.run()<cr>',
       desc = "Run the nearest test",
@@ -796,6 +761,7 @@ return {
     which_key.setup(opts)
     which_key.add(require("plugins.whichkey_commands.tui"))
     which_key.add(require("plugins.whichkey_commands.json"))
+    which_key.add(require("plugins.whichkey_commands.typescript"))
     which_key.add({
       {
         "<leader>D",
