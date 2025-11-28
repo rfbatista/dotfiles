@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
-# This script selects a project using gum and launches a zellij session in that directory.
+# This script selects a project using gum and launches a zellij session in that directory with the compact layout.
 
 # Set the projects directory. Change this as needed.
-PROJECTS_DIR="${HOME}/projetos"
+# PROJECTS_DIR="${HOME}/projetos"
+PROJECTS_DIR="/mnt/projetos"
 
 if [ ! -d "$PROJECTS_DIR" ]; then
   echo "Projects directory not found: $PROJECTS_DIR"
@@ -29,10 +30,12 @@ echo "Opening project: $selected"
 cd "$selected" || exit 1
 
 SESSION_NAME=$(basename "$selected")
+
 if zellij ls | grep -q "$SESSION_NAME"; then
     echo "Resurrecting existing session: $SESSION_NAME"
     exec zellij attach "$SESSION_NAME"
 else
-    echo "No session found. Creating new session: $SESSION_NAME"
-    exec zellij --session "$SESSION_NAME"
+    echo "No session found. Creating new session with compact layout: $SESSION_NAME"
+    exec zellij --session "$SESSION_NAME" --new-session-with-layout compact
 fi
+

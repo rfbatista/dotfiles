@@ -399,7 +399,7 @@ exec_always sh $HOME/dotfiles/scripts/wallpaper.sh
 bar {
 	i3bar_command i3bar
 	status_command i3status -c $HOME/dotfiles/i3/i3status.conf
-	position bottom
+	position top
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
 #	tray_output primary
 #	tray_output eDP1

@@ -29,14 +29,13 @@ return {
     opts = {
       explorer = { enabled = false },
       dashboard = {
-        enabled = false,
+        enabled = true,
       },
     },
   },
   {
     "mistweaverco/kulala.nvim",
-    -- "rest-nvim/rest.nvim",
-    tag = "v5.3.1",
+    tag = "v5.3.3",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "j-hui/fidget.nvim",
@@ -61,7 +60,7 @@ return {
       require("numb").setup()
     end,
   },
-  { "nvim-mini/mini.nvim",  version = "*" },
+  { "nvim-mini/mini.nvim", version = "*" },
   {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },

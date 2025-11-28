@@ -1,8 +1,24 @@
 #!/usr/bin/zsh
 source $HOME/dotfiles/zsh/antigen.zsh
+export PATH="/home/renan/flutter_sdk/flutter/bin:$PATH"
+export PATH="/home/renan/android-studio/android-studio/bin:$PATH"
 export SPACESHIP_CONFIG="$HOME/dotfiles/zsh/spaceship.zsh"
+
+
+#############################
+# Android
+#############################
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+
+# export UV_CACHE_DIR="/mnt/projetos/.cache/uv"
 ZSH_THEME="spaceship"
 # . /opt/asdf-vm/asdf.sh
+# alias zellij="/home/renan/.asdf/installs/rust/1.85.1/bin/zellij"
 alias m="$HOME/dotfiles/scripts/run-makefile.sh"
 alias z="$HOME/dotfiles/scripts/zellij-select-project.sh"
 
@@ -10,11 +26,63 @@ alias z="$HOME/dotfiles/scripts/zellij-select-project.sh"
 # AWS
 ###########################################################
 alias aws-ls="aws configure list-profiles"
-aws-set() {
-    local name="$1"
-    # Replace this with the command you want to execute using $name
-    echo "Hello, $name!"
-    export AWS_PROFILE=$name
+# aws-set() {
+#     local name="$1"
+#     # Replace this with the command you want to execute using $name
+#     echo "You are in $name!"
+#     export AWS_PROFILE=$name
+# }
+alias aws-ls="aws configure list-profiles"
+
+aws-prof() {
+    local company_name="$1"
+    
+    if [ -z "$company_name" ]; then
+        echo "Usage: aws-prof <company_name>"
+        echo "Example: aws-prof enforce"
+        return 1
+    fi
+    
+    # Get profiles that start with the company name
+    local matching_profiles=$(aws configure list-profiles | grep "^$company_name")
+    
+    if [ -z "$matching_profiles" ]; then
+        echo "No profiles found with prefix: $company_name"
+        echo "Available profiles:"
+        aws configure list-profiles | nl
+        return 1
+    fi
+    
+    # List matching profiles
+    echo "AWS profiles matching '$company_name':"
+    echo "$matching_profiles" | nl
+    
+    # Prompt for profile selection
+    echo -n "Enter profile number or name: "
+    read selection
+    
+    # Handle numeric selection
+    if [[ "$selection" =~ ^[0-9]+$ ]]; then
+        local profile=$(echo "$matching_profiles" | sed -n "${selection}p")
+        if [ -z "$profile" ]; then
+            echo "Invalid profile number!"
+            return 1
+        fi
+        export AWS_PROFILE="$profile"
+        echo "Set AWS_PROFILE to: $profile"
+    else
+        # Handle name selection
+        if echo "$matching_profiles" | grep -q "^$selection$"; then
+            export AWS_PROFILE="$selection"
+            echo "Set AWS_PROFILE to: $selection"
+        else
+            echo "Profile '$selection' not found in matching profiles!"
+            return 1
+        fi
+    fi
+    
+    # Verify the profile is set
+    echo "Current AWS profile: $AWS_PROFILE"
 }
 
 ###########################################################
@@ -227,14 +295,6 @@ ts_setup(){
 # Work alias
 #############################
 
-#############################
-# Android
-#############################
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 #############################
 # Python
@@ -377,8 +437,6 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
-export PATH="/usr/bin/flutter/bin:$PATH"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terragrunt terragrunt

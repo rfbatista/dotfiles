@@ -2,6 +2,7 @@ return {
   { "ellisonleao/gruvbox.nvim" },
   {
     "LazyVim/LazyVim",
+    tag = "15.12.2",
     depends = {
       {
         "catppuccin/nvim",

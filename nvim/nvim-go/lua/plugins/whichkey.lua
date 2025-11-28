@@ -294,40 +294,12 @@ return {
       remap = false,
     },
     {
-      "<leader>da",
-      "<cmd>lua require('kulala').run()<cr>",
-      desc = "Run request",
-      nowait = true,
-      remap = false,
-    },
-    {
       "<leader>db",
       "<cmd>Rest open<cr>",
       desc = "Open result pane",
       nowait = true,
       remap = false,
     },
-    -- {
-    -- 	"<leader>db",
-    -- 	"<cmd>lua require('kulala').toggle_view()<cr>",
-    -- 	desc = "Toggle between body and headers",
-    -- 	nowait = true,
-    -- 	remap = false,
-    -- },
-    -- {
-    -- 	"<leader>dd",
-    -- 	"<cmd>lua require('kulala').run()<cr>",
-    -- 	desc = "Run under cursor request",
-    -- 	nowait = true,
-    -- 	remap = false,
-    -- },
-    -- {
-    -- 	"<leader>di",
-    -- 	"<cmd>lua require('kulala').inspect()<cr>",
-    -- 	desc = "Inspect current request",
-    -- 	nowait = true,
-    -- 	remap = false,
-    -- },
     {
       "<leader>gR",
       "<cmd>lua require 'gitsigns'.reset_buffer()<cr>",
@@ -803,6 +775,11 @@ return {
     which_key.setup(opts)
     which_key.add(require("plugins.whichkey_commands.tui"))
     which_key.add(require("plugins.whichkey_commands.json"))
+    which_key.add(require("plugins.whichkey_commands.others"))
+    which_key.add(require("plugins.whichkey_commands.ai"))
+    which_key.add(require("plugins.whichkey_commands.ai"))
+    which_key.add(require("plugins.whichkey_commands.requests"))
+    which_key.add(require("plugins.whichkey_commands.git"))
     which_key.add({
       {
         "<leader>D",
@@ -831,12 +808,6 @@ return {
       {
         "<leader>a",
         group = "Tests",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>d",
-        group = "Requests",
         nowait = true,
         remap = false,
       },

@@ -49,9 +49,17 @@ local options = {
 
 vim.opt.shortmess:append("c")
 
-for k, v in pairs(options) do
-  vim.opt[k] = v
-end
+-- for k, v in pairs(options) do
+--   vim.opt[k] = v
+-- end
+vim.api.nvim_create_autocmd("User", {
+  pattern = "VeryLazy",
+  callback = function()
+    for k, v in pairs(options) do
+      vim.opt[k] = v
+    end
+  end,
+})
 
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])

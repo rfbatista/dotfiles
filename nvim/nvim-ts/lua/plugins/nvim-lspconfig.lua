@@ -1,5 +1,14 @@
 return {
   {
+    "stevearc/conform.nvim",
+    optional = true,
+    opts = {
+      formatters_by_ft = {
+        typescript = { "prettier" },
+      },
+    },
+  },
+  {
     "mason-org/mason.nvim",
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
@@ -25,7 +34,7 @@ return {
   {
     "pmizio/typescript-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    enabled = true,
+    enabled = false,
     opts = {},
   },
   {
@@ -33,14 +42,16 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {},
-    opts = function()
-      local keys = require("lazyvim.plugins.lsp.keymaps").get()
-      -- change a keymap
-      keys[#keys + 1] = { "gr", "<cmd>lua vim.lsp.buf.rename()<cr>" }
-      keys[#keys + 1] = { "gd", "<cmd>lua vim.lsp.buf.definition()<cr>" }
-
-      -- require("lspconfig.configs").vtsls = require("vtsls").lspconfig
-    end,
+    opts = {
+      servers = {
+        ["*"] = {
+          keys = {
+            { "gr", "<cmd>lua vim.lsp.buf.rename()<cr>", has = "rename" },
+            { "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", has = "definition" },
+          },
+        },
+      },
+    },
     ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
   },
   {

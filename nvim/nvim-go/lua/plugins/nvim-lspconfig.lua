@@ -54,11 +54,15 @@ return {
         event = "LazyFile",
       },
     },
-    opts = function()
-      local keys = require("lazyvim.plugins.lsp.keymaps").get()
-      -- change a keymap
-      keys[#keys + 1] = { "gr", "<cmd>lua vim.lsp.buf.rename()<cr>" }
-      keys[#keys + 1] = { "gd", "<cmd>lua vim.lsp.buf.definition()<cr>" }
-    end,
+    opts = {
+      servers = {
+        ["*"] = {
+          keys = {
+            { "gr", "<cmd>lua vim.lsp.buf.rename()<cr>" },
+            { "gd", "<cmd>lua vim.lsp.buf.definition()<cr>" },
+          },
+        },
+      },
+    },
   },
 }

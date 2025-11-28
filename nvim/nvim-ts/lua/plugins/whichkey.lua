@@ -12,35 +12,6 @@ return {
   },
   keys = {
     {
-      "<leader>fs",
-      function()
-        require("aider.aider").send_file()
-      end,
-      desc = "Send file",
-      mode = { "n", "v" },
-    },
-    {
-      "<leader>fl",
-      function()
-        require("aider.aider").select_template()
-      end,
-      desc = "List templates",
-    },
-    {
-      "<leader>fo",
-      function()
-        require("aider.aider").toggle()
-      end,
-      desc = "Open aider",
-    },
-    { "<leader>fc", "<cmd>Aider command<cr>", desc = "Aider Commands" },
-    { "<leader>fb", "<cmd>Aider buffer<cr>", desc = "Send Buffer" },
-    { "<leader>f+", "<cmd>Aider add<cr>", desc = "Add File" },
-    { "<leader>f-", "<cmd>Aider drop<cr>", desc = "Drop File" },
-    { "<leader>fr", "<cmd>Aider add readonly<cr>", desc = "Add Read-Only" },
-    { "<leader>f+", "<cmd>AiderTreeAddFile<cr>", desc = "Add File from Tree to Aider", ft = "NvimTree" },
-    { "<leader>f-", "<cmd>AiderTreeDropFile<cr>", desc = "Drop File from Tree from Aider", ft = "NvimTree" },
-    {
       "<leader>Da",
       "<cmd>TroubleToggle<cr>",
       desc = "Toggle",
@@ -245,13 +216,6 @@ return {
       remap = false,
     },
     {
-      "<leader>b",
-      "<cmd>lua require('telescope').extensions.aerial.aerial()<cr>",
-      desc = "File Structure",
-      nowait = true,
-      remap = false,
-    },
-    {
       "<leader>c",
       "<cmd>Bdelete!<CR>",
       desc = "Close Buffer",
@@ -259,14 +223,14 @@ return {
       remap = false,
     },
     {
-      "<leader>da",
+      "<leader>Da",
       "<cmd>lua require('kulala').run()<cr>",
       desc = "Run request",
       nowait = true,
       remap = false,
     },
     {
-      "<leader>db",
+      "<leader>Rb",
       "<cmd>Rest open<cr>",
       desc = "Open result pane",
       nowait = true,
@@ -294,69 +258,6 @@ return {
     -- 	remap = false,
     -- },
     {
-      "<leader>gR",
-      "<cmd>lua require 'gitsigns'.reset_buffer()<cr>",
-      desc = "Reset Buffer",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>gb",
-      "<cmd>Telescope git_branches<cr>",
-      desc = "Checkout branch",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>gc",
-      "<cmd>Telescope git_commits<cr>",
-      desc = "Checkout commit",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>gd",
-      "<cmd>Gitsigns diffthis HEAD<cr>",
-      desc = "Diff",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>gj",
-      "<cmd>lua require 'gitsigns'.next_hunk()<cr>",
-      desc = "Next Hunk",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>gk",
-      "<cmd>lua require 'gitsigns'.prev_hunk()<cr>",
-      desc = "Prev Hunk",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>gl",
-      "<cmd>lua require 'gitsigns'.blame_line()<cr>",
-      desc = "Blame",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>go",
-      "<cmd>Telescope git_status<cr>",
-      desc = "Open changed file",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>gp",
-      "<cmd>lua require 'gitsigns'.preview_hunk()<cr>",
-      desc = "Preview Hunk",
-      nowait = true,
-      remap = false,
-    },
-    {
       "<leader>h",
       "<cmd>nohlsearch<CR>",
       desc = "No Highlight",
@@ -374,97 +275,6 @@ return {
       "<leader>k",
       "<cmd>BufferCloseAllButCurrent<CR>",
       desc = "close all buffers",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>lI",
-      "<cmd>LspInstallInfo<cr>",
-      desc = "Installer Info",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>lS",
-      "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-      desc = "Workspace Symbols",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>la",
-      "<cmd>lua vim.lsp.buf.code_action()<cr>",
-      desc = "Code Action",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>lf",
-      "<cmd>lua require('conform').format()<cr>",
-      desc = "Format",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>lh",
-      "<cmd>Telescope lsp_document_diagnostics<cr>",
-      desc = "Document Diagnostics",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>li",
-      "<cmd>LspInfo<cr>",
-      desc = "Info",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>lj",
-      "<cmd>lua vim.diagnostic.goto_next()<CR>",
-      desc = "Next Diagnostic",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>lk",
-      "<cmd>lua vim.diagnostic.goto_prev()<cr>",
-      desc = "Prev Diagnostic",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>ll",
-      "<cmd>lua vim.lsp.codelens.run()<cr>",
-      desc = "CodeLens Action",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>lq",
-      "<cmd>lua vim.diagnostic.setloclist()<cr>",
-      desc = "Quickfix",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>lr",
-      "<cmd>lua vim.lsp.buf.rename()<cr>",
-      desc = "Rename",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>ls",
-      "<cmd>Telescope lsp_document_symbols<cr>",
-      desc = "Document Symbols",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>lw",
-      "<cmd>Telescope lsp_workspace_diagnostics<cr>",
-      desc = "Workspace Diagnostics",
       nowait = true,
       remap = false,
     },
@@ -762,6 +572,10 @@ return {
     which_key.add(require("plugins.whichkey_commands.tui"))
     which_key.add(require("plugins.whichkey_commands.json"))
     which_key.add(require("plugins.whichkey_commands.typescript"))
+    which_key.add(require("plugins.whichkey_commands.others"))
+    which_key.add(require("plugins.whichkey_commands.ai"))
+    which_key.add(require("plugins.whichkey_commands.lsp"))
+    which_key.add(require("plugins.whichkey_commands.git"))
     which_key.add({
       {
         "<leader>D",
@@ -794,7 +608,7 @@ return {
         remap = false,
       },
       {
-        "<leader>d",
+        "<leader>R",
         group = "Requests",
         nowait = true,
         remap = false,
@@ -802,12 +616,6 @@ return {
       {
         "<leader>g",
         group = "Git",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>l",
-        group = "LSP",
         nowait = true,
         remap = false,
       },

@@ -25,7 +25,6 @@ return {
   },
   {
     "mistweaverco/kulala.nvim",
-    -- "rest-nvim/rest.nvim",
     tag = "v5.3.1",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",

@@ -1,23 +1,3 @@
----@alias nvim_aider.Color string
-
----@class nvim_aider.Theme: table<string, nvim_aider.Color>
----@field user_input_color nvim_aider.Color
----@field tool_output_color nvim_aider.Color
----@field tool_error_color nvim_aider.Color
----@field tool_warning_color nvim_aider.Color
----@field assistant_output_color nvim_aider.Color
----@field completion_menu_color nvim_aider.Color
----@field completion_menu_bg_color nvim_aider.Color
----@field completion_menu_current_color nvim_aider.Color
----@field completion_menu_current_bg_color nvim_aider.Color
-
----@class nvim_aider.Config: snacks.terminal.Opts
----@field aider_cmd? string
----@field args? string[]
----@field theme? nvim_aider.Theme
----@field win? snacks.win.Config
----@field picker_cfg? snacks.picker.layout.Config
-
 local function get_env_value(key)
 	local envPath = os.getenv("HOME") .. "/dotfiles/.env"
 	local file = io.open(envPath, "r")
@@ -72,8 +52,25 @@ M.defaults = {
 	},
 }
 
+M.cursor = {
+	aider_cmd = "cursor-agent",
+	args = {},
+	config = {
+		os = { editPreset = "nvim-remote" },
+		gui = { nerdFontsVersion = "3" },
+	},
+	win = {
+		wo = { winbar = "Cursor" },
+		style = "nvim_cursor",
+		position = "right",
+	},
+	picker_cfg = {
+		preset = "vscode",
+	},
+}
+
 ---@type nvim_aider.Config
-M.options = vim.deepcopy(M.defaults)
+M.options = vim.deepcopy(M.cursor)
 
 ---@param colors table
 local function set_catppuccin_colors(colors)

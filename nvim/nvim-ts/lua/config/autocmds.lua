@@ -16,7 +16,7 @@ local options = {
   cmdheight = 2, -- more space in the neovim command line for displaying messages
   completeopt = { "menuone", "noselect" }, -- mostly just for cmp
   conceallevel = 0, -- so that `` is visible in markdown files
-  fileencoding = "utf-8", -- the encoding written to a file
+  -- fileencoding = "utf-8", -- the encoding written to a file
   hlsearch = true, -- highlight all matches on previous search pattern
   ignorecase = true, -- ignore case in search patterns
   mouse = "a", -- allow the mouse to be used in neovim
@@ -44,13 +44,21 @@ local options = {
   wrap = false, -- display lines as one long line
   scrolloff = 8, -- is one of my fav
   sidescrolloff = 8,
-  guifont = "JetBrains Mono:h17", -- the font used in graphical neovim applications
 }
 
 vim.opt.shortmess:append("c")
 
 for k, v in pairs(options) do
-  vim.opt[k] = v
+  local ok, err = pcall(function()
+    -- Skip GUI-specific options in terminal Neovim
+    if k == "guifont" and vim.fn.has("gui_running") == 0 then
+      return
+    end
+    vim.opt[k] = v
+  end)
+  if not ok then
+    vim.notify("Failed to set option " .. k .. ": " .. tostring(err), vim.log.levels.WARN)
+  end
 end
 
 vim.cmd("set whichwrap+=<,>,[,],h,l")
