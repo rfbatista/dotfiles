@@ -65,6 +65,14 @@ vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])
 vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work
 
+-- auto reload buffer if file change externally
+vim.opt.autoread = true
+
+local keymap = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+
+keymap("n", "<Tab>", "<Cmd>Neotree reveal<CR>", opts)
+
 local general_augroup = vim.api.nvim_create_augroup("_general_settings", { clear = true })
 vim.api.nvim_create_autocmd("BufReadPost", {
   pattern = "*",

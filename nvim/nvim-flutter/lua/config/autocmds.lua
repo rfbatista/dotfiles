@@ -9,7 +9,6 @@
 
 -- Autocmds using vim.api.nvim_create_autocmd
 
-
 -- To list all options available run :help options
 local options = {
   backup = false, -- creates a backup file
@@ -48,15 +47,21 @@ local options = {
   guifont = "JetBrains Mono:h17", -- the font used in graphical neovim applications
 }
 
-vim.opt.shortmess:append "c"
+vim.opt.shortmess:append("c")
+vim.opt.relativenumber = false
 
-for k, v in pairs(options) do
-  vim.opt[k] = v
-end
+vim.api.nvim_create_autocmd("User", {
+  pattern = "VeryLazy",
+  callback = function()
+    for k, v in pairs(options) do
+      vim.opt[k] = v
+    end
+  end,
+})
 
-vim.cmd "set whichwrap+=<,>,[,],h,l"
-vim.cmd [[set iskeyword+=-]]
-vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
+vim.cmd("set whichwrap+=<,>,[,],h,l")
+vim.cmd([[set iskeyword+=-]])
+vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work
 
 local general_augroup = vim.api.nvim_create_augroup("_general_settings", { clear = true })
 vim.api.nvim_create_autocmd("BufReadPost", {
@@ -75,13 +80,13 @@ vim.api.nvim_create_autocmd("FileType", {
   command = "nnoremap <silent> <buffer> q :close<CR>",
 })
 
-vim.api.nvim_create_autocmd("TextYankPost", {
-  pattern = "*",
-  group = general_augroup,
-  callback = function()
-    require('vim.highlight').on_yank({ higroup = 'Visual', timeout = 200 })
-  end,
-})
+-- vim.api.nvim_create_autocmd("TextYankPost", {
+--   pattern = "*",
+--   group = general_augroup,
+--   callback = function()
+--     require('vim.highlight').on_yank({ higroup = 'Visual', timeout = 200 })
+--   end,
+-- })
 
 vim.api.nvim_create_autocmd("BufWinEnter", {
   pattern = "*",
@@ -137,5 +142,12 @@ vim.api.nvim_create_autocmd("User", {
       group = alpha_augroup,
       command = "set showtabline=2",
     })
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = "*.bicep",
+  callback = function()
+    vim.bo.filetype = "bicep"
   end,
 })

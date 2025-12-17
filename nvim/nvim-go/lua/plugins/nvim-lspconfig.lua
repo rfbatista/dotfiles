@@ -1,5 +1,6 @@
 return {
   { "nvim-neotest/neotest-plenary" },
+  { "fatih/vim-go" },
   {
     "nvim-neotest/neotest",
     opts = { adapters = { "neotest-plenary" } },

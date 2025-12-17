@@ -118,6 +118,13 @@ return {
       remap = false,
     },
     {
+      "<leader>Gy",
+      "<cmd>GoAddTag yaml<cr>",
+      desc = "Add yaml tags",
+      nowait = true,
+      remap = false,
+    },
+    {
       "<leader>Gb",
       "<cmd>GoAddTag form<cr>",
       desc = "Add form tags",
@@ -287,40 +294,12 @@ return {
       remap = false,
     },
     {
-      "<leader>da",
-      "<cmd>lua require('kulala').run()<cr>",
-      desc = "Run request",
-      nowait = true,
-      remap = false,
-    },
-    {
       "<leader>db",
       "<cmd>Rest open<cr>",
       desc = "Open result pane",
       nowait = true,
       remap = false,
     },
-    -- {
-    -- 	"<leader>db",
-    -- 	"<cmd>lua require('kulala').toggle_view()<cr>",
-    -- 	desc = "Toggle between body and headers",
-    -- 	nowait = true,
-    -- 	remap = false,
-    -- },
-    -- {
-    -- 	"<leader>dd",
-    -- 	"<cmd>lua require('kulala').run()<cr>",
-    -- 	desc = "Run under cursor request",
-    -- 	nowait = true,
-    -- 	remap = false,
-    -- },
-    -- {
-    -- 	"<leader>di",
-    -- 	"<cmd>lua require('kulala').inspect()<cr>",
-    -- 	desc = "Inspect current request",
-    -- 	nowait = true,
-    -- 	remap = false,
-    -- },
     {
       "<leader>gR",
       "<cmd>lua require 'gitsigns'.reset_buffer()<cr>",
@@ -409,6 +388,97 @@ return {
       "<leader>k",
       "<cmd>BufferCloseAllButCurrent<CR>",
       desc = "close all buffers",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>lI",
+      "<cmd>LspInstallInfo<cr>",
+      desc = "Installer Info",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>lS",
+      "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+      desc = "Workspace Symbols",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>la",
+      "<cmd>lua vim.lsp.buf.code_action()<cr>",
+      desc = "Code Action",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>lf",
+      "<cmd>lua require('conform').format()<cr>",
+      desc = "Format",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>lh",
+      "<cmd>Telescope lsp_document_diagnostics<cr>",
+      desc = "Document Diagnostics",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>li",
+      "<cmd>LspInfo<cr>",
+      desc = "Info",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>lj",
+      "<cmd>lua vim.diagnostic.goto_next()<CR>",
+      desc = "Next Diagnostic",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>lk",
+      "<cmd>lua vim.diagnostic.goto_prev()<cr>",
+      desc = "Prev Diagnostic",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>ll",
+      "<cmd>lua vim.lsp.codelens.run()<cr>",
+      desc = "CodeLens Action",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>lq",
+      "<cmd>lua vim.diagnostic.setloclist()<cr>",
+      desc = "Quickfix",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>lr",
+      "<cmd>lua vim.lsp.buf.rename()<cr>",
+      desc = "Rename",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>ls",
+      "<cmd>Telescope lsp_document_symbols<cr>",
+      desc = "Document Symbols",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>lw",
+      "<cmd>Telescope lsp_workspace_diagnostics<cr>",
+      desc = "Workspace Diagnostics",
       nowait = true,
       remap = false,
     },
@@ -703,11 +773,13 @@ return {
   config = function(_, opts)
     local which_key = require("which-key")
     which_key.setup(opts)
-    which_key.add(require("plugins.whichkey_commands.json"))
     which_key.add(require("plugins.whichkey_commands.tui"))
-    which_key.add(require("plugins.whichkey_commands.ai"))
+    which_key.add(require("plugins.whichkey_commands.json"))
     which_key.add(require("plugins.whichkey_commands.others"))
-    which_key.add(require("plugins.whichkey_commands.lsp"))
+    which_key.add(require("plugins.whichkey_commands.ai"))
+    which_key.add(require("plugins.whichkey_commands.ai"))
+    which_key.add(require("plugins.whichkey_commands.requests"))
+    which_key.add(require("plugins.whichkey_commands.git"))
     which_key.add({
       {
         "<leader>D",
@@ -740,14 +812,14 @@ return {
         remap = false,
       },
       {
-        "<leader>d",
-        group = "Requests",
+        "<leader>g",
+        group = "Git",
         nowait = true,
         remap = false,
       },
       {
-        "<leader>g",
-        group = "Git",
+        "<leader>l",
+        group = "LSP",
         nowait = true,
         remap = false,
       },

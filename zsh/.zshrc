@@ -1,8 +1,25 @@
 #!/usr/bin/zsh
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
 source $HOME/dotfiles/zsh/antigen.zsh
+#############################
+# zellij
+#############################
+# eval "$(zellij setup --generate-auto-start zsh)"
+# eval "$(bash $HOME/dotfiles/scripts/zl-list.sh)"
+# eval "$(zellij setup --generate-auto-start zsh)"
+#!/usr/bin/env bash
+alias zl="zellij --config $HOME/dotfiles/zellij/config.kdl"
+alias z="$HOME/dotfiles/scripts/zellij-select-project.sh"
+alias zls="$HOME/dotfiles/scripts/zl-list.sh"
+
+
 export PATH="/home/renan/flutter_sdk/flutter/bin:$PATH"
 export PATH="/home/renan/android-studio/android-studio/bin:$PATH"
 export SPACESHIP_CONFIG="$HOME/dotfiles/zsh/spaceship.zsh"
+#############################
+# Flutter
+#############################
+export PATH="$HOME/Public/flutter/bin:$PATH"
 
 
 #############################
@@ -18,9 +35,7 @@ export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 # export UV_CACHE_DIR="/mnt/projetos/.cache/uv"
 ZSH_THEME="spaceship"
 # . /opt/asdf-vm/asdf.sh
-# alias zellij="/home/renan/.asdf/installs/rust/1.85.1/bin/zellij"
 alias m="$HOME/dotfiles/scripts/run-makefile.sh"
-alias z="$HOME/dotfiles/scripts/zellij-select-project.sh"
 
 ###########################################################
 # AWS
@@ -128,16 +143,16 @@ alias uvr="uv run"
 export JAVA_HOME=/usr/lib/jvm/java-24-openjdk
 export PATH=$JAVA_HOME/bin:$PATH
 
-
 ###########################################################
 # NEOVIM
 ###########################################################
-# alias nv="NVIM_APPNAME=nvim-default $HOME/neovim/build/bin/nvim"
-alias nv="NVIM_APPNAME=nvim-default $HOME/neovim-11/build/bin/nvim"
-alias nvjava="NVIM_APPNAME=nvim-java $HOME/neovim-11/build/bin/nvim"
-alias nvgo="NVIM_APPNAME=nvim-go $HOME/neovim-11/build/bin/nvim"
-alias nvpy="NVIM_APPNAME=nvim-python $HOME/neovim-11/build/bin/nvim"
-alias nvts="NVIM_APPNAME=nvim-ts $HOME/neovim-11/build/bin/nvim"
+# alias nv="NVIM_APPNAME=nvim-default nvim"
+alias nv="NVIM_APPNAME=nvim-default nvim"
+alias nvjava="NVIM_APPNAME=nvim-java nvim"
+alias nvgo="NVIM_APPNAME=nvim-go nvim"
+alias nvpy="NVIM_APPNAME=nvim-python nvim"
+alias nvts="NVIM_APPNAME=nvim-ts nvim"
+alias nvfl="NVIM_APPNAME=nvim-flutter nvim"
 
 ###########################################################
 # UTILITIES
@@ -220,7 +235,8 @@ alias swagger='sudo docker run --rm -it  --user $(id -u):$(id -g) -e GOPATH=$(go
 alias aws='/usr/local/bin/aws'
 
 # PODMAN
-export DOCKER_HOST=unix:///run/user/1000/podman/podman.sock
+# export DOCKER_HOST=unix:///run/user/1000/podman/podman.sock
+export DOCKER_HOST=unix:///var/folders/jf/kllvml0d3gn15fv7kpyd9xsr0000gn/T/podman/podman-machine-default-api.sock
 alias docker="podman"
 
 # VPN
@@ -232,13 +248,6 @@ alias codefusion='./build/codefusion  -m ./model/Meta-Llama-3.1-8B-Instruct-Q8_0
 # alias poetry="$HOME/.local/bin/poetry"
 fpath+=~/.zfunc
 autoload -Uz compinit && compinit
-
-##################
-# zellij
-##################
-# eval "$(zellij setup --generate-auto-start zsh)"
-#!/usr/bin/env bash
-alias zl="zellij --config $HOME/dotfiles/zellij/config.kdl"
 
 ##################
 # Tmux
@@ -450,3 +459,4 @@ export PATH=$PATH:/home/renan/.pulumi/bin
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"

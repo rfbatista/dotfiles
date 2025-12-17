@@ -83,7 +83,7 @@ keymap("n", "<A-3>", "<cmd>lua require'telescope.builtin'.live_grep()<cr>", opts
 keymap("n", "<A-4>", "<cmd>lua require'telescope.builtin'.buffers()<cr>", opts)
 
 -- Close buffers
-keymap("n", "<A-k>", "<cmd>BufferCloseAllButCurrent<CR>", opts)
+keymap("n", "<A-u>", "<cmd>BufferCloseAllButCurrent<cr>", opts)
 -- Buffers
 keymap("n", "<A-q>", "<cmd>BufferClose<cr>", opts)
 --[[ keymap("n", "<A-w>", ":BufferLineCycleNext<CR>", opts) ]]

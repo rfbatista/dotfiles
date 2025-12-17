@@ -12,35 +12,6 @@ return {
   },
   keys = {
     {
-      "<leader>fs",
-      function()
-        require("aider.aider").send_file()
-      end,
-      desc = "Send file",
-      mode = { "n", "v" },
-    },
-    {
-      "<leader>fl",
-      function()
-        require("aider.aider").select_template()
-      end,
-      desc = "List templates",
-    },
-    {
-      "<leader>fo",
-      function()
-        require("aider.aider").toggle()
-      end,
-      desc = "Open aider",
-    },
-    { "<leader>fc", "<cmd>Aider command<cr>", desc = "Aider Commands" },
-    { "<leader>fb", "<cmd>Aider buffer<cr>", desc = "Send Buffer" },
-    { "<leader>f+", "<cmd>Aider add<cr>", desc = "Add File" },
-    { "<leader>f-", "<cmd>Aider drop<cr>", desc = "Drop File" },
-    { "<leader>fr", "<cmd>Aider add readonly<cr>", desc = "Add Read-Only" },
-    { "<leader>f+", "<cmd>AiderTreeAddFile<cr>", desc = "Add File from Tree to Aider", ft = "NvimTree" },
-    { "<leader>f-", "<cmd>AiderTreeDropFile<cr>", desc = "Drop File from Tree from Aider", ft = "NvimTree" },
-    {
       "<leader>Da",
       "<cmd>TroubleToggle<cr>",
       desc = "Toggle",
@@ -114,6 +85,13 @@ return {
       "<leader>Ga",
       "<cmd>GoAddTag json<cr>",
       desc = "Add json tags",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>Gy",
+      "<cmd>GoAddTag yaml<cr>",
+      desc = "Add yaml tags",
       nowait = true,
       remap = false,
     },
@@ -203,35 +181,35 @@ return {
     },
     {
       "<leader>Tb",
-      "<cmd>lua require('vtsls').commands.sort_imports()<CR>",
+      "<cmd>TSToolsOrganizeImports<CR>",
       desc = "Organize imports",
       nowait = true,
       remap = false,
     },
     {
       "<leader>Tc",
-      "<cmd>lua require('vtsls').commands.rename_file()<CR>",
+      "<cmd>TSToolsRenameFile<CR>",
       desc = "Typescript Rename File",
       nowait = true,
       remap = false,
     },
     {
       "<leader>Td",
-      "<cmd>lua require('vtsls').commands.add_missing_imports()<CR>",
+      "<cmd>TSToolsAddMissingImports<CR>",
       desc = "Import all",
       nowait = true,
       remap = false,
     },
     {
       "<leader>Te",
-      "<cmd>lua require('vtsls').commands.fix_all()<CR>",
+      "<cmd>TSToolsFixAll<CR>",
       desc = "Fix all",
       nowait = true,
       remap = false,
     },
     {
       "<leader>Tm",
-      "<cmd>lua require('vtsls').commands.remove_unused_imports()<CR>",
+      "<cmd>TSToolsRemoveUnusedImports<CR>",
       desc = "Remover imports nao utilizados",
       nowait = true,
       remap = false,
@@ -287,40 +265,12 @@ return {
       remap = false,
     },
     {
-      "<leader>da",
-      "<cmd>lua require('kulala').run()<cr>",
-      desc = "Run request",
-      nowait = true,
-      remap = false,
-    },
-    {
       "<leader>db",
       "<cmd>Rest open<cr>",
       desc = "Open result pane",
       nowait = true,
       remap = false,
     },
-    -- {
-    -- 	"<leader>db",
-    -- 	"<cmd>lua require('kulala').toggle_view()<cr>",
-    -- 	desc = "Toggle between body and headers",
-    -- 	nowait = true,
-    -- 	remap = false,
-    -- },
-    -- {
-    -- 	"<leader>dd",
-    -- 	"<cmd>lua require('kulala').run()<cr>",
-    -- 	desc = "Run under cursor request",
-    -- 	nowait = true,
-    -- 	remap = false,
-    -- },
-    -- {
-    -- 	"<leader>di",
-    -- 	"<cmd>lua require('kulala').inspect()<cr>",
-    -- 	desc = "Inspect current request",
-    -- 	nowait = true,
-    -- 	remap = false,
-    -- },
     {
       "<leader>gR",
       "<cmd>lua require 'gitsigns'.reset_buffer()<cr>",
@@ -794,6 +744,12 @@ return {
   config = function(_, opts)
     local which_key = require("which-key")
     which_key.setup(opts)
+    which_key.add(require("plugins.whichkey_commands.tui"))
+    which_key.add(require("plugins.whichkey_commands.json"))
+    which_key.add(require("plugins.whichkey_commands.others"))
+    which_key.add(require("plugins.whichkey_commands.ai"))
+    which_key.add(require("plugins.whichkey_commands.requests"))
+    which_key.add(require("plugins.whichkey_commands.git"))
     which_key.add({
       {
         "<leader>D",
@@ -822,12 +778,6 @@ return {
       {
         "<leader>a",
         group = "Tests",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>d",
-        group = "Requests",
         nowait = true,
         remap = false,
       },

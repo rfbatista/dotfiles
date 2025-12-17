@@ -4,6 +4,9 @@ return {
     branch = "master",
   },
   {
+    "github/copilot.vim",
+  },
+  {
     "gitsigns.nvim",
     opts = function()
       Snacks.toggle({
@@ -61,7 +64,7 @@ return {
       require("numb").setup()
     end,
   },
-  { "echasnovski/mini.nvim", version = "*" },
+  { "nvim-mini/mini.nvim", version = "*" },
   {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
