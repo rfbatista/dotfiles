@@ -1,16 +1,36 @@
-return {
-  "folke/which-key.nvim",
-  event = "VeryLazy",
-  lazy = true,
-  tag = "v3.17.0",
-  opts = {
-    icons = {
-      breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-      separator = "➜", -- symbol used between a key and it's label
-      group = "+", -- symbol prepended to a group
-    },
-  },
-  keys = {
+-- Import whichkey commands
+local tui_commands = require("plugins.whichkey_commands.tui")
+local json_commands = require("plugins.whichkey_commands.json")
+local typescript_commands = require("plugins.whichkey_commands.typescript")
+local others_commands = require("plugins.whichkey_commands.others")
+local ai_commands = require("plugins.whichkey_commands.ai")
+local lsp_commands = require("plugins.whichkey_commands.lsp")
+local git_commands = require("plugins.whichkey_commands.git")
+local requests_commands = require("plugins.whichkey_commands.requests")
+
+-- Combine all imported commands
+local function combine_tables(...)
+  local result = {}
+  for _, tbl in ipairs({ ... }) do
+    for _, v in ipairs(tbl) do
+      table.insert(result, v)
+    end
+  end
+  return result
+end
+
+-- All keys combined
+local keys = combine_tables(
+  tui_commands,
+  json_commands,
+  typescript_commands,
+  others_commands,
+  ai_commands,
+  lsp_commands,
+  git_commands,
+  requests_commands,
+  {
+    -- Local keys
     {
       "<leader>Da",
       "<cmd>TroubleToggle<cr>",
@@ -200,7 +220,6 @@ return {
       nowait = true,
       remap = false,
     },
-
     {
       "<leader>ad",
       "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>",
@@ -236,27 +255,6 @@ return {
       nowait = true,
       remap = false,
     },
-    -- {
-    -- 	"<leader>db",
-    -- 	"<cmd>lua require('kulala').toggle_view()<cr>",
-    -- 	desc = "Toggle between body and headers",
-    -- 	nowait = true,
-    -- 	remap = false,
-    -- },
-    -- {
-    -- 	"<leader>dd",
-    -- 	"<cmd>lua require('kulala').run()<cr>",
-    -- 	desc = "Run under cursor request",
-    -- 	nowait = true,
-    -- 	remap = false,
-    -- },
-    -- {
-    -- 	"<leader>di",
-    -- 	"<cmd>lua require('kulala').inspect()<cr>",
-    -- 	desc = "Inspect current request",
-    -- 	nowait = true,
-    -- 	remap = false,
-    -- },
     {
       "<leader>h",
       "<cmd>nohlsearch<CR>",
@@ -565,96 +563,107 @@ return {
       nowait = true,
       remap = false,
     },
+  }
+)
+
+-- Groups
+local groups = {
+  {
+    "<leader>D",
+    group = "Diagnostics",
+    nowait = true,
+    remap = false,
   },
+  {
+    "<leader>G",
+    group = "Golang",
+    nowait = true,
+    remap = false,
+  },
+  {
+    "<leader>N",
+    group = "Node",
+    nowait = true,
+    remap = false,
+  },
+  {
+    "<leader>T",
+    group = "Typescript",
+    nowait = true,
+    remap = false,
+  },
+  {
+    "<leader>a",
+    group = "Tests",
+    nowait = true,
+    remap = false,
+  },
+  {
+    "<leader>R",
+    group = "Requests",
+    nowait = true,
+    remap = false,
+  },
+  {
+    "<leader>g",
+    group = "Git",
+    nowait = true,
+    remap = false,
+  },
+  {
+    "<leader>m",
+    group = "Plant UML",
+    nowait = true,
+    remap = false,
+  },
+  {
+    "<leader>o",
+    group = "DAP",
+    nowait = true,
+    remap = false,
+  },
+  {
+    "<leader>p",
+    group = "Python",
+    nowait = true,
+    remap = false,
+  },
+  {
+    "<leader>r",
+    group = "Diagnostics",
+    nowait = true,
+    remap = false,
+  },
+  {
+    "<leader>s",
+    group = "Search",
+    nowait = true,
+    remap = false,
+  },
+  {
+    "<leader>t",
+    group = "Terminal",
+    nowait = true,
+    remap = false,
+  },
+}
+
+return {
+  "folke/which-key.nvim",
+  event = "VeryLazy",
+  lazy = true,
+  tag = "v3.17.0",
+  opts = {
+    icons = {
+      breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
+      separator = "➜", -- symbol used between a key and it's label
+      group = "+", -- symbol prepended to a group
+    },
+  },
+  keys = keys,
   config = function(_, opts)
     local which_key = require("which-key")
     which_key.setup(opts)
-    which_key.add(require("plugins.whichkey_commands.tui"))
-    which_key.add(require("plugins.whichkey_commands.json"))
-    which_key.add(require("plugins.whichkey_commands.typescript"))
-    which_key.add(require("plugins.whichkey_commands.others"))
-    which_key.add(require("plugins.whichkey_commands.ai"))
-    which_key.add(require("plugins.whichkey_commands.lsp"))
-    which_key.add(require("plugins.whichkey_commands.git"))
-    which_key.add({
-      {
-        "<leader>D",
-        group = "Diagnostics",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>G",
-        group = "Golang",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>N",
-        group = "Node",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>T",
-        group = "Typescript",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>a",
-        group = "Tests",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>R",
-        group = "Requests",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>g",
-        group = "Git",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>m",
-        group = "Plant UML",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>o",
-        group = "DAP",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>p",
-        group = "Python",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>r",
-        group = "Diagnostics",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>s",
-        group = "Search",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>t",
-        group = "Terminal",
-        nowait = true,
-        remap = false,
-      },
-    })
+    which_key.add(groups)
   end,
 }

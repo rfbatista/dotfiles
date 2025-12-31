@@ -244,42 +244,6 @@ return {
       remap = false,
     },
     {
-      "<leader>aa",
-      '<cmd>lua require("neotest").run.run()<cr>',
-      desc = "Run the nearest test",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>ab",
-      "<cmd>lua require('neotest').summary.toggle()<cr>",
-      desc = "Show tests summary",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>ao",
-      '<cmd>lua require("neotest").output.open({ enter = true, auto_close = true })<cr>',
-      desc = "Show Output",
-      nowait = true,
-      remap = false,
-    },
-
-    {
-      "<leader>ad",
-      "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>",
-      desc = "Debug the nearest test",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>ai",
-      "<cmd>lua Integration_test()<cr>",
-      desc = "Run current integration test file",
-      nowait = true,
-      remap = false,
-    },
-    {
       "<leader>b",
       "<cmd>lua require('telescope').extensions.aerial.aerial()<cr>",
       desc = "File Structure",
@@ -802,12 +766,6 @@ return {
       {
         "<leader>T",
         group = "Typescript",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>a",
-        group = "Tests",
         nowait = true,
         remap = false,
       },

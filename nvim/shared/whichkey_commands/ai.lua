@@ -1,6 +1,12 @@
 return {
 	{
-		"<leader>fs",
+		"<leader>a",
+		group = "AI",
+		nowait = true,
+		remap = false,
+	},
+	{
+		"<leader>as",
 		function()
 			require("ai.ai").send_file()
 		end,
@@ -8,7 +14,7 @@ return {
 		mode = { "n" },
 	},
 	{
-		"<leader>fs",
+		"<leader>aS",
 		function()
 			require("ai.ai").send_selection()
 		end,
@@ -16,24 +22,24 @@ return {
 		mode = { "v" },
 	},
 	{
-		"<leader>fl",
-		function()
-			require("ai.ai").show_session_picker()
-		end,
-		desc = "List templates",
-	},
-	{
-		"<leader>fd",
-		function()
-			require("ai.ai").delete_session()
-		end,
-		desc = "Delete session",
-	},
-	{
-		"<leader>fo",
+		"<leader>ao",
 		function()
 			require("ai.ai").toggle()
 		end,
-		desc = "Open aider",
+		desc = "Open",
+	},
+	{
+		"<leader>at",
+		function()
+			require("ai.ai").list_tabs()
+		end,
+		desc = "Tabs",
+	},
+	{
+		"<leader>aT",
+		function()
+			require("ai.ai").create_or_select_tab()
+		end,
+		desc = "Create or Select Tab",
 	},
 }
