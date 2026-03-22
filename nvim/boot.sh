@@ -6,6 +6,7 @@ FOLDERS=(
   "nvim-ts"
   "nvim-go"
   "nvim-flutter"
+  "nvim-java"
 )
 
 # Function to create symlink for keymaps.lua
@@ -13,18 +14,21 @@ create_keymaps_symlink() {
   local folder=$1
   local target_path="$HOME/dotfiles/nvim/$folder/lua/config/keymaps.lua"
 
-  if [ ! -L "$target_path" ]; then
-    ln -s "$HOME/dotfiles/nvim/shared/keymaps.lua" "$target_path"
-    echo "Created symlink for keymaps.lua in $folder"
-  else
-    echo "Symlink for keymaps.lua in $folder already exists"
+  # Delete existing symlink if it exists
+  if [ -L "$target_path" ]; then
+    rm "$target_path"
+    echo "Removed existing symlink for keymaps.lua in $folder"
   fi
+
+  ln -s "$HOME/dotfiles/nvim/shared/keymaps.lua" "$target_path"
+  echo "Created symlink for keymaps.lua in $folder"
 }
 
 create_plugins() {
   local folder=$1
   local target_path="$HOME/dotfiles/nvim/$folder/lua/plugins"
   local source_path="$HOME/dotfiles/nvim/shared/plugins"
+  local shared_link="$target_path/shared"
 
   # Create the target folder if it doesn't exist
   if [ ! -d "$target_path" ]; then
@@ -32,19 +36,25 @@ create_plugins() {
     echo "Created directory: $target_path"
   fi
 
-  # Symlink each file from source
+  # Remove old individual file symlinks pointing into shared/plugins
   for file in "$source_path"/*; do
     local base
     base=$(basename "$file")
-    local target_file="$target_path/$base"
-
-    if [ ! -L "$target_file" ]; then
-      ln -s "$file" "$target_file"
-      echo "Symlinked $base → $folder"
-    else
-      echo "Symlink for $base already exists in $folder"
+    local old_link="$target_path/$base"
+    if [ -L "$old_link" ]; then
+      rm "$old_link"
+      echo "Removed old file symlink $base in $folder"
     fi
   done
+
+  # Create a single directory symlink: lua/plugins/shared → shared/plugins
+  if [ -L "$shared_link" ]; then
+    rm "$shared_link"
+    echo "Removed existing shared symlink in $folder"
+  fi
+
+  ln -s "$source_path" "$shared_link"
+  echo "Symlinked shared/ → $folder/lua/plugins/shared"
 }
 
 # Function to create symlink for whichkey_commands
@@ -65,12 +75,14 @@ create_whichkey_symlink() {
     base=$(basename "$file")
     local target_file="$target_path/$base"
 
-    if [ ! -L "$target_file" ]; then
-      ln -s "$file" "$target_file"
-      echo "Symlinked $base → $folder"
-    else
-      echo "Symlink for $base already exists in $folder"
+    # Delete existing symlink if it exists
+    if [ -L "$target_file" ]; then
+      rm "$target_file"
+      echo "Removed existing symlink for $base in $folder"
     fi
+
+    ln -s "$file" "$target_file"
+    echo "Symlinked $base → $folder"
   done
 }
 
@@ -78,12 +90,14 @@ create_ai_symlink() {
   local folder=$1
   local target_path="$HOME/dotfiles/nvim/$folder/lua/ai"
 
-  if [ ! -L "$target_path" ]; then
-    ln -s "$HOME/dotfiles/nvim/shared/ai/" "$target_path"
-    echo "Created symlink for ai in $folder"
-  else
-    echo "Symlink for ai in $folder already exists"
+  # Delete existing symlink if it exists
+  if [ -L "$target_path" ]; then
+    rm "$target_path"
+    echo "Removed existing symlink for ai in $folder"
   fi
+
+  ln -s "$HOME/dotfiles/nvim/shared/ai/" "$target_path"
+  echo "Created symlink for ai in $folder"
 }
 
 # Process each folder in the defined list

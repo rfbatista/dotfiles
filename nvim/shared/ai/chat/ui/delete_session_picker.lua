@@ -3,6 +3,7 @@ local M = {}
 local storage = require("ai.chat.shared.storage")
 local delete_session = require("ai.chat.core.delete_session")
 local terminal = require("ai.terminal")
+local terminal_utils = require("ai.terminal.shared.utils")
 
 ---Delete session picker UI using snack
 function M.show_delete_session_picker()
@@ -21,7 +22,7 @@ function M.show_delete_session_picker()
 		local terminal_status = ""
 		if session.terminal_name then
 			local term = terminal.get_named(session.terminal_name)
-			terminal_status = term and term:buf_valid() and " | Terminal: running" or " | Terminal: closed"
+			terminal_status = terminal_utils.is_terminal_valid(term) and " | Terminal: running" or " | Terminal: closed"
 		end
 
 		table.insert(items, {

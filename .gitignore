@@ -1,5 +1,6 @@
 plugin
 ngrok
+zsh/.zshrc.local
 .zcompdump*
 fonts/*.ttf
 
@@ -15,3 +16,24 @@ fonts/JetBrainsMono
 fonts/JetBrainsMono
 fonts/Agave.zip
 fonts/JetBrainsMono.zip.1
+./nvim/nvim-go/lua/plugins/whichkey_commands/*
+./nvim/nvim-ts/lua/plugins/whichkey_commands/*
+./nvim/nvim-python/lua/plugins/whichkey_commands/*
+./nvim/nvim-flutter/lua/plugins/whichkey_commands/*
+
+
+./nvim/nvim-go/lua/config/keymaps.lua
+./nvim/nvim-ts/lua/config/keymaps.lua
+./nvim/nvim-python/lua/config/keymaps.lua
+./nvim/nvim-flutter/lua/config/keymaps.lua
+nvim/nvim-go/lua/ai
+nvim/nvim-python/lua/config/keymaps.lua
+nvim/nvim-python/lua/ai
+nvim/nvim-ts/lua/plugins/whichkey_commands
+nvim/nvim-ts/lua/plugins/toggleterm.lua
+nvim/nvim-ts/lua/ai
+nvim/nvim-flutter/lua/ai
+nvim/nvim-go/lua/plugins/whichkey_commands
+nvim/nvim-python/lua/plugins/whichkey_commands
+nvim/nvim-python/lua/plugins/toggleterm.lua
+nvim/nvim-python/lua/plugins/whichkey.lua

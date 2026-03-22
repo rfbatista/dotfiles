@@ -1,12 +1,13 @@
 -- Import whichkey commands
 local tui_commands = require("plugins.whichkey_commands.tui")
 local json_commands = require("plugins.whichkey_commands.json")
-local typescript_commands = require("plugins.whichkey_commands.typescript")
+-- local typescript_commands = require("plugins.whichkey_commands.typescript")
 local others_commands = require("plugins.whichkey_commands.others")
 local ai_commands = require("plugins.whichkey_commands.ai")
 local lsp_commands = require("plugins.whichkey_commands.lsp")
 local git_commands = require("plugins.whichkey_commands.git")
 local requests_commands = require("plugins.whichkey_commands.requests")
+local terminal_commands = require("plugins.whichkey_commands.terminal")
 
 -- Combine all imported commands
 local function combine_tables(...)
@@ -23,12 +24,13 @@ end
 local keys = combine_tables(
   tui_commands,
   json_commands,
-  typescript_commands,
+  -- typescript_commands,
   others_commands,
   ai_commands,
   lsp_commands,
   git_commands,
   requests_commands,
+  terminal_commands,
   {
     -- Local keys
     {
@@ -168,20 +170,6 @@ local keys = combine_tables(
       "<leader>M",
       "<cmd>MarkdownPreview<cr>",
       desc = "Open Markdown",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>Na",
-      "<cmd>2TermExec cmd='node %'<cr>",
-      desc = "Run current file",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>Nb",
-      "<cmd>2TermExec cmd='npx ts-node-dev %'<cr>",
-      desc = "Run current file with typescript",
       nowait = true,
       remap = false,
     },
@@ -354,20 +342,6 @@ local keys = combine_tables(
       remap = false,
     },
     {
-      "<leader>pa",
-      "<cmd>2TermExec cmd='python %'<cr>",
-      desc = "Run current file",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>pb",
-      "<cmd>2TermExec cmd='make run'<cr>",
-      desc = "Run application",
-      nowait = true,
-      remap = false,
-    },
-    {
       "<leader>q",
       "<cmd>q!<cr>",
       desc = "Quit",
@@ -473,83 +447,6 @@ local keys = combine_tables(
       remap = false,
     },
     {
-      "<leader>tb",
-      "<cmd>ToggleTerm direction=tab<cr>",
-      desc = "Tab",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>td",
-      "<cmd>lua _LAZYDOCKER_TOGGLE()<cr>",
-      desc = "Lazy Docker",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>te",
-      "<cmd>lua _START_NGROK()<cr>",
-      desc = "Start Ngrok",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>tf",
-      "<cmd>lua _OPEN_NGROK()<cr>",
-      desc = "Open Ngrok",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>th",
-      "<cmd>ToggleTerm size=10 direction=horizontal<cr>",
-      desc = "Horizontal",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>tl",
-      "<cmd>lua _LAZYGIT_TOGGLE()<cr>",
-      desc = "Lazy Git",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>tn",
-      "<cmd>lua _NODE_TOGGLE()<cr>",
-      desc = "Node",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>tp",
-      "<cmd>lua _PYTHON_TOGGLE()<cr>",
-      desc = "Python",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>tt",
-      "<cmd>lua _HTOP_TOGGLE()<cr>",
-      desc = "Htop",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>tu",
-      "<cmd>lua _NCDU_TOGGLE()<cr>",
-      desc = "NCDU",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>tv",
-      "<cmd>ToggleTerm size=80 direction=vertical<cr>",
-      desc = "Vertical",
-      nowait = true,
-      remap = false,
-    },
-    {
       "<leader>u",
       "<cmd>set noexpandtab<cr><cmd>retab!<cr>",
       desc = "Spaces to Tabs",
@@ -575,20 +472,8 @@ local groups = {
     remap = false,
   },
   {
-    "<leader>G",
-    group = "Golang",
-    nowait = true,
-    remap = false,
-  },
-  {
-    "<leader>N",
-    group = "Node",
-    nowait = true,
-    remap = false,
-  },
-  {
     "<leader>T",
-    group = "Typescript",
+    group = "Terminal applications",
     nowait = true,
     remap = false,
   },
@@ -640,18 +525,11 @@ local groups = {
     nowait = true,
     remap = false,
   },
-  {
-    "<leader>t",
-    group = "Terminal",
-    nowait = true,
-    remap = false,
-  },
 }
 
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
-  lazy = true,
   tag = "v3.17.0",
   opts = {
     icons = {

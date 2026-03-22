@@ -1,6 +1,7 @@
 local M = {}
 
 local storage = require("ai.terminal.shared.storage")
+local utils = require("ai.terminal.shared.utils")
 local toggle_named = require("ai.terminal.named.toggle_named")
 local create_terminal_prompt = require("ai.terminal.picker.create_terminal_prompt")
 
@@ -11,7 +12,7 @@ function M.show_terminal_picker()
 	
 	local items = {}
 	for name, info in pairs(named_terminals) do
-		local is_valid = info.term and info.term:buf_valid()
+		local is_valid = utils.is_terminal_valid(info.term)
 		local status = is_valid and " (running)" or " (closed)"
 		local created = os.date("%Y-%m-%d %H:%M", info.created_at)
 		

@@ -28,21 +28,18 @@ function M.send(text, opts, multi_line)
 
 	-- Fallback to original aider terminal
 	local cmd = utils.create_cmd(opts)
-	local term = require("snacks.terminal").get(cmd, opts)
-	if not term then
+	local default_info = storage.get_default_terminal_info()
+	local term = default_info and default_info.term
+	if not utils.is_terminal_valid(term) or (default_info and default_info.cmd ~= cmd) then
 		vim.notify("Please open an Aider terminal first.", vim.log.levels.INFO)
 		return
 	end
 
-	if utils.is_terminal_valid(term) then
-		local chan = utils.get_terminal_channel(term)
-		if chan then
-			utils.send_to_channel(chan, text, multi_line)
-		else
-			vim.notify("No Aider terminal job found!", vim.log.levels.ERROR)
-		end
+	local chan = utils.get_terminal_channel(term)
+	if chan then
+		utils.send_to_channel(chan, text, multi_line)
 	else
-		vim.notify("Please open an Aider terminal first.", vim.log.levels.INFO)
+		vim.notify("No Aider terminal job found!", vim.log.levels.ERROR)
 	end
 end
 

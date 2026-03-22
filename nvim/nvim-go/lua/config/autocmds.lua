@@ -48,6 +48,21 @@ local options = {
 }
 
 vim.opt.shortmess:append("c")
+vim.g.clipboard = {
+  name = "OSC 52",
+  copy = {
+    ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+    ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+  },
+  paste = {
+    ["+"] = function()
+      return vim.fn.split(vim.fn.getreg("+"), "\n")
+    end,
+    ["*"] = function()
+      return vim.fn.split(vim.fn.getreg("*"), "\n")
+    end,
+  },
+}
 
 -- for k, v in pairs(options) do
 --   vim.opt[k] = v

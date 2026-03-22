@@ -4,6 +4,7 @@ local storage = require("ai.chat.shared.storage")
 local set_current_session = require("ai.chat.core.set_current_session")
 local create_session_prompt = require("ai.chat.ui.create_session_prompt")
 local terminal = require("ai.terminal")
+local terminal_utils = require("ai.terminal.shared.utils")
 
 ---Session picker UI using snack
 function M.show_session_picker()
@@ -22,7 +23,7 @@ function M.show_session_picker()
 		local terminal_status = ""
 		if session.terminal_name then
 			local term = terminal.get_named(session.terminal_name)
-			terminal_status = term and term:buf_valid() and " | Terminal: running" or " | Terminal: closed"
+			terminal_status = terminal_utils.is_terminal_valid(term) and " | Terminal: running" or " | Terminal: closed"
 		end
 
 		table.insert(items, {

@@ -11,7 +11,10 @@ function M.delete_named(name)
 	if named_terminals[name] then
 		local term = named_terminals[name].term
 		if utils.is_terminal_valid(term) then
-			vim.api.nvim_buf_delete(term.buf, { force = true })
+			local bufnr = term.bufnr or term.buf
+			if bufnr and vim.api.nvim_buf_is_valid(bufnr) then
+				vim.api.nvim_buf_delete(bufnr, { force = true })
+			end
 		end
 		storage.remove_named_terminal(name)
 		-- Clear active if this was the active terminal

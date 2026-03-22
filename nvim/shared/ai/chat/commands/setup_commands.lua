@@ -1,4 +1,5 @@
 local M = {}
+local terminal_utils = require("ai.terminal.shared.utils")
 
 ---Setup commands for chat sessions
 function M.setup_commands()
@@ -49,7 +50,7 @@ function M.setup_commands()
 			if session.terminal_name then
 				local terminal = require("ai.terminal")
 				local term = terminal.get_named(session.terminal_name)
-				terminal_info = " | Terminal: " .. (term and term:buf_valid() and "running" or "closed")
+				terminal_info = " | Terminal: " .. (terminal_utils.is_terminal_valid(term) and "running" or "closed")
 			end
 			vim.notify("Current session: " .. session.name .. " (ID: " .. session.id .. ")" .. terminal_info, vim.log.levels.INFO)
 		else

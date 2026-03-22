@@ -42,11 +42,14 @@ return {
 			"<cmd>ToggleTerm 3 size=20 direction=float name=3<CR>",
 			{ noremap = true, silent = true }
 		)
+		vim.api.nvim_set_keymap("n", "<C-0>", "<cmd>lua _GEMINI0_TOGGLE()<CR>", { noremap = true, silent = true })
+		vim.api.nvim_set_keymap("n", "<C-9>", "<cmd>lua _GEMINI9_TOGGLE()<CR>", { noremap = true, silent = true })
+		vim.api.nvim_set_keymap("n", "<C-8>", "<cmd>lua _GEMINI8_TOGGLE()<CR>", { noremap = true, silent = true })
+		vim.api.nvim_set_keymap("n", "<C-7>", "<cmd>lua _GEMINI7_TOGGLE()<CR>", { noremap = true, silent = true })
 
 		function _G.set_terminal_keymaps()
 			local opts = { noremap = true }
 			vim.api.nvim_buf_set_keymap(0, "n", "<S-t>", ":ToggleTerm<CR>", opts)
-			vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], opts)
 			vim.api.nvim_buf_set_keymap(0, "t", "jk", [[<C-\><C-n>]], opts)
 			vim.api.nvim_buf_set_keymap(0, "t", "<C-Right>", [[<C-\><C-n><C-W>h]], opts)
 			vim.api.nvim_buf_set_keymap(0, "t", "<C-Down>", [[<C-\><C-n><C-W>j]], opts)
@@ -93,6 +96,30 @@ return {
 
 		function _LAZYDOCKER_TOGGLE()
 			lazydocker:toggle()
+		end
+
+		local gemini0 = Terminal:new({ cmd = "gemini", hidden = true, id = 10 })
+
+		function _GEMINI0_TOGGLE()
+			gemini0:toggle()
+		end
+
+		local gemini9 = Terminal:new({ cmd = "gemini", hidden = true, id = 11 })
+
+		function _GEMINI9_TOGGLE()
+			gemini9:toggle()
+		end
+
+		local gemini8 = Terminal:new({ cmd = "gemini", hidden = true, id = 12 })
+
+		function _GEMINI8_TOGGLE()
+			gemini8:toggle()
+		end
+
+		local gemini7 = Terminal:new({ cmd = "gemini", hidden = true, id = 13 })
+
+		function _GEMINI7_TOGGLE()
+			gemini7:toggle()
 		end
 
 		function _START_NGROK()

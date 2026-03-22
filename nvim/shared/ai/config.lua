@@ -45,7 +45,10 @@ M.defaults = {
 	win = {
 		wo = { winbar = "Aider" },
 		style = "nvim_aider",
-		position = "right",
+		position = "float",
+		width = 0.9,
+		height = 0.9,
+		border = "rounded",
 	},
 	picker_cfg = {
 		preset = "vscode",
@@ -62,7 +65,10 @@ M.cursor = {
 	win = {
 		wo = { winbar = "Cursor" },
 		style = "nvim_cursor",
-		position = "right",
+		position = "float",
+		width = 0.9,
+		height = 0.9,
+		border = "rounded",
 	},
 	picker_cfg = {
 		preset = "vscode",

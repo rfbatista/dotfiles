@@ -39,7 +39,16 @@ end
 ---@param term table Terminal object
 ---@return boolean
 function M.is_terminal_valid(term)
-	return term and term:buf_valid()
+	if not term then
+		return false
+	end
+
+	if type(term.buf_valid) == "function" then
+		return term:buf_valid()
+	end
+
+	local bufnr = term.bufnr or term.buf
+	return type(bufnr) == "number" and vim.api.nvim_buf_is_valid(bufnr)
 end
 
 ---Get terminal channel
@@ -47,7 +56,17 @@ end
 ---@return number?
 function M.get_terminal_channel(term)
 	if M.is_terminal_valid(term) then
-		return vim.api.nvim_buf_get_var(term.buf, "terminal_job_id")
+		if type(term.job_id) == "number" and term.job_id > 0 then
+			return term.job_id
+		end
+
+		local bufnr = term.bufnr or term.buf
+		if type(bufnr) == "number" and vim.api.nvim_buf_is_valid(bufnr) then
+			local ok, job_id = pcall(vim.api.nvim_buf_get_var, bufnr, "terminal_job_id")
+			if ok then
+				return job_id
+			end
+		end
 	end
 	return nil
 end

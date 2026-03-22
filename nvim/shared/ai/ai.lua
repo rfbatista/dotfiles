@@ -49,6 +49,17 @@ function M.list_tabs()
 	end)
 end
 
+function M.set_session_id()
+	vim.ui.input({
+		prompt = "Session ID (for cursor-agent --resume): ",
+		default = "",
+	}, function(session_id)
+		if session_id and session_id ~= "" then
+			tab_manager.set_session_id_for_current_tab(session_id)
+		end
+	end)
+end
+
 function M.create_or_select_tab()
 	local all_tabs = tab_manager.get_all_tabs()
 	local current_tab = tab_manager.get_current_tab()
@@ -112,10 +123,10 @@ function M.create_or_select_tab()
 			}, function(name)
 				if name and name ~= "" then
 					vim.ui.input({
-						prompt = "Command (empty for shell): ",
-						default = vim.o.shell,
+						prompt = "Command (empty for cursor-agent): ",
+						default = "claude",
 					}, function(cmd)
-						tab_manager.switch_to_tab(name, cmd or vim.o.shell)
+						tab_manager.switch_to_tab(name, (cmd and cmd ~= "") and cmd or "claude")
 					end)
 				end
 			end)

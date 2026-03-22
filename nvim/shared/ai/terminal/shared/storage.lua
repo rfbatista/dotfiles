@@ -3,6 +3,7 @@ local M = {}
 -- Terminal storage for named terminals
 local named_terminals = {}
 local active_terminal_name = nil
+local default_terminal_info = nil
 
 ---Get named terminals storage
 ---@return table
@@ -26,6 +27,18 @@ end
 ---@param name string?
 function M.set_active_terminal_name(name)
 	active_terminal_name = name
+end
+
+---Get default terminal info
+---@return table?
+function M.get_default_terminal_info()
+	return default_terminal_info
+end
+
+---Set default terminal info
+---@param info table?
+function M.set_default_terminal_info(info)
+	default_terminal_info = info
 end
 
 ---Add named terminal to storage

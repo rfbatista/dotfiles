@@ -1,16 +1,38 @@
-return {
-  "folke/which-key.nvim",
-  event = "VeryLazy",
-  lazy = true,
-  tag = "v3.17.0",
-  opts = {
-    icons = {
-      breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-      separator = "➜", -- symbol used between a key and it's label
-      group = "+", -- symbol prepended to a group
-    },
-  },
-  keys = {
+-- Import whichkey commands
+local tui_commands = require("plugins.whichkey_commands.tui")
+local json_commands = require("plugins.whichkey_commands.json")
+-- local typescript_commands = require("plugins.whichkey_commands.typescript")
+local others_commands = require("plugins.whichkey_commands.others")
+local ai_commands = require("plugins.whichkey_commands.ai")
+local lsp_commands = require("plugins.whichkey_commands.lsp")
+local git_commands = require("plugins.whichkey_commands.git")
+local requests_commands = require("plugins.whichkey_commands.requests")
+local terminal_commands = require("plugins.whichkey_commands.terminal")
+
+-- Combine all imported commands
+local function combine_tables(...)
+  local result = {}
+  for _, tbl in ipairs({ ... }) do
+    for _, v in ipairs(tbl) do
+      table.insert(result, v)
+    end
+  end
+  return result
+end
+
+-- All keys combined
+local keys = combine_tables(
+  tui_commands,
+  json_commands,
+  -- typescript_commands,
+  others_commands,
+  ai_commands,
+  lsp_commands,
+  git_commands,
+  requests_commands,
+  terminal_commands,
+  {
+    -- Local keys
     {
       "<leader>Da",
       "<cmd>TroubleToggle<cr>",
@@ -89,13 +111,6 @@ return {
       remap = false,
     },
     {
-      "<leader>Gy",
-      "<cmd>GoAddTag yaml<cr>",
-      desc = "Add yaml tags",
-      nowait = true,
-      remap = false,
-    },
-    {
       "<leader>Gb",
       "<cmd>GoAddTag form<cr>",
       desc = "Add form tags",
@@ -159,58 +174,9 @@ return {
       remap = false,
     },
     {
-      "<leader>Na",
-      "<cmd>2TermExec cmd='node %'<cr>",
-      desc = "Run current file",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>Nb",
-      "<cmd>2TermExec cmd='npx ts-node-dev %'<cr>",
-      desc = "Run current file with typescript",
-      nowait = true,
-      remap = false,
-    },
-    {
       "<leader>P",
       "<cmd>lua require('telescope').extensions.projects.projects()<cr>",
       desc = "Projects",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>Tb",
-      "<cmd>TSToolsOrganizeImports<CR>",
-      desc = "Organize imports",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>Tc",
-      "<cmd>TSToolsRenameFile<CR>",
-      desc = "Typescript Rename File",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>Td",
-      "<cmd>TSToolsAddMissingImports<CR>",
-      desc = "Import all",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>Te",
-      "<cmd>TSToolsFixAll<CR>",
-      desc = "Fix all",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>Tm",
-      "<cmd>TSToolsRemoveUnusedImports<CR>",
-      desc = "Remover imports nao utilizados",
       nowait = true,
       remap = false,
     },
@@ -229,13 +195,19 @@ return {
       remap = false,
     },
     {
+      "<leader>ac",
+      "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>",
+      desc = "Run all tests in file",
+      nowait = true,
+      remap = false,
+    },
+    {
       "<leader>ao",
       '<cmd>lua require("neotest").output.open({ enter = true, auto_close = true })<cr>',
       desc = "Show Output",
       nowait = true,
       remap = false,
     },
-
     {
       "<leader>ad",
       "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>",
@@ -251,13 +223,6 @@ return {
       remap = false,
     },
     {
-      "<leader>b",
-      "<cmd>lua require('telescope').extensions.aerial.aerial()<cr>",
-      desc = "File Structure",
-      nowait = true,
-      remap = false,
-    },
-    {
       "<leader>c",
       "<cmd>Bdelete!<CR>",
       desc = "Close Buffer",
@@ -265,79 +230,16 @@ return {
       remap = false,
     },
     {
-      "<leader>db",
+      "<leader>Da",
+      "<cmd>lua require('kulala').run()<cr>",
+      desc = "Run request",
+      nowait = true,
+      remap = false,
+    },
+    {
+      "<leader>Rb",
       "<cmd>Rest open<cr>",
       desc = "Open result pane",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>gR",
-      "<cmd>lua require 'gitsigns'.reset_buffer()<cr>",
-      desc = "Reset Buffer",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>gb",
-      "<cmd>Telescope git_branches<cr>",
-      desc = "Checkout branch",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>gc",
-      "<cmd>Telescope git_commits<cr>",
-      desc = "Checkout commit",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>gd",
-      "<cmd>Gitsigns diffthis HEAD<cr>",
-      desc = "Diff",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>gg",
-      "<cmd>lua _LAZYGIT_TOGGLE()<CR>",
-      desc = "Lazygit",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>gj",
-      "<cmd>lua require 'gitsigns'.next_hunk()<cr>",
-      desc = "Next Hunk",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>gk",
-      "<cmd>lua require 'gitsigns'.prev_hunk()<cr>",
-      desc = "Prev Hunk",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>gl",
-      "<cmd>lua require 'gitsigns'.blame_line()<cr>",
-      desc = "Blame",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>go",
-      "<cmd>Telescope git_status<cr>",
-      desc = "Open changed file",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>gp",
-      "<cmd>lua require 'gitsigns'.preview_hunk()<cr>",
-      desc = "Preview Hunk",
       nowait = true,
       remap = false,
     },
@@ -359,97 +261,6 @@ return {
       "<leader>k",
       "<cmd>BufferCloseAllButCurrent<CR>",
       desc = "close all buffers",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>lI",
-      "<cmd>LspInstallInfo<cr>",
-      desc = "Installer Info",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>lS",
-      "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-      desc = "Workspace Symbols",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>la",
-      "<cmd>lua vim.lsp.buf.code_action()<cr>",
-      desc = "Code Action",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>lf",
-      "<cmd>lua require('conform').format()<cr>",
-      desc = "Format",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>lh",
-      "<cmd>Telescope lsp_document_diagnostics<cr>",
-      desc = "Document Diagnostics",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>li",
-      "<cmd>LspInfo<cr>",
-      desc = "Info",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>lj",
-      "<cmd>lua vim.diagnostic.goto_next()<CR>",
-      desc = "Next Diagnostic",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>lk",
-      "<cmd>lua vim.diagnostic.goto_prev()<cr>",
-      desc = "Prev Diagnostic",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>ll",
-      "<cmd>lua vim.lsp.codelens.run()<cr>",
-      desc = "CodeLens Action",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>lq",
-      "<cmd>lua vim.diagnostic.setloclist()<cr>",
-      desc = "Quickfix",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>lr",
-      "<cmd>lua vim.lsp.buf.rename()<cr>",
-      desc = "Rename",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>ls",
-      "<cmd>Telescope lsp_document_symbols<cr>",
-      desc = "Document Symbols",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>lw",
-      "<cmd>Telescope lsp_workspace_diagnostics<cr>",
-      desc = "Workspace Diagnostics",
       nowait = true,
       remap = false,
     },
@@ -527,20 +338,6 @@ return {
       "<leader>os",
       "<cmd>lua require('dap').continue()<cr>",
       desc = "Start",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>pa",
-      "<cmd>2TermExec cmd='python %'<cr>",
-      desc = "Run current file",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>pb",
-      "<cmd>2TermExec cmd='make run'<cr>",
-      desc = "Run application",
       nowait = true,
       remap = false,
     },
@@ -650,83 +447,6 @@ return {
       remap = false,
     },
     {
-      "<leader>tb",
-      "<cmd>ToggleTerm direction=tab<cr>",
-      desc = "Tab",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>td",
-      "<cmd>lua _LAZYDOCKER_TOGGLE()<cr>",
-      desc = "Lazy Docker",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>te",
-      "<cmd>lua _START_NGROK()<cr>",
-      desc = "Start Ngrok",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>tf",
-      "<cmd>lua _OPEN_NGROK()<cr>",
-      desc = "Open Ngrok",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>th",
-      "<cmd>ToggleTerm size=10 direction=horizontal<cr>",
-      desc = "Horizontal",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>tl",
-      "<cmd>lua _LAZYGIT_TOGGLE()<cr>",
-      desc = "Lazy Git",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>tn",
-      "<cmd>lua _NODE_TOGGLE()<cr>",
-      desc = "Node",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>tp",
-      "<cmd>lua _PYTHON_TOGGLE()<cr>",
-      desc = "Python",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>tt",
-      "<cmd>lua _HTOP_TOGGLE()<cr>",
-      desc = "Htop",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>tu",
-      "<cmd>lua _NCDU_TOGGLE()<cr>",
-      desc = "NCDU",
-      nowait = true,
-      remap = false,
-    },
-    {
-      "<leader>tv",
-      "<cmd>ToggleTerm size=80 direction=vertical<cr>",
-      desc = "Vertical",
-      nowait = true,
-      remap = false,
-    },
-    {
       "<leader>u",
       "<cmd>set noexpandtab<cr><cmd>retab!<cr>",
       desc = "Spaces to Tabs",
@@ -740,95 +460,89 @@ return {
       nowait = true,
       remap = false,
     },
+  }
+)
+
+-- Groups
+local groups = {
+  {
+    "<leader>D",
+    group = "Diagnostics",
+    nowait = true,
+    remap = false,
   },
+  {
+    "<leader>T",
+    group = "Terminal applications",
+    nowait = true,
+    remap = false,
+  },
+  {
+    "<leader>a",
+    group = "Tests",
+    nowait = true,
+    remap = false,
+  },
+  {
+    "<leader>R",
+    group = "Requests",
+    nowait = true,
+    remap = false,
+  },
+  {
+    "<leader>g",
+    group = "Git",
+    nowait = true,
+    remap = false,
+  },
+  {
+    "<leader>m",
+    group = "Plant UML",
+    nowait = true,
+    remap = false,
+  },
+  {
+    "<leader>o",
+    group = "DAP",
+    nowait = true,
+    remap = false,
+  },
+  {
+    "<leader>p",
+    group = "Python",
+    nowait = true,
+    remap = false,
+  },
+  {
+    "<leader>r",
+    group = "Diagnostics",
+    nowait = true,
+    remap = false,
+  },
+  {
+    "<leader>s",
+    group = "Search",
+    nowait = true,
+    remap = false,
+  },
+}
+
+return {
+  "folke/which-key.nvim",
+  event = "VeryLazy",
+  lazy = true,
+  tag = "v3.17.0",
+  opts = {
+    icons = {
+      breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
+      separator = "➜", -- symbol used between a key and it's label
+      group = "+", -- symbol prepended to a group
+    },
+  },
+  keys = keys,
   config = function(_, opts)
     local which_key = require("which-key")
     which_key.setup(opts)
-    which_key.add(require("plugins.whichkey_commands.tui"))
-    which_key.add(require("plugins.whichkey_commands.json"))
-    which_key.add(require("plugins.whichkey_commands.others"))
-    which_key.add(require("plugins.whichkey_commands.ai"))
-    which_key.add(require("plugins.whichkey_commands.requests"))
-    which_key.add(require("plugins.whichkey_commands.git"))
-    which_key.add({
-      {
-        "<leader>D",
-        group = "Diagnostics",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>G",
-        group = "Golang",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>N",
-        group = "Node",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>T",
-        group = "Typescript",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>a",
-        group = "Tests",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>g",
-        group = "Git",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>l",
-        group = "LSP",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>m",
-        group = "Plant UML",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>o",
-        group = "DAP",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>p",
-        group = "Python",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>r",
-        group = "Diagnostics",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>s",
-        group = "Search",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>t",
-        group = "Terminal",
-        nowait = true,
-        remap = false,
-      },
-    })
+    which_key.add(groups)
   end,
 }
